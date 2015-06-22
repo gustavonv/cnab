@@ -1,4 +1,4 @@
-# objectos :: way :: cnab
+# objectos :: cnab
 
 Arquivos de retorno e remessa (CNAB / Febraban) para Java (&trade;). Simples.
 
@@ -33,8 +33,8 @@ way-cnab está na central Maven.
 ```xml
 <dependency>
     <groupId>br.com.objectos</groupId>
-    <artifactId>way-cnab</artifactId>
-    <version>x.y.z</version>
+    <artifactId>cnab</artifactId>
+    <version>0.1.0</version>
 </dependency>
 ```
 
@@ -46,7 +46,7 @@ Até o lançamento da versão 2.0.0, a API poderá mudar bastante...
 
 # Licença de uso
 
-Copyright 2012 [objectos, fábrica de software LTDA](http://www.objectos.com.br)
+Copyright 2012-2015 [objectos, fábrica de software LTDA](http://www.objectos.com.br)
 
 Licensed under the Apache License, Version 2.0 (the "License"); 
 you may not use this file except in compliance with the License. 

@@ -1,4 +1,9 @@
-# way-cnab changelog
+# ChangeLog
+
+## objectos :: cnab :: 0.1.0
+
+- migrado de jabuticava-cnab
+- upgrade deps to way-2.5.0
 
 ## Próxima versão
 
