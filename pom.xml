@@ -1,0 +1,49 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>br.com.objectos</groupId>
+		<artifactId>jabuticava</artifactId>
+		<version>1.0.1-SNAPSHOT</version>
+	</parent>
+	<artifactId>jabuticava-cnab</artifactId>
+	<name>objectos :: jabuticava :: cnab</name>
+	<description>CNAB400: Arquivos retorno e remessa</description>
+	<url>https://github.com/objectos/way-cnab</url>
+	<licenses>
+		<license>
+			<name>The Apache Software License, Version 2.0</name>
+			<url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+			<distribution>repo</distribution>
+		</license>
+	</licenses>
+	<scm>
+		<connection>scm:git:git://objectos/way-cnab.git</connection>
+		<developerConnection>scm:git:git@github.com:objectos/way-cnab.git</developerConnection>
+		<url>https://github.com/objectos/way-cnab</url>
+	  <tag>HEAD</tag>
+  </scm>
+	<developers>
+		<developer>
+			<id>moe</id>
+			<name>Marcio Endo</name>
+			<email>marcio.endo@objectos.com.br</email>
+		</developer>
+	</developers>
+	<contributors>
+		<contributor>
+			<name>Marcos Piazzolla</name>
+			<email>marcos.piazzolla@objectos.com.br</email>
+		</contributor>
+	</contributors>
+	<dependencies>
+		<dependency>
+			<groupId>br.com.objectos</groupId>
+			<artifactId>way-core</artifactId>
+			<type>test-jar</type>
+		</dependency>
+		<dependency>
+			<groupId>br.com.objectos</groupId>
+			<artifactId>way-io</artifactId>
+		</dependency>
+	</dependencies>
+</project>
