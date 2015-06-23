@@ -9,7 +9,7 @@
 	
 	<artifactId>cnab</artifactId>
 	<packaging>jar</packaging>
-	<version>0.1.0</version>
+	<version>0.1.1-SNAPSHOT</version>
 	
 	<name>objectos :: cnab</name>
 	<description>CNAB400: Arquivos retorno e remessa</description>
@@ -27,7 +27,7 @@
 		<connection>scm:git:git://objectos/cnab.git</connection>
 		<developerConnection>scm:git:git@github.com:objectos/cnab.git</developerConnection>
 		<url>https://github.com/objectos/cnab</url>
-		<tag>cnab-0.1.0</tag>
+		<tag>HEAD</tag>
 	</scm>
 	
 	<developers>
