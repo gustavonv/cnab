@@ -52,7 +52,7 @@
 	</organization>
 	
 	<properties>
-		<objectos.io.version>0.2.1-SNAPSHOT</objectos.io.version>
+		<objectos.io.version>0.2.1</objectos.io.version>
 	</properties>
 	
 	<dependencies>

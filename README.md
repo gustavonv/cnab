@@ -4,7 +4,7 @@ Arquivos de retorno e remessa (CNAB / Febraban) para Java (&trade;). Simples.
 
 ## Bancos
 
-objectos way-cnab implementa o padrão CNAB 400 da Febrabran para os seguintes bancos:
+`o7cnab` implementa o padrão CNAB 400 da Febrabran para os seguintes bancos:
 
 - Bradesco
 - Itaú
@@ -28,7 +28,7 @@ for (Lote lote : lotes) {
 
 ## Maven
 
-way-cnab está na central Maven.
+`o7cnab` está na central Maven.
 
 ```xml
 <dependency>
@@ -37,12 +37,6 @@ way-cnab está na central Maven.
     <version>0.1.0</version>
 </dependency>
 ```
-
-## Versões
-
-Estamos trabalhando para atender a especificação SemVer.
-
-Até o lançamento da versão 2.0.0, a API poderá mudar bastante...
 
 # Licença de uso
 
