@@ -1,5 +1,4 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
 	<modelVersion>4.0.0</modelVersion>
 
@@ -11,7 +10,7 @@
 
 	<artifactId>cnab</artifactId>
 	<packaging>jar</packaging>
-	<version>0.1.1-SNAPSHOT</version>
+	<version>0.1.1</version>
 
 	<name>objectos :: cnab</name>
 	<description>CNAB400: Arquivos retorno e remessa</description>
@@ -29,7 +28,7 @@
 		<connection>scm:git:file:///srv/bitbucket/shared/data/repositories/273</connection>
 		<developerConnection>scm:git:file:///srv/bitbucket/shared/data/repositories/273</developerConnection>
 		<url>https://github.com/objectos/cnab</url>
-		<tag>HEAD</tag>
+		<tag>cnab-0.1.1</tag>
 	</scm>
 
 	<issueManagement>
