@@ -15,37 +15,26 @@
  */
 package br.com.objectos.cnab.remessa;
 
+import br.com.objectos.pojo.Pojo;
+
 /**
  * @author marcio.endo@objectos.com.br (Marcio Endo)
  */
-public interface Cobranca {
+@Pojo
+public abstract class Cobranca {
 
-  interface Construtor extends br.com.objectos.comuns.base.Construtor<Cobranca> {
+  public abstract Carteira getCarteira();
+  public abstract Agencia getAgencia();
+  public abstract Conta getConta();
+  public abstract Comando getComando();
+  public abstract Titulo getTitulo();
+  public abstract CobrancaOpcoes getOpcoes();
 
-    Carteira getCarteira();
-
-    Agencia getAgencia();
-
-    Conta getConta();
-
-    Comando getComando();
-
-    Titulo getTitulo();
-
-    CobrancaOpcoes getOpcoes();
-
+  protected Cobranca() {
   }
 
-  Carteira getCarteira();
-
-  Agencia getAgencia();
-
-  Conta getConta();
-
-  Comando getComando();
-
-  Titulo getTitulo();
-
-  CobrancaOpcoes getOpcoes();
+  public static CobrancaBuilder builder() {
+    return new CobrancaBuilderPojo();
+  }
 
 }

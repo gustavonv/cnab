@@ -20,12 +20,12 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
 
 import java.io.File;
+import java.time.LocalDate;
 
 import br.com.objectos.cnab.CnabsFalso;
 import br.com.objectos.cnab.Header;
 import br.com.objectos.cnab.WayCnab;
 
-import org.joda.time.LocalDate;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
@@ -77,7 +77,7 @@ public class TesteDeHeaderBradesco {
   }
 
   public void data_de_gravacao_do_arquivo() {
-    assertThat(header.get(header().dataDeGeracaoDoArquivo()), equalTo(new LocalDate(2012, 4, 30)));
+    assertThat(header.get(header().dataDeGeracaoDoArquivo()), equalTo(LocalDate.of(2012, 4, 30)));
   }
 
   public void numero_do_aviso_bancario() {
@@ -85,7 +85,7 @@ public class TesteDeHeaderBradesco {
   }
 
   public void data_de_credito() {
-    assertThat(header.get(header().dataDeCredito()), equalTo(new LocalDate(2012, 5, 2)));
+    assertThat(header.get(header().dataDeCredito()), equalTo(LocalDate.of(2012, 5, 2)));
   }
 
   public void numero_sequencial_de_registro() {

@@ -15,15 +15,14 @@
  */
 package br.com.objectos.cnab;
 
-import static com.google.common.base.Preconditions.checkNotNull;
+import static java.util.Objects.requireNonNull;
+
+import java.util.Objects;
+import java.util.function.Supplier;
 
 import br.com.objectos.comuns.io.ColumnConversionException;
 import br.com.objectos.comuns.io.FixedLine;
-
-import com.google.common.base.Objects;
-import com.google.common.base.Preconditions;
-import com.google.common.base.Supplier;
-import com.google.common.base.Suppliers;
+import br.com.objectos.core.Preconditions;
 
 /**
  * @author marcio.endo@objectos.com.br (Marcio Endo)
@@ -45,7 +44,7 @@ public class CnabKey<K extends BancoKey, V> {
   final Supplier<V> defaultSupplier;
 
   CnabKey(Class<K> keyClass, String id, Class<V> type, int pos0, int pos1, boolean optional) {
-    this(keyClass, id, type, pos0, pos1, optional, Suppliers.<V> ofInstance(null));
+    this(keyClass, id, type, pos0, pos1, optional, () -> null);
   }
 
   CnabKey(Class<K> keyClass,
@@ -55,9 +54,9 @@ public class CnabKey<K extends BancoKey, V> {
           int pos1,
           boolean optional,
           Supplier<V> defaultSupplier) {
-    this.keyClass = checkNotNull(keyClass, "keyClass");
-    this.id = checkNotNull(id, "id");
-    this.type = checkNotNull(type, "type");
+    this.keyClass = requireNonNull(keyClass, "keyClass");
+    this.id = requireNonNull(id, "id");
+    this.type = requireNonNull(type, "type");
     this.pos0 = pos0;
     this.pos1 = pos1;
     this.optional = optional;
@@ -80,7 +79,7 @@ public class CnabKey<K extends BancoKey, V> {
   }
 
   public CnabKey<K, V> withDefaultValue(V value) {
-    Supplier<V> supplier = Suppliers.ofInstance(value);
+    Supplier<V> supplier = () -> value;
     return new CnabKey<K, V>(keyClass, id, type, pos0, pos1, true, supplier);
   }
 
@@ -121,7 +120,7 @@ public class CnabKey<K extends BancoKey, V> {
     private boolean optional;
 
     Construtor(Class<K> keyClass) {
-      this.keyClass = Preconditions.checkNotNull(keyClass);
+      this.keyClass = requireNonNull(keyClass);
     }
 
     public Construtor<K> id(String id) {
@@ -146,7 +145,7 @@ public class CnabKey<K extends BancoKey, V> {
 
     public <V> CnabKey<K, V> getWithDefaultValue(Class<V> type, V value) {
       this.optional = true;
-      Supplier<V> supplier = Suppliers.ofInstance(value);
+      Supplier<V> supplier = () -> value;
       return new CnabKey<K, V>(keyClass, id, type, pos0, pos1, optional, supplier);
     }
 
@@ -159,7 +158,7 @@ public class CnabKey<K extends BancoKey, V> {
 
   @Override
   public final int hashCode() {
-    return Objects.hashCode(id, keyClass);
+    return Objects.hash(id, keyClass);
   }
 
   @Override
@@ -167,13 +166,10 @@ public class CnabKey<K extends BancoKey, V> {
     if (obj == this) {
       return true;
     }
-    if (obj == null) {
-      return false;
-    }
     if (obj instanceof CnabKey) {
       final CnabKey<?, ?> that = (CnabKey<?, ?>) obj;
-      return Objects.equal(this.id, that.id)
-          && Objects.equal(this.keyClass, that.keyClass);
+      return Objects.equals(this.id, that.id)
+          && Objects.equals(this.keyClass, that.keyClass);
     } else {
       return false;
     }

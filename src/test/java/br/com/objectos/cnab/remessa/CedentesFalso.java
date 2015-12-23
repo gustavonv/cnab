@@ -15,41 +15,35 @@
  */
 package br.com.objectos.cnab.remessa;
 
-import br.com.objectos.cnab.remessa.Cedente;
-
-
-
+import br.com.objectos.br.Cnpj;
+import br.com.objectos.br.Cpf;
 
 /**
  * @author marcio.endo@objectos.com.br (Marcio Endo)
  */
 public class CedentesFalso {
 
-  public static final Cedente ARMAZEM = novo()
+  public static final Cedente ARMAZEM = Cedente.builder()
+      .cadastroRFB(Cnpj.valueOf(75778689000189l))
       .nome("ARMAZEM DE NEGOCIOS LTDA")
-      .cnpj(75778689000189l)
-      .novaInstancia();
+      .build();
 
-  public static final Cedente LOJA = novo()
+  public static final Cedente LOJA = Cedente.builder()
+      .cadastroRFB(Cnpj.valueOf(41162186000162l))
       .nome("LOJA DE COISAS LTDA")
-      .cnpj(41162186000162l)
-      .novaInstancia();
+      .build();
 
-  public static final Cedente SUPERMERCADO = novo()
+  public static final Cedente SUPERMERCADO = Cedente.builder()
+      .cadastroRFB(Cnpj.valueOf(34048509000126l))
       .nome("SUPERMERCADO LTDA")
-      .cnpj(34048509000126l)
-      .novaInstancia();
+      .build();
 
-  public static final Cedente PF = novo()
+  public static final Cedente PF = Cedente.builder()
+      .cadastroRFB(Cpf.valueOf(15475005575l))
       .nome("CEDENTE PF")
-      .cpf(15475005575l)
-      .novaInstancia();
+      .build();
 
   private CedentesFalso() {
-  }
-
-  private static ConstrutorDeCedenteFalso novo() {
-    return new ConstrutorDeCedenteFalso();
   }
 
 }

@@ -15,9 +15,9 @@
  */
 package br.com.objectos.cnab;
 
-import br.com.objectos.cnab.bradesco.TipoDeVencimento;
+import java.time.LocalDate;
 
-import org.joda.time.LocalDate;
+import br.com.objectos.cnab.bradesco.TipoDeVencimento;
 
 /**
  * @author marcos.piazzolla@objectos.com.br (Marcos Piazzolla)
@@ -42,18 +42,23 @@ class ColunaLocalDateVencimentoDeTitulo extends Coluna<LocalDate> {
                                            TipoDeVencimento tipo) {
     super(inicio, fim);
     this.tipo = tipo;
-    this.valor = new LocalDate();
+    valor = LocalDate.now();
   }
 
   public ColunaLocalDateVencimentoDeTitulo(int inicio, int fim) {
     super(inicio, fim);
-    this.tipo = TipoDeVencimento.DD_MM_AA;
-    this.valor = new LocalDate();
+    tipo = TipoDeVencimento.DD_MM_AA;
+    valor = LocalDate.now();
   }
 
   @Override
   public String get() {
     return format(inicio, fim, valor, tipo);
+  }
+
+  @Override
+  public Class<LocalDate> getType() {
+    return LocalDate.class;
   }
 
   @Override
@@ -73,7 +78,7 @@ class ColunaLocalDateVencimentoDeTitulo extends Coluna<LocalDate> {
     case ALTERAR_PARA_A_VISTA:
       return "888888";
     case DD_MM_AA:
-      return valor.toString("ddMMyy");
+      return LocalDateFormat.DD_MM_YY.format(valor);
     default:
       throw new UnsupportedOperationException();
     }

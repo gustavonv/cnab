@@ -15,12 +15,10 @@
  */
 package br.com.objectos.cnab;
 
-import static com.google.common.collect.Lists.transform;
-
 import java.util.List;
 
-import com.google.common.base.Function;
-import com.google.common.collect.ImmutableList;
+import br.com.objectos.collections.ImmutableList;
+import br.com.objectos.collections.MoreCollectors;
 
 /**
  * @author marcio.endo@objectos.com.br (Marcio Endo)
@@ -35,7 +33,7 @@ class OcorrenciaPadrao implements Ocorrencia {
 
   public OcorrenciaPadrao(OcorrenciaCodigoPadrao codigo, List<Motivo> motivos) {
     this.codigo = codigo;
-    this.tipo = codigo.getTipo();
+    tipo = codigo.getTipo();
     this.motivos = ImmutableList.copyOf(motivos);
   }
 
@@ -66,8 +64,9 @@ class OcorrenciaPadrao implements Ocorrencia {
     List<OcorrenciaEvento> eventos = ImmutableList.of(evento);
 
     if (!motivos.isEmpty()) {
-      List<OcorrenciaEvento> _eventos = transform(motivos, new ToEvento());
-      eventos = ImmutableList.copyOf(_eventos);
+      eventos = motivos.stream()
+          .map(input -> OcorrenciaEventoPadrao.of(OcorrenciaPadrao.this, input))
+          .collect(MoreCollectors.toImmutableList());
     }
 
     return eventos;
@@ -75,13 +74,6 @@ class OcorrenciaPadrao implements Ocorrencia {
 
   Banco getBanco() {
     return codigo.getBanco();
-  }
-
-  private class ToEvento implements Function<Motivo, OcorrenciaEvento> {
-    @Override
-    public OcorrenciaEvento apply(Motivo input) {
-      return OcorrenciaEventoPadrao.of(OcorrenciaPadrao.this, input);
-    }
   }
 
 }

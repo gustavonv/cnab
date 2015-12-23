@@ -22,8 +22,6 @@ import java.io.Reader;
 import br.com.objectos.comuns.io.ParsedFixedLines;
 import br.com.objectos.comuns.io.csv.FixedFile;
 
-import com.google.common.collect.Iterables;
-
 /**
  * @author marcio.endo@objectos.com.br (Marcio Endo)
  */
@@ -38,7 +36,7 @@ public class WayCnab implements Modelo {
     private Singleton() {
       CnabHeaderSpec headerSpec = new CnabHeaderSpec();
       CnabLoteSpec loteSpec = new CnabLoteSpec();
-      this.instance = new WayCnab(headerSpec, loteSpec);
+      instance = new WayCnab(headerSpec, loteSpec);
     }
 
     public WayCnab get() {
@@ -109,14 +107,7 @@ public class WayCnab implements Modelo {
 
   private static Retorno retornoDe(FixedFile file) {
     ParsedFixedLines lines = new Parser(file).get();
-
-    Header header = new HeaderParser(lines).get();
-    Banco banco = header.getBanco();
-
-    Iterable<Registro> registros;
-    registros = Iterables.transform(lines, new ToRegistro(banco));
-
-    return new RetornoPadrao(header, registros);
+    return RetornoPadrao.of(lines);
   }
 
 }

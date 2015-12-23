@@ -15,26 +15,17 @@
  */
 package br.com.objectos.cnab.remessa;
 
-import br.com.objectos.cnab.remessa.Conta;
-
-
-
-
 /**
  * @author marcio.endo@objectos.com.br (Marcio Endo)
  */
 public class ContasFalso {
 
-  public static final Conta CONTA_1 = nova()
+  public static final Conta CONTA_1 = Conta.builder()
       .numero(3347)
       .digito(9)
-      .novaInstancia();
+      .build();
 
   private ContasFalso() {
-  }
-
-  public static ConstrutorDeContaFalso nova() {
-    return new ConstrutorDeContaFalso();
   }
 
 }

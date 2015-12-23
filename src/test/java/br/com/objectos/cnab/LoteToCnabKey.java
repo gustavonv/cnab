@@ -15,11 +15,6 @@
  */
 package br.com.objectos.cnab;
 
-import br.com.objectos.cnab.BancoKey;
-import br.com.objectos.cnab.CnabKey;
-import br.com.objectos.cnab.Lote;
-import br.com.objectos.cnab.LoteKey;
-
 import com.google.common.base.Function;
 
 /**

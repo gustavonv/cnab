@@ -17,7 +17,7 @@ package br.com.objectos.cnab;
 
 import static br.com.objectos.cnab.WayCnab.lote;
 
-import com.google.common.base.Objects;
+import java.util.Objects;
 
 /**
  * @author marcio.endo@objectos.com.br (Marcio Endo)
@@ -76,12 +76,9 @@ class MotivoPadrao implements Motivo {
     if (obj == this) {
       return true;
     }
-    if (obj == null) {
-      return false;
-    }
     if (obj instanceof MotivoPadrao) {
       final MotivoPadrao that = (MotivoPadrao) obj;
-      return Objects.equal(this.codigo, that.codigo);
+      return Objects.equals(codigo, that.codigo);
     } else {
       return false;
     }

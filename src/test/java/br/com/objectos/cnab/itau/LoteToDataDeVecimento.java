@@ -15,12 +15,12 @@
  */
 package br.com.objectos.cnab.itau;
 
+import java.time.LocalDate;
+
 import br.com.objectos.cnab.Itau;
 import br.com.objectos.cnab.Lote;
 
 import com.google.common.base.Function;
-
-import org.joda.time.LocalDate;
 
 /**
  * @author marcio.endo@objectos.com.br (Marcio Endo)

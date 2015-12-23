@@ -15,11 +15,11 @@
  */
 package br.com.objectos.cnab;
 
+import br.com.objectos.br.CadastroRFB;
+import br.com.objectos.br.TipoDeCadastroRFB;
 import br.com.objectos.cnab.remessa.Cedente;
 import br.com.objectos.cnab.remessa.Empresa;
 import br.com.objectos.cnab.remessa.Titulo;
-import br.com.objectos.way.base.br.CadastroRFB;
-import br.com.objectos.way.base.br.TipoDeCadastroRFB;
 
 /**
  * @author marcio.endo@objectos.com.br (Marcio Endo)

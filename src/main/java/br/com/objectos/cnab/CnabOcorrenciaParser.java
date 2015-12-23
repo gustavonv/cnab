@@ -15,13 +15,12 @@
  */
 package br.com.objectos.cnab;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
+import br.com.objectos.collections.ImmutableList;
 import br.com.objectos.comuns.io.FixedLine;
-
-import com.google.common.collect.ImmutableList;
-import com.google.common.collect.ImmutableMap;
 
 /**
  * @author marcio.endo@objectos.com.br (Marcio Endo)
@@ -75,7 +74,7 @@ class CnabOcorrenciaParser extends OcorrenciaParser {
 
   @Override
   Map<String, OcorrenciaCodigoPadrao> getCodigoMap() {
-    return ImmutableMap.of();
+    return Collections.emptyMap();
   }
 
 }

@@ -15,19 +15,14 @@
  */
 package br.com.objectos.cnab;
 
-import static com.google.common.base.Preconditions.checkArgument;
-
 import java.util.Arrays;
 
-import com.google.common.reflect.TypeToken;
+import br.com.objectos.core.Preconditions;
 
 /**
  * @author marcos.piazzolla@objectos.com.br (Marcos Piazzolla)
  */
 abstract class Coluna<T> implements ColunaWriter<T> {
-
-  @SuppressWarnings("serial")
-  private final TypeToken<T> type = new TypeToken<T>(getClass()) {};
 
   final int inicio;
 
@@ -44,14 +39,8 @@ abstract class Coluna<T> implements ColunaWriter<T> {
     this.fim = fim;
     this.tamanho = fim - inicio + 1;
 
-    checkArgument(inicio >= 0, "Inicio deve ser maior ou igual a zero");
-    checkArgument(fim >= inicio, "Fim deve ser maior ou igual ao inicio");
-  }
-
-  @SuppressWarnings("unchecked")
-  @Override
-  public final Class<T> getType() {
-    return (Class<T>) type.getRawType();
+    Preconditions.checkArgument(inicio >= 0, "Inicio deve ser maior ou igual a zero");
+    Preconditions.checkArgument(fim >= inicio, "Fim deve ser maior ou igual ao inicio");
   }
 
   @Override

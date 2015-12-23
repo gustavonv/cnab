@@ -15,7 +15,7 @@
  */
 package br.com.objectos.cnab;
 
-import com.google.common.base.Strings;
+import br.com.objectos.core.Strings;
 
 /**
  * @author marcio.endo@objectos.com.br (Marcio Endo)

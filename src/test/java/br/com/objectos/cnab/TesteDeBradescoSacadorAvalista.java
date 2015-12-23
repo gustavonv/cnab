@@ -18,10 +18,9 @@ package br.com.objectos.cnab;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
 
-import br.com.objectos.cnab.BradescoSacadorAvalista;
-import br.com.objectos.way.base.br.CadastroRFB;
-import br.com.objectos.way.base.br.Cnpj;
-import br.com.objectos.way.base.br.Cpf;
+import br.com.objectos.br.CadastroRFB;
+import br.com.objectos.br.Cnpj;
+import br.com.objectos.br.Cpf;
 
 import org.testng.annotations.Test;
 

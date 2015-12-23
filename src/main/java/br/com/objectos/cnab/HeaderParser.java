@@ -15,14 +15,9 @@
  */
 package br.com.objectos.cnab;
 
-import java.util.Iterator;
-
 import br.com.objectos.comuns.io.ColumnConversionException;
 import br.com.objectos.comuns.io.FixedLine;
 import br.com.objectos.comuns.io.ParsedFixedLines;
-
-import com.google.common.collect.Iterators;
-import com.google.common.collect.PeekingIterator;
 
 /**
  * @author marcio.endo@objectos.com.br (Marcio Endo)
@@ -39,10 +34,9 @@ class HeaderParser {
   }
 
   public Header get() {
-    Iterator<FixedLine> iterator = lines.iterator();
-    PeekingIterator<FixedLine> peeking = Iterators.peekingIterator(iterator);
-
-    FixedLine line = peeking.peek();
+    FixedLine line = lines.stream()
+        .findFirst()
+        .get();
 
     try {
       return tryToGet(line);

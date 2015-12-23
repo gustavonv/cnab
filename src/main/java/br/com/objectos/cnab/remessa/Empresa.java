@@ -15,27 +15,24 @@
  */
 package br.com.objectos.cnab.remessa;
 
-import br.com.objectos.way.base.br.CadastroRFB;
+import br.com.objectos.br.CadastroRFB;
+import br.com.objectos.pojo.Pojo;
 
 /**
  * @author marcio.endo@objectos.com.br (Marcio Endo)
  */
-public interface Empresa {
+@Pojo
+public abstract class Empresa {
 
-  interface Construtor extends br.com.objectos.comuns.base.Construtor<Empresa> {
+  public abstract long getCodigo();
+  public abstract CadastroRFB getCadastroRFB();
+  public abstract String getRazaoSocial();
 
-    long getCodigo();
-
-    CadastroRFB getCadastroRFB();
-
-    String getRazaoSocial();
-
+  protected Empresa() {
   }
 
-  long getCodigo();
-
-  CadastroRFB getCadastroRFB();
-
-  String getRazaoSocial();
+  public static EmpresaBuilder builder() {
+    return new EmpresaBuilderPojo();
+  }
 
 }

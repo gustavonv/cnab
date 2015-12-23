@@ -18,8 +18,6 @@ package br.com.objectos.cnab;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
 
-import br.com.objectos.cnab.ColunaEnum;
-import br.com.objectos.cnab.ColunaWriter;
 import br.com.objectos.cnab.bradesco.TipoDeIncricaoDoSacado;
 
 import org.testng.annotations.Test;

@@ -21,11 +21,6 @@ import static org.testng.Assert.fail;
 
 import java.io.File;
 
-import br.com.objectos.cnab.Banco;
-import br.com.objectos.cnab.ExcecaoCnab;
-import br.com.objectos.cnab.Header;
-import br.com.objectos.cnab.HeaderParser;
-import br.com.objectos.cnab.Parser;
 import br.com.objectos.comuns.io.ParsedFixedLines;
 import br.com.objectos.comuns.io.csv.FixedFile;
 

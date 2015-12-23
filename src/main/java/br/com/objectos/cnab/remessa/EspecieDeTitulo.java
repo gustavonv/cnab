@@ -15,9 +15,8 @@
  */
 package br.com.objectos.cnab.remessa;
 
-import static com.google.common.collect.Maps.newHashMap;
-
 import java.util.EnumSet;
+import java.util.HashMap;
 import java.util.Map;
 
 import br.com.objectos.cnab.RemessaEnum;
@@ -45,7 +44,7 @@ public enum EspecieDeTitulo implements RemessaEnum {
 
   OUTROS(99, "Outros");
 
-  private static final Map<Integer, EspecieDeTitulo> codigoMap = newHashMap();
+  private static final Map<Integer, EspecieDeTitulo> codigoMap = new HashMap<>();
 
   static {
     EnumSet<EspecieDeTitulo> especies = EnumSet.allOf(EspecieDeTitulo.class);

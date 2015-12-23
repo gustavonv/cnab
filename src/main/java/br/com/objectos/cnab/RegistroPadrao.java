@@ -15,8 +15,7 @@
  */
 package br.com.objectos.cnab;
 
-import static com.google.common.collect.Maps.newLinkedHashMap;
-
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 import br.com.objectos.comuns.io.FixedLine;
@@ -33,7 +32,7 @@ abstract class RegistroPadrao implements Registro {
   public RegistroPadrao(Banco banco, Spec spec, FixedLine line) {
     this.banco = banco;
 
-    Map<CnabKey<?, ?>, Object> map = newLinkedHashMap();
+    Map<CnabKey<?, ?>, Object> map = new LinkedHashMap<>();
 
     for (CnabKey<?, ?> key : spec.keySet()) {
       Object value = key.apply(banco, line);

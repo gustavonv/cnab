@@ -15,27 +15,24 @@
  */
 package br.com.objectos.cnab.remessa;
 
-import br.com.objectos.way.base.br.CadastroRFB;
+import br.com.objectos.br.CadastroRFB;
+import br.com.objectos.pojo.Pojo;
 
 /**
  * @author marcio.endo@objectos.com.br (Marcio Endo)
  */
-public interface Sacado {
+@Pojo
+public abstract class Sacado {
 
-  interface Construtor extends br.com.objectos.comuns.base.Construtor<Sacado> {
+  public abstract CadastroRFB getCadastroRFB();
+  public abstract String getNome();
+  public abstract Endereco getEndereco();
 
-    CadastroRFB getCadastroRFB();
-
-    String getNome();
-
-    Endereco getEndereco();
-
+  protected Sacado() {
   }
 
-  CadastroRFB getCadastroRFB();
-
-  String getNome();
-
-  Endereco getEndereco();
+  public static SacadoBuilder builder() {
+    return new SacadoBuilderPojo();
+  }
 
 }

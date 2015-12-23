@@ -18,7 +18,6 @@ package br.com.objectos.cnab;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
 
-import br.com.objectos.cnab.BradescoCarteira;
 import br.com.objectos.cnab.remessa.Agencia;
 import br.com.objectos.cnab.remessa.AgenciasFalso;
 import br.com.objectos.cnab.remessa.Carteira;

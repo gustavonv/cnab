@@ -15,20 +15,14 @@
  */
 package br.com.objectos.cnab;
 
-import static com.google.common.collect.Maps.newHashMap;
-import static com.google.common.collect.Sets.newLinkedHashSet;
-
+import java.util.ArrayList;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.TreeMap;
 
 import br.com.objectos.comuns.io.FixedLine;
-
-import com.google.common.base.Function;
-import com.google.common.base.Predicates;
-import com.google.common.base.Splitter;
-import com.google.common.collect.ImmutableSortedMap;
-import com.google.common.collect.Iterables;
 
 /**
  * @author marcio.endo@objectos.com.br (Marcio Endo)
@@ -48,7 +42,7 @@ class MotivoParserPadrao implements MotivoParser {
     this.pos0 = pos0;
     this.pos1 = pos1;
 
-    Map<String, Motivo> codigoMap = newHashMap();
+    Map<String, Motivo> codigoMap = new TreeMap<>();
 
     for (Motivo motivo : motivos) {
       String codigo = motivo.getCodigo();
@@ -56,24 +50,19 @@ class MotivoParserPadrao implements MotivoParser {
     }
 
     this.ignorarExtras = ignorarExtras != null ? new MotivoPadrao(ignorarExtras, "") : null;
-    this.codigoMap = ImmutableSortedMap.copyOf(codigoMap);
+    this.codigoMap = codigoMap;
   }
 
   @Override
   public Set<Motivo> parse(FixedLine line) {
     String text = line.column(pos0, pos1).get(String.class);
 
-    Iterable<String> parts;
-    parts = Splitter.fixedLength(length).split(text);
+    Set<Motivo> distintos = new LinkedHashSet<>();
 
-    Iterable<Motivo> motivos;
-    motivos = Iterables.transform(parts, new ToMotivo());
-
-    Iterable<Motivo> validos;
-    validos = Iterables.filter(motivos, Predicates.notNull());
-
-    Set<Motivo> distintos;
-    distintos = newLinkedHashSet(validos);
+    splitEqually(text).stream()
+        .map(codigoMap::get)
+        .filter(o -> o != null)
+        .forEach(distintos::add);
 
     if (ignorarExtras != null && distintos.size() > 1) {
       distintos.remove(ignorarExtras);
@@ -92,11 +81,13 @@ class MotivoParserPadrao implements MotivoParser {
     return codigoMap;
   }
 
-  private class ToMotivo implements Function<String, Motivo> {
-    @Override
-    public Motivo apply(String codigo) {
-      return codigoMap.get(codigo);
+  // http://stackoverflow.com/a/3760193/717263
+  private List<String> splitEqually(String text) {
+    List<String> res = new ArrayList<>((text.length() + length - 1) / length);
+    for (int start = 0; start < text.length(); start += length) {
+      res.add(text.substring(start, Math.min(text.length(), start + length)));
     }
+    return res;
   }
 
 }

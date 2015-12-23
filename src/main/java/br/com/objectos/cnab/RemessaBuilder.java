@@ -15,14 +15,13 @@
  */
 package br.com.objectos.cnab;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import br.com.objectos.cnab.remessa.Agencia;
 import br.com.objectos.cnab.remessa.Cobranca;
 import br.com.objectos.cnab.remessa.Conta;
 import br.com.objectos.cnab.remessa.Empresa;
-
-import org.joda.time.LocalDate;
 
 /**
  * @author marcos.piazzolla@objectos.com.br (Marcos Piazzolla)

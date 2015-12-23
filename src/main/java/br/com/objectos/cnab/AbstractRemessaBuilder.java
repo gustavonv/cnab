@@ -15,18 +15,15 @@
  */
 package br.com.objectos.cnab;
 
-import static com.google.common.collect.Lists.newArrayList;
-
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import br.com.objectos.cnab.remessa.Agencia;
 import br.com.objectos.cnab.remessa.Cobranca;
 import br.com.objectos.cnab.remessa.Conta;
 import br.com.objectos.cnab.remessa.Empresa;
-
-import com.google.common.base.Joiner;
-
-import org.joda.time.LocalDate;
 
 /**
  * @author marcio.endo@objectos.com.br (Marcio Endo)
@@ -45,7 +42,7 @@ abstract class AbstractRemessaBuilder implements RemessaBuilder {
 
   int sequenciaArquivo;
 
-  List<Cobranca> cobrancas = newArrayList();
+  List<Cobranca> cobrancas = new ArrayList<>();
 
   public AbstractRemessaBuilder(Banco banco) {
     this.banco = banco;
@@ -89,8 +86,7 @@ abstract class AbstractRemessaBuilder implements RemessaBuilder {
 
   @Override
   public String toString() {
-    List<String> lines = build();
-    return Joiner.on("\r\n").join(lines);
+    return build().stream().collect(Collectors.joining("\r\n"));
   }
 
   protected abstract List<String> build();

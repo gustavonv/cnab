@@ -20,9 +20,6 @@ import static com.google.common.collect.Lists.transform;
 import java.io.File;
 import java.util.List;
 
-import br.com.objectos.cnab.LoteExt;
-import br.com.objectos.cnab.WayCnab;
-
 import com.google.common.base.Function;
 import com.google.common.collect.ImmutableList;
 

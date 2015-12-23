@@ -21,16 +21,11 @@ import static org.hamcrest.Matchers.equalTo;
 
 import java.io.IOException;
 import java.net.URL;
-
-import br.com.objectos.cnab.Banco;
-import br.com.objectos.cnab.CnabKey;
-import br.com.objectos.cnab.HeaderRemessa;
-import br.com.objectos.cnab.ItauHeaderRemessa;
+import java.time.LocalDate;
 
 import com.google.common.base.Charsets;
 import com.google.common.io.Resources;
 
-import org.joda.time.LocalDate;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
@@ -117,7 +112,7 @@ public class TesteDeHeaderRemessaItau {
 
   public void data_arquivo() {
     CnabKey<ItauHeaderRemessa, LocalDate> col = headerRemessa().dataGeracao();
-    LocalDate valor = new LocalDate(2012, 3, 14);
+    LocalDate valor = LocalDate.of(2012, 3, 14);
     writeAndAssert(col, valor);
   }
 

@@ -16,21 +16,18 @@
 package br.com.objectos.cnab;
 
 import static br.com.objectos.cnab.WayCnab.lote;
-import static com.google.common.collect.Lists.transform;
-import static com.google.common.collect.Maps.newHashMap;
 
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import br.com.objectos.cnab.remessa.InstrucaoSet;
 import br.com.objectos.cnab.remessa.InstrucaoTipo;
 import br.com.objectos.cnab.remessa.InstrucaoTipoVazio;
+import br.com.objectos.collections.ImmutableList;
+import br.com.objectos.collections.MoreCollectors;
 import br.com.objectos.comuns.io.FixedLine;
-
-import com.google.common.base.Function;
-import com.google.common.collect.ImmutableList;
-import com.google.common.collect.Iterables;
 
 /**
  * @author marcio.endo@objectos.com.br (Marcio Endo)
@@ -95,7 +92,7 @@ public enum Banco implements InstrucaoSet, OcorrenciaSpecSet {
     }
   };
 
-  private static final Map<Integer, Banco> codigoMap = newHashMap();
+  private static final Map<Integer, Banco> codigoMap = new HashMap<>();
 
   static {
     for (Banco banco : Banco.values()) {
@@ -120,14 +117,14 @@ public enum Banco implements InstrucaoSet, OcorrenciaSpecSet {
     this.codigo = codigo;
     this.modelo = modelo;
     this.ocorrenciaParser = ocorrenciaParser;
-    this.ocorrenciaSpecMap = ocorrenciaParser.toSpecMap();
+    ocorrenciaSpecMap = ocorrenciaParser.toSpecMap();
 
     Collection<OcorrenciaSpec> values = ocorrenciaSpecMap.values();
-    this.ocorrenciaSpecs = ImmutableList.copyOf(values);
+    ocorrenciaSpecs = ImmutableList.copyOf(values);
 
-    List<List<OcorrenciaEvento>> eventos = transform(ocorrenciaSpecs, new ToOcorrenciaEvento());
-    Iterable<OcorrenciaEvento> eventosIter = Iterables.concat(eventos);
-    this.ocorrenciaEventos = ImmutableList.copyOf(eventosIter);
+    ocorrenciaEventos = ocorrenciaSpecs.stream()
+        .flatMap(spec -> spec.getEventos().stream())
+        .collect(MoreCollectors.toImmutableList());
   }
 
   public static Banco valueOf(int codigo) {
@@ -183,14 +180,6 @@ public enum Banco implements InstrucaoSet, OcorrenciaSpecSet {
 
   Object parseOcorrencia(FixedLine line) {
     return ocorrenciaParser.apply(line);
-  }
-
-  private static class ToOcorrenciaEvento implements
-      Function<OcorrenciaSpec, List<OcorrenciaEvento>> {
-    @Override
-    public List<OcorrenciaEvento> apply(OcorrenciaSpec input) {
-      return input.getEventos();
-    }
   }
 
 }

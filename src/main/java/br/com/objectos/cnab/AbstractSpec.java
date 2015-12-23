@@ -15,8 +15,7 @@
  */
 package br.com.objectos.cnab;
 
-import static com.google.common.collect.Sets.newLinkedHashSet;
-
+import java.util.LinkedHashSet;
 import java.util.Set;
 
 import br.com.objectos.cnab.CnabKey.Construtor;
@@ -26,7 +25,7 @@ import br.com.objectos.cnab.CnabKey.Construtor;
  */
 abstract class AbstractSpec implements Spec {
 
-  final Set<CnabKey<?, ?>> keySet = newLinkedHashSet();
+  final Set<CnabKey<?, ?>> keySet = new LinkedHashSet<>();
 
   @Override
   public final Set<CnabKey<?, ?>> keySet() {

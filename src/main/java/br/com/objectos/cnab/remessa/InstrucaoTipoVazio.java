@@ -20,27 +20,13 @@ package br.com.objectos.cnab.remessa;
  */
 public class InstrucaoTipoVazio implements InstrucaoTipo {
 
-  private static enum Singleton {
-
-    INSTANCE;
-
-    private final InstrucaoTipo instance;
-
-    private Singleton() {
-      this.instance = new InstrucaoTipoVazio();
-    }
-
-    public InstrucaoTipo get() {
-      return instance;
-    }
-
-  }
+  private static final InstrucaoTipo INSTANCE = new InstrucaoTipoVazio();
 
   private InstrucaoTipoVazio() {
   }
 
   public static InstrucaoTipo get() {
-    return Singleton.INSTANCE.get();
+    return INSTANCE;
   }
 
   @Override

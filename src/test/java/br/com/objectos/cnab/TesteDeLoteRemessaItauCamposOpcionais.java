@@ -21,16 +21,11 @@ import static org.hamcrest.Matchers.equalTo;
 
 import java.io.IOException;
 import java.net.URL;
-
-import br.com.objectos.cnab.Banco;
-import br.com.objectos.cnab.CnabKey;
-import br.com.objectos.cnab.ItauLoteRemessa;
-import br.com.objectos.cnab.LoteRemessa;
+import java.time.LocalDate;
 
 import com.google.common.base.Charsets;
 import com.google.common.io.Resources;
 
-import org.joda.time.LocalDate;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 

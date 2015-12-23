@@ -19,8 +19,6 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.hasToString;
 
-import br.com.objectos.cnab.Codigo;
-
 import org.testng.annotations.Test;
 
 /**

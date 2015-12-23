@@ -30,6 +30,11 @@ class ColunaBranco extends Coluna<String> {
   }
 
   @Override
+  public Class<String> getType() {
+    return String.class;
+  }
+
+  @Override
   public ColunaWriter<String> set(Object value) {
     return this;
   }

@@ -15,9 +15,9 @@
  */
 package br.com.objectos.cnab.bradesco;
 
+import br.com.objectos.br.CadastroRFB;
+import br.com.objectos.br.TipoDeCadastroRFB;
 import br.com.objectos.cnab.RemessaEnum;
-import br.com.objectos.way.base.br.CadastroRFB;
-import br.com.objectos.way.base.br.TipoDeCadastroRFB;
 
 /**
  * @author marcos.piazzolla@objectos.com.br (Marcos Piazzolla)

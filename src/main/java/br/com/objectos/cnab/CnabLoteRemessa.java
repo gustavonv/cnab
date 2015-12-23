@@ -15,10 +15,10 @@
  */
 package br.com.objectos.cnab;
 
-import br.com.objectos.way.base.br.CadastroRFB;
-import br.com.objectos.way.base.br.Cep;
+import java.time.LocalDate;
 
-import org.joda.time.LocalDate;
+import br.com.objectos.br.CadastroRFB;
+import br.com.objectos.br.Cep;
 
 /**
  * @author marcos.piazzolla@objectos.com.br (Marcos Piazzolla)

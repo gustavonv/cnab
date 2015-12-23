@@ -46,6 +46,11 @@ class ColunaEnum<E extends Enum<E> & RemessaEnum> extends Coluna<E> {
   }
 
   @Override
+  public Class<E> getType() {
+    return enumType;
+  }
+
+  @Override
   public ColunaWriter<E> set(Object valor) {
     E val = enumType.cast(valor);
     return new ColunaEnum<E>(inicio, fim, enumType, val);

@@ -15,21 +15,22 @@
  */
 package br.com.objectos.cnab.remessa;
 
+import br.com.objectos.pojo.Pojo;
+
 /**
  * @author marcio.endo@objectos.com.br (Marcio Endo)
  */
-public interface Agencia {
+@Pojo
+public abstract class Agencia {
 
-  interface Construtor extends br.com.objectos.comuns.base.Construtor<Agencia> {
+  public abstract int getCodigo();
+  public abstract int getDigito();
 
-    int getCodigo();
-
-    int getDigito();
-
+  protected Agencia() {
   }
 
-  int getCodigo();
-
-  int getDigito();
+  public static AgenciaBuilder builder() {
+    return new AgenciaBuilderPojo();
+  }
 
 }

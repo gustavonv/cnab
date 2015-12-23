@@ -15,13 +15,10 @@
  */
 package br.com.objectos.cnab;
 
-import static com.google.common.collect.Lists.newArrayList;
-
 import java.util.List;
 
-import com.google.common.base.Predicates;
-import com.google.common.collect.ImmutableList;
-import com.google.common.collect.Iterables;
+import br.com.objectos.collections.MoreCollectors;
+import br.com.objectos.comuns.io.ParsedFixedLines;
 
 /**
  * @author marcio.endo@objectos.com.br (Marcio Endo)
@@ -36,29 +33,27 @@ class RetornoPadrao implements Retorno {
 
   private final List<LoteExt> lotesExt;
 
-  public RetornoPadrao(Header header, Iterable<Registro> registros) {
-    this.banco = header.getBanco();
+  private RetornoPadrao(Header header, List<Lote> lotes, List<LoteExt> lotesExt) {
+    banco = header.getBanco();
     this.header = header;
+    this.lotes = lotes;
+    this.lotesExt = lotesExt;
+  }
 
-    registros = Iterables.filter(registros, Predicates.notNull());
+  public static RetornoPadrao of(ParsedFixedLines lines) {
+    Header header = new HeaderParser(lines).get();
+    Banco banco = header.getBanco();
 
-    List<Lote> lotes = newArrayList();
-    for (Registro registro : registros) {
-      RegistroTipo tipo = registro.getTipo();
-      switch (tipo) {
+    List<Lote> lotes = lines.stream()
+        .map(new ToRegistro(banco))
+        .filter(reg -> reg != null)
+        .filter(reg -> reg.getTipo().equals(RegistroTipo.LOTE))
+        .map(reg -> Lote.class.cast(reg))
+        .collect(MoreCollectors.toImmutableList());
 
-      default:
-        break;
+    List<LoteExt> lotesExt = LoteExtPadrao.transform(lotes);
 
-      case LOTE:
-        Lote lote = Lote.class.cast(registro);
-        lotes.add(lote);
-        break;
-
-      }
-    }
-    this.lotes = ImmutableList.copyOf(lotes);
-    this.lotesExt = LoteExtPadrao.transform(lotes);
+    return new RetornoPadrao(header, lotes, lotesExt);
   }
 
   @Override

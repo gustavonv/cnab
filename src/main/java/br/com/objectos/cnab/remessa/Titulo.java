@@ -15,71 +15,37 @@
  */
 package br.com.objectos.cnab.remessa;
 
-import org.joda.time.LocalDate;
+import java.time.LocalDate;
+import java.util.Optional;
+
+import br.com.objectos.pojo.Pojo;
 
 /**
  * @author marcio.endo@objectos.com.br (Marcio Endo)
  */
-public interface Titulo {
+@Pojo
+public abstract class Titulo {
 
-  interface Construtor extends br.com.objectos.comuns.base.Construtor<Titulo> {
+  public abstract String getUsoDaEmpresa();
+  public abstract EspecieDeTitulo getEspecie();
+  public abstract long getNossoNumero();
+  public abstract String getNumero();
+  public abstract Cedente getCedente();
+  public abstract Sacado getSacado();
+  public abstract Optional<LocalDate> getEmissao();
+  public abstract LocalDate getVencimento();
+  public abstract int getPrazo();
+  public abstract double getValor();
+  public abstract double getValorDesconto();
+  public abstract double getValorIof();
+  public abstract double getValorAbatimento();
+  public abstract boolean isNegociado();
 
-    String getUsoDaEmpresa();
-
-    EspecieDeTitulo getEspecie();
-
-    long getNossoNumero();
-
-    String getNumero();
-
-    Cedente getCedente();
-
-    Sacado getSacado();
-
-    LocalDate getEmissao();
-
-    LocalDate getVencimento();
-
-    int getPrazo();
-
-    double getValor();
-
-    double getValorDesconto();
-
-    double getValorIof();
-
-    double getValorAbatimento();
-
-    boolean isNegociado();
-
+  protected Titulo() {
   }
 
-  String getUsoDaEmpresa();
-
-  EspecieDeTitulo getEspecie();
-
-  long getNossoNumero();
-
-  String getNumero();
-
-  Cedente getCedente();
-
-  Sacado getSacado();
-
-  LocalDate getEmissao();
-
-  LocalDate getVencimento();
-
-  int getPrazo();
-
-  double getValor();
-
-  double getValorDesconto();
-
-  double getValorIof();
-
-  double getValorAbatimento();
-
-  boolean isNegociado();
+  public static TituloBuilder builder() {
+    return new TituloBuilderPojo();
+  }
 
 }

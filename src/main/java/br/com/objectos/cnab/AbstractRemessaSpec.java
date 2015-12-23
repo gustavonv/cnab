@@ -15,23 +15,21 @@
  */
 package br.com.objectos.cnab;
 
-import static com.google.common.collect.Maps.newLinkedHashMap;
-
+import java.time.LocalDate;
+import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Set;
 
+import br.com.objectos.br.CadastroRFB;
+import br.com.objectos.br.Cep;
 import br.com.objectos.cnab.remessa.Caixa;
-import br.com.objectos.way.base.br.CadastroRFB;
-import br.com.objectos.way.base.br.Cep;
-
-import org.joda.time.LocalDate;
 
 /**
  * @author marcio.endo@objectos.com.br (Marcio Endo)
  */
 abstract class AbstractRemessaSpec<K extends BancoKey> implements RemessaSpec {
 
-  final Map<CnabKey<?, ?>, ColunaWriter<?>> spec = newLinkedHashMap();
+  final Map<CnabKey<?, ?>, ColunaWriter<?>> spec = new LinkedHashMap<>();
 
   @Override
   public Set<CnabKey<?, ?>> keySet() {

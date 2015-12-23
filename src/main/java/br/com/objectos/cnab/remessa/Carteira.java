@@ -15,9 +15,8 @@
  */
 package br.com.objectos.cnab.remessa;
 
-import static com.google.common.collect.Maps.newHashMap;
-
 import java.util.EnumSet;
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -27,7 +26,7 @@ public enum Carteira {
 
   COBRANCA_SIMPLES_COM_REGISTRO("CSR", "Cobrança simples (com registro)");
 
-  private static final Map<String, Carteira> codigoMap = newHashMap();
+  private static final Map<String, Carteira> codigoMap = new HashMap<>();
 
   static {
     EnumSet<Carteira> values = EnumSet.allOf(Carteira.class);

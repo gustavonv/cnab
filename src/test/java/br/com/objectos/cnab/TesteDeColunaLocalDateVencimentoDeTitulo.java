@@ -18,11 +18,10 @@ package br.com.objectos.cnab;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
 
-import br.com.objectos.cnab.ColunaLocalDateVencimentoDeTitulo;
-import br.com.objectos.cnab.ColunaWriter;
+import java.time.LocalDate;
+
 import br.com.objectos.cnab.bradesco.TipoDeVencimento;
 
-import org.joda.time.LocalDate;
 import org.testng.annotations.Test;
 
 /**
@@ -36,7 +35,7 @@ public class TesteDeColunaLocalDateVencimentoDeTitulo {
   public void deve_formatar_data_de_vencimento_do_titulo() {
     int inicio = 161;
     int fim = 173;
-    LocalDate valor = new LocalDate(2012, 1, 1);
+    LocalDate valor = LocalDate.of(2012, 1, 1);
     int tamanho = 6;
 
     writer = new ColunaLocalDateVencimentoDeTitulo(inicio, fim).set(valor);

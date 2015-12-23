@@ -15,10 +15,10 @@
  */
 package br.com.objectos.cnab;
 
+import java.time.LocalDate;
+
 import br.com.objectos.comuns.io.ParsedFixedLines;
 import br.com.objectos.comuns.io.csv.FixedFile;
-
-import org.joda.time.LocalDate;
 
 /**
  * @author marcio.endo@objectos.com.br (Marcio Endo)

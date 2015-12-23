@@ -29,4 +29,9 @@ class ConverterDouble extends AbstractCsvConverter<Double> {
     return Double.valueOf(dbl);
   }
 
+  @Override
+  protected Class<? extends Double> getRawType() {
+    return Double.class;
+  }
+
 }

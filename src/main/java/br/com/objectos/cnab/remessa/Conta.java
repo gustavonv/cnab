@@ -15,21 +15,22 @@
  */
 package br.com.objectos.cnab.remessa;
 
+import br.com.objectos.pojo.Pojo;
+
 /**
  * @author marcio.endo@objectos.com.br (Marcio Endo)
  */
-public interface Conta {
+@Pojo
+public abstract class Conta {
 
-  interface Construtor extends br.com.objectos.comuns.base.Construtor<Conta> {
+  public abstract int getNumero();
+  public abstract int getDigito();
 
-    int getNumero();
-
-    int getDigito();
-
+  protected Conta() {
   }
 
-  int getNumero();
-
-  int getDigito();
+  public static ContaBuilder builder() {
+    return new ContaBuilderPojo();
+  }
 
 }
