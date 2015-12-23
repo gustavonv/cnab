@@ -15,7 +15,7 @@
  */
 package br.com.objectos.cnab;
 
-import org.joda.time.LocalDate;
+import java.time.LocalDate;
 
 /**
  * @author marcos.piazzolla@objectos.com.br (Marcos Piazzolla)
@@ -26,7 +26,7 @@ class ColunaLocalDate extends Coluna<LocalDate> {
 
   public ColunaLocalDate(int inicio, int fim) {
     super(inicio, fim);
-    this.valor = null;
+    valor = null;
   }
 
   private ColunaLocalDate(int inicio, int fim, LocalDate valor) {
@@ -40,6 +40,11 @@ class ColunaLocalDate extends Coluna<LocalDate> {
   }
 
   @Override
+  public Class<LocalDate> getType() {
+    return LocalDate.class;
+  }
+
+  @Override
   public ColunaWriter<LocalDate> set(Object valor) {
     LocalDate val = LocalDate.class.cast(valor);
     return new ColunaLocalDate(inicio, fim, val);
@@ -47,7 +52,7 @@ class ColunaLocalDate extends Coluna<LocalDate> {
 
   private String format(LocalDate data) {
     if (data != null) {
-      return data.toString("ddMMyy");
+      return LocalDateFormat.DD_MM_YY.format(data);
     }
 
     return "000000";

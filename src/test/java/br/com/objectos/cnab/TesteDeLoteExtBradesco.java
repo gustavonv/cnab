@@ -21,9 +21,6 @@ import static org.hamcrest.MatcherAssert.assertThat;
 
 import java.util.List;
 
-import br.com.objectos.cnab.Ocorrencia;
-import br.com.objectos.cnab.OcorrenciaCodigo;
-
 import com.google.common.base.Function;
 import com.google.common.collect.ImmutableList;
 

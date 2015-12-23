@@ -18,10 +18,9 @@ package br.com.objectos.cnab;
 import java.util.List;
 import java.util.Set;
 
+import br.com.objectos.collections.ImmutableList;
 import br.com.objectos.comuns.io.FixedLine;
-
-import com.google.common.base.Preconditions;
-import com.google.common.collect.ImmutableList;
+import br.com.objectos.core.Preconditions;
 
 /**
  * @author marcio.endo@objectos.com.br (Marcio Endo)
@@ -39,7 +38,7 @@ abstract class OcorrenciaCodigoPadrao implements OcorrenciaCodigo {
   public OcorrenciaCodigoPadrao(int codigo, String descricao, MotivoParser motivoParser) {
     this.codigo = codigo;
     this.descricao = descricao;
-    this.key = String.format("%02d", codigo);
+    key = String.format("%02d", codigo);
     this.motivoParser = motivoParser;
 
     Preconditions.checkArgument(codigo >= 0, "Código deve ser um número entre 0 e 99");

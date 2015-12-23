@@ -15,26 +15,17 @@
  */
 package br.com.objectos.cnab.remessa;
 
-import br.com.objectos.cnab.remessa.Agencia;
-
-
-
-
 /**
  * @author marcio.endo@objectos.com.br (Marcio Endo)
  */
 public class AgenciasFalso {
 
-  public static final Agencia AGENCIA_A = nova()
+  public static final Agencia AGENCIA_A = Agencia.builder()
       .codigo(123)
       .digito(5)
-      .novaInstancia();
+      .build();
 
   private AgenciasFalso() {
-  }
-
-  private static ConstrutorDeAgenciaFalso nova() {
-    return new ConstrutorDeAgenciaFalso();
   }
 
 }

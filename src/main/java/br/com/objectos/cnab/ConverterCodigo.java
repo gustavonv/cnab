@@ -27,4 +27,9 @@ public class ConverterCodigo extends AbstractCsvConverter<Codigo> {
     return Codigo.valueOf(text);
   }
 
+  @Override
+  protected Class<? extends Codigo> getRawType() {
+    return Codigo.class;
+  }
+
 }

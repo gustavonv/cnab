@@ -15,9 +15,9 @@
  */
 package br.com.objectos.cnab;
 
-import br.com.objectos.cnab.CnabKey.Construtor;
+import java.time.LocalDate;
 
-import org.joda.time.LocalDate;
+import br.com.objectos.cnab.CnabKey.Construtor;
 
 /**
  * @author marcio.endo@objectos.com.br (Marcio Endo)

@@ -18,29 +18,15 @@ package br.com.objectos.cnab.remessa;
 /**
  * @author marcio.endo@objectos.com.br (Marcio Endo)
  */
-public class InstrucaoVazia implements Instrucao {
+public class InstrucaoVazia extends Instrucao {
 
-  private static enum Singleton {
-
-    INSTANCE;
-
-    private final Instrucao instance;
-
-    private Singleton() {
-      this.instance = new InstrucaoVazia();
-    }
-
-    public Instrucao get() {
-      return instance;
-    }
-
-  }
+  private static final Instrucao INSTANCE = new InstrucaoVazia();
 
   private InstrucaoVazia() {
   }
 
   public static Instrucao get() {
-    return Singleton.INSTANCE.get();
+    return INSTANCE;
   }
 
   @Override
@@ -49,17 +35,7 @@ public class InstrucaoVazia implements Instrucao {
   }
 
   @Override
-  public int getCodigo() {
-    return 0;
-  }
-
-  @Override
-  public int intValue() {
-    return 0;
-  }
-
-  @Override
-  public double doubleValue() {
+  public double value() {
     return 0;
   }
 

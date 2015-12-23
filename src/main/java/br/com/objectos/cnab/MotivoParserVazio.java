@@ -15,13 +15,12 @@
  */
 package br.com.objectos.cnab;
 
+import java.util.Collections;
 import java.util.Map;
 import java.util.Set;
 
+import br.com.objectos.collections.ImmutableSet;
 import br.com.objectos.comuns.io.FixedLine;
-
-import com.google.common.collect.ImmutableMap;
-import com.google.common.collect.ImmutableSet;
 
 /**
  * @author marcio.endo@objectos.com.br (Marcio Endo)
@@ -50,7 +49,7 @@ class MotivoParserVazio implements MotivoParser {
 
   @Override
   public Map<String, Motivo> toMap() {
-    return ImmutableMap.of();
+    return Collections.emptyMap();
   }
 
 }

@@ -15,16 +15,12 @@
  */
 package br.com.objectos.cnab;
 
-import static com.google.common.collect.Lists.newArrayList;
-
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.TreeMap;
 
 import br.com.objectos.comuns.io.FixedLine;
-
-import com.google.common.collect.ImmutableMap;
-import com.google.common.collect.ImmutableMap.Builder;
-import com.google.common.collect.ImmutableSortedMap;
 
 /**
  * @author marcio.endo@objectos.com.br (Marcio Endo)
@@ -56,18 +52,18 @@ abstract class OcorrenciaParser {
 
   abstract static class BuilderWrapper {
 
-    private final Builder<String, OcorrenciaCodigoPadrao> map;
+    private final Map<String, OcorrenciaCodigoPadrao> map;
 
     public BuilderWrapper() {
-      map = ImmutableSortedMap.<String, OcorrenciaCodigoPadrao> naturalOrder();
+      map = new TreeMap<>();
     }
 
     public OcorrenciaBuilder codigo(int codigo, String descricao) {
       return new OcorrenciaBuilder(codigo, descricao);
     }
 
-    public ImmutableMap<String, OcorrenciaCodigoPadrao> build() {
-      return map.build();
+    public Map<String, OcorrenciaCodigoPadrao> build() {
+      return map;
     }
 
     abstract OcorrenciaCodigoPadrao newInstance(
@@ -112,7 +108,7 @@ abstract class OcorrenciaParser {
       private final int pos1;
 
       String ignorarExtras;
-      final List<Motivo> motivos = newArrayList();
+      final List<Motivo> motivos = new ArrayList<>();
 
       public MotivoBuilder(int codigo, String descricao, int pos0, int pos1) {
         this.codigo = codigo;
@@ -122,7 +118,7 @@ abstract class OcorrenciaParser {
       }
 
       public MotivoBuilder ignorarExtras(String codigo) {
-        this.ignorarExtras = codigo;
+        ignorarExtras = codigo;
         return this;
       }
 

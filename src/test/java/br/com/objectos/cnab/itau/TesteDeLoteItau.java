@@ -20,13 +20,13 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
 
 import java.io.File;
+import java.time.LocalDate;
 import java.util.List;
 
 import br.com.objectos.cnab.CnabsFalso;
 import br.com.objectos.cnab.Lote;
 import br.com.objectos.cnab.WayCnab;
 
-import org.joda.time.LocalDate;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
@@ -144,9 +144,9 @@ public class TesteDeLoteItau {
   public void data_da_ocorrencia() {
     List<LocalDate> res = transform(lotes, new LoteToDataOcorrencia());
 
-    assertThat(res.get(0), equalTo(new LocalDate(2012, 8, 1)));
-    assertThat(res.get(1), equalTo(new LocalDate(2012, 8, 1)));
-    assertThat(res.get(2), equalTo(new LocalDate(2012, 8, 1)));
+    assertThat(res.get(0), equalTo(LocalDate.of(2012, 8, 1)));
+    assertThat(res.get(1), equalTo(LocalDate.of(2012, 8, 1)));
+    assertThat(res.get(2), equalTo(LocalDate.of(2012, 8, 1)));
   }
 
   public void numero_do_documento() {
@@ -168,9 +168,9 @@ public class TesteDeLoteItau {
   public void data_de_vencimento() {
     List<LocalDate> res = transform(lotes, new LoteToDataDeVecimento());
 
-    assertThat(res.get(0), equalTo(new LocalDate(2012, 8, 30)));
-    assertThat(res.get(1), equalTo(new LocalDate(2012, 8, 1)));
-    assertThat(res.get(2), equalTo(new LocalDate(2012, 8, 14)));
+    assertThat(res.get(0), equalTo(LocalDate.of(2012, 8, 30)));
+    assertThat(res.get(1), equalTo(LocalDate.of(2012, 8, 1)));
+    assertThat(res.get(2), equalTo(LocalDate.of(2012, 8, 14)));
   }
 
   public void valor_titulo() {
@@ -257,8 +257,8 @@ public class TesteDeLoteItau {
     List<LocalDate> res = transform(lotes, new LoteToDataDoCredito());
 
     assertThat(res.get(0), equalTo(null));
-    assertThat(res.get(1), equalTo(new LocalDate(2012, 8, 2)));
-    assertThat(res.get(2), equalTo(new LocalDate(2012, 8, 2)));
+    assertThat(res.get(1), equalTo(LocalDate.of(2012, 8, 2)));
+    assertThat(res.get(2), equalTo(LocalDate.of(2012, 8, 2)));
   }
 
   public void instrucao_cancelada() {

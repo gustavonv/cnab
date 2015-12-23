@@ -23,8 +23,6 @@ import java.io.IOException;
 import java.nio.charset.Charset;
 import java.util.List;
 
-import br.com.objectos.cnab.RegistroTipo;
-
 import com.google.common.base.Charsets;
 import com.google.common.base.Joiner;
 import com.google.common.base.Predicate;

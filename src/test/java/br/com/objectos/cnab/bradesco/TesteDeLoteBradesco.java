@@ -21,6 +21,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
 
 import java.io.File;
+import java.time.LocalDate;
 import java.util.List;
 
 import br.com.objectos.cnab.CnabsFalso;
@@ -31,7 +32,6 @@ import br.com.objectos.cnab.WayCnab;
 
 import com.google.common.base.Function;
 
-import org.joda.time.LocalDate;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
@@ -118,9 +118,9 @@ public class TesteDeLoteBradesco {
   public void data_da_ocorrencia() {
     List<LocalDate> res = transform(lotes, new LoteToDataOcorrencia());
 
-    assertThat(res.get(0), equalTo(new LocalDate(2012, 4, 30)));
-    assertThat(res.get(1), equalTo(new LocalDate(2012, 4, 30)));
-    assertThat(res.get(2), equalTo(new LocalDate(2012, 4, 30)));
+    assertThat(res.get(0), equalTo(LocalDate.of(2012, 4, 30)));
+    assertThat(res.get(1), equalTo(LocalDate.of(2012, 4, 30)));
+    assertThat(res.get(2), equalTo(LocalDate.of(2012, 4, 30)));
   }
 
   public void numero_do_documento() {
@@ -143,9 +143,9 @@ public class TesteDeLoteBradesco {
   public void data_de_vencimento() {
     List<LocalDate> res = transform(lotes, new LoteToDataDeVecimento());
 
-    assertThat(res.get(0), equalTo(new LocalDate(2012, 4, 25)));
-    assertThat(res.get(1), equalTo(new LocalDate(2012, 4, 25)));
-    assertThat(res.get(2), equalTo(new LocalDate(2012, 4, 30)));
+    assertThat(res.get(0), equalTo(LocalDate.of(2012, 4, 25)));
+    assertThat(res.get(1), equalTo(LocalDate.of(2012, 4, 25)));
+    assertThat(res.get(2), equalTo(LocalDate.of(2012, 4, 30)));
   }
 
   public void valor_titulo() {
@@ -255,9 +255,9 @@ public class TesteDeLoteBradesco {
   public void data_de_credito() {
     List<LocalDate> res = transform(lotes, new LoteToDataDoCredito());
 
-    assertThat(res.get(0), equalTo(new LocalDate(2012, 5, 2)));
-    assertThat(res.get(1), equalTo(new LocalDate(2012, 5, 2)));
-    assertThat(res.get(2), equalTo(new LocalDate(2012, 5, 2)));
+    assertThat(res.get(0), equalTo(LocalDate.of(2012, 5, 2)));
+    assertThat(res.get(1), equalTo(LocalDate.of(2012, 5, 2)));
+    assertThat(res.get(2), equalTo(LocalDate.of(2012, 5, 2)));
   }
 
   public void motivo_rejeicoes_codigo() {

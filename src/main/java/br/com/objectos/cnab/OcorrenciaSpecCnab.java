@@ -18,12 +18,11 @@ package br.com.objectos.cnab;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
+import java.util.TreeMap;
+import java.util.stream.Collectors;
 
-import com.google.common.base.Function;
-import com.google.common.collect.ImmutableList;
-import com.google.common.collect.ImmutableSortedMap;
-import com.google.common.collect.Lists;
-import com.google.common.collect.Maps;
+import br.com.objectos.collections.ImmutableList;
+import br.com.objectos.collections.MoreCollectors;
 
 /**
  * @author marcio.endo@objectos.com.br (Marcio Endo)
@@ -44,29 +43,31 @@ class OcorrenciaSpecCnab implements OcorrenciaSpec {
     this.banco = banco;
     this.codigo = codigo;
     MotivoParser parser = codigo.motivoParser;
-    this.motivoMap = parser.toMap();
+    motivoMap = parser.toMap();
 
     Collection<Motivo> values = motivoMap.values();
-    this.motivos = ImmutableList.copyOf(values);
+    motivos = ImmutableList.copyOf(values);
 
-    List<OcorrenciaEvento> _lazy;
-    _lazy = Lists.transform(motivos, new ToEvento());
-
-    List<OcorrenciaEvento> eventos;
-    eventos = ImmutableList.copyOf(_lazy);
+    List<OcorrenciaEvento> eventos = motivos.stream()
+        .map(input -> OcorrenciaEventoPadrao.of(OcorrenciaSpecCnab.this, input))
+        .collect(MoreCollectors.toImmutableList());
 
     if (eventos.isEmpty()) {
       OcorrenciaEvento evento = OcorrenciaEventoPadrao.of(this);
       eventos = ImmutableList.of(evento);
     }
+
     this.eventos = eventos;
   }
 
   public static Map<String, OcorrenciaSpec> transform(
       Banco banco, Map<String, OcorrenciaCodigoPadrao> map) {
 
-    Map<String, OcorrenciaSpec> specs = Maps.transformValues(map, new FromCodigo(banco));
-    return ImmutableSortedMap.copyOf(specs);
+    Map<String, OcorrenciaSpec> specs = map.entrySet()
+        .stream()
+        .collect(Collectors.toMap(e -> e.getKey(), e -> new OcorrenciaSpecCnab(banco, e.getValue())));
+
+    return new TreeMap<>(specs);
 
   }
 
@@ -110,28 +111,6 @@ class OcorrenciaSpecCnab implements OcorrenciaSpec {
     }
 
     return evento;
-  }
-
-  private static class FromCodigo implements Function<OcorrenciaCodigoPadrao, OcorrenciaSpec> {
-
-    private final Banco banco;
-
-    public FromCodigo(Banco banco) {
-      this.banco = banco;
-    }
-
-    @Override
-    public OcorrenciaSpec apply(OcorrenciaCodigoPadrao input) {
-      return new OcorrenciaSpecCnab(banco, input);
-    }
-
-  }
-
-  private class ToEvento implements Function<Motivo, OcorrenciaEvento> {
-    @Override
-    public OcorrenciaEvento apply(Motivo input) {
-      return OcorrenciaEventoPadrao.of(OcorrenciaSpecCnab.this, input);
-    }
   }
 
 }

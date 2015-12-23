@@ -18,10 +18,8 @@ package br.com.objectos.cnab;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
 
-import br.com.objectos.cnab.ColunaLocalDate;
-import br.com.objectos.cnab.ColunaWriter;
+import java.time.LocalDate;
 
-import org.joda.time.LocalDate;
 import org.testng.annotations.Test;
 
 /**
@@ -35,7 +33,7 @@ public class TesteDeColunaLocalDate {
   public void deve_formatar_coluna_data_limite_para_desconto_no_padrao_DD_MM_AA() {
     int inicio = 0;
     int fim = 5;
-    LocalDate data = new LocalDate(2012, 1, 1);
+    LocalDate data = LocalDate.of(2012, 1, 1);
     int tamanho = 6;
 
     writer = new ColunaLocalDate(inicio, fim).set(data);

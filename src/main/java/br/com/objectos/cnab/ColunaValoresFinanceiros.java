@@ -15,11 +15,11 @@
  */
 package br.com.objectos.cnab;
 
-import static com.google.common.base.Preconditions.checkArgument;
-
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
 import java.util.Arrays;
+
+import br.com.objectos.core.Preconditions;
 
 /**
  * @author marcos.piazzolla@objectos.com.br (Marcos Piazzolla)
@@ -30,13 +30,13 @@ class ColunaValoresFinanceiros extends Coluna<Double> {
 
   public ColunaValoresFinanceiros(int inicio, int fim) {
     super(inicio, fim);
-    this.valor = 0;
+    valor = 0;
   }
 
   private ColunaValoresFinanceiros(int inicio, int fim, double valor) {
     super(inicio, fim);
 
-    checkArgument(valor >= 0, "Valor deve ser maior ou igual a zero");
+    Preconditions.checkArgument(valor >= 0, "Valor deve ser maior ou igual a zero");
 
     this.valor = valor;
   }
@@ -44,6 +44,11 @@ class ColunaValoresFinanceiros extends Coluna<Double> {
   @Override
   public String get() {
     return format(inicio, fim, valor);
+  }
+
+  @Override
+  public Class<Double> getType() {
+    return Double.class;
   }
 
   @Override

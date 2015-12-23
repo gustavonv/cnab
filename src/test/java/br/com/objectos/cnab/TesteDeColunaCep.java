@@ -18,10 +18,8 @@ package br.com.objectos.cnab;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
 
-import br.com.objectos.cnab.ColunaCep;
-import br.com.objectos.cnab.ColunaWriter;
-import br.com.objectos.way.base.br.Cep;
-import br.com.objectos.way.base.br.ExcecaoDeCepInvalido;
+import br.com.objectos.br.Cep;
+import br.com.objectos.br.ExcecaoDeCepInvalido;
 
 import org.testng.annotations.Test;
 

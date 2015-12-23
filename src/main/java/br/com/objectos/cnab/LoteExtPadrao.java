@@ -17,14 +17,12 @@ package br.com.objectos.cnab;
 
 import static br.com.objectos.cnab.WayCnab.lote;
 
+import java.time.LocalDate;
 import java.util.List;
+import java.util.function.Function;
+import java.util.stream.Stream;
 
-import com.google.common.base.Function;
-import com.google.common.collect.ImmutableList;
-import com.google.common.collect.Iterables;
-import com.google.common.collect.Lists;
-
-import org.joda.time.LocalDate;
+import br.com.objectos.collections.MoreCollectors;
 
 /**
  * @author marcio.endo@objectos.com.br (Marcio Endo)
@@ -41,23 +39,23 @@ class LoteExtPadrao implements LoteExt {
 
   LoteExtPadrao(Lote lote, OcorrenciaEvento evento) {
     this.lote = lote;
-    this.banco = lote.getBanco();
-    this.ocorrencia = evento.getOcorrencia();
-    this.motivo = evento.getMotivo();
+    banco = lote.getBanco();
+    ocorrencia = evento.getOcorrencia();
+    motivo = evento.getMotivo();
   }
 
   public static List<LoteExt> transform(List<Lote> lotes) {
-    List<List<LoteExt>> lists = Lists.transform(lotes, new ToLoteExt());
-    Iterable<LoteExt> exts = Iterables.concat(lists);
-    return ImmutableList.copyOf(exts);
+    return lotes.stream()
+        .flatMap(new ToLoteExt())
+        .collect(MoreCollectors.toImmutableList());
   }
 
-  private static class ToLoteExt implements Function<Lote, List<LoteExt>> {
+  private static class ToLoteExt implements Function<Lote, Stream<LoteExt>> {
     @Override
-    public List<LoteExt> apply(Lote lote) {
+    public Stream<LoteExt> apply(Lote lote) {
       Ocorrencia ocorrencia = lote.get(WayCnab.lote().ocorrencia());
       List<OcorrenciaEvento> eventos = ocorrencia.asEventos();
-      return Lists.transform(eventos, new FromEvento(lote));
+      return eventos.stream().map(new FromEvento(lote));
     }
   }
 

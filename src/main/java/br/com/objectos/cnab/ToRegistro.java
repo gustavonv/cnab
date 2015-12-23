@@ -15,9 +15,9 @@
  */
 package br.com.objectos.cnab;
 
-import br.com.objectos.comuns.io.FixedLine;
+import java.util.function.Function;
 
-import com.google.common.base.Function;
+import br.com.objectos.comuns.io.FixedLine;
 
 /**
  * @author marcio.endo@objectos.com.br (Marcio Endo)
@@ -30,7 +30,7 @@ class ToRegistro implements Function<FixedLine, Registro> {
 
   public ToRegistro(Banco banco) {
     this.banco = banco;
-    this.modelo = banco.getModelo();
+    modelo = banco.getModelo();
   }
 
   @Override

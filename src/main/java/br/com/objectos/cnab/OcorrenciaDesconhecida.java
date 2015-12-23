@@ -17,7 +17,7 @@ package br.com.objectos.cnab;
 
 import java.util.List;
 
-import com.google.common.collect.ImmutableList;
+import br.com.objectos.collections.ImmutableList;
 
 /**
  * @author marcio.endo@objectos.com.br (Marcio Endo)

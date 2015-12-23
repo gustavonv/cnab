@@ -15,9 +15,9 @@
  */
 package br.com.objectos.cnab;
 
-import static com.google.common.base.Preconditions.checkNotNull;
+import static br.com.objectos.core.Preconditions.checkNotNull;
 
-import br.com.objectos.way.base.br.CadastroRFB;
+import br.com.objectos.br.CadastroRFB;
 
 /**
  * @author marcos.piazzolla@objectos.com.br (Marcos Piazzolla)
@@ -28,7 +28,7 @@ class ColunaCadastroDaEmpresa extends Coluna<CadastroRFB> {
 
   public ColunaCadastroDaEmpresa(int inicio, int fim) {
     super(inicio, fim);
-    this.valor = null;
+    valor = null;
   }
 
   private ColunaCadastroDaEmpresa(int inicio, int fim, CadastroRFB valor) {
@@ -44,6 +44,11 @@ class ColunaCadastroDaEmpresa extends Coluna<CadastroRFB> {
     String saida = "%0" + getTamanho() + "d";
     long _cadastro = valor != null ? valor.longValue() : 0;
     return String.format(saida, _cadastro);
+  }
+
+  @Override
+  public Class<CadastroRFB> getType() {
+    return CadastroRFB.class;
   }
 
   @Override

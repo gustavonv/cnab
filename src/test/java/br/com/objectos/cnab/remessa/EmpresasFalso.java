@@ -15,27 +15,20 @@
  */
 package br.com.objectos.cnab.remessa;
 
-import br.com.objectos.cnab.remessa.Empresa;
-
-
-
+import br.com.objectos.br.Cnpj;
 
 /**
  * @author marcio.endo@objectos.com.br (Marcio Endo)
  */
 public class EmpresasFalso {
 
-  public static final Empresa OBJECTOS = nova()
+  public static final Empresa OBJECTOS = Empresa.builder()
       .codigo(123456789)
-      .cnpj(7430629000110l)
+      .cadastroRFB(Cnpj.valueOf(7430629000110l))
       .razaoSocial("OBJECTOS FABRICA DE SOFTWARE LTDA")
-      .novaInstancia();
+      .build();
 
   private EmpresasFalso() {
-  }
-
-  private static ConstrutorDeEmpresaFalso nova() {
-    return new ConstrutorDeEmpresaFalso();
   }
 
 }

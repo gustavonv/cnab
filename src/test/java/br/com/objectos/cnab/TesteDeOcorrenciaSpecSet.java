@@ -21,13 +21,6 @@ import static org.hamcrest.Matchers.is;
 
 import java.util.List;
 
-import br.com.objectos.cnab.Banco;
-import br.com.objectos.cnab.Motivo;
-import br.com.objectos.cnab.OcorrenciaCodigo;
-import br.com.objectos.cnab.OcorrenciaEvento;
-import br.com.objectos.cnab.OcorrenciaSpec;
-import br.com.objectos.cnab.OcorrenciaSpecSet;
-
 import org.testng.annotations.Test;
 
 /**

@@ -15,9 +15,9 @@
  */
 package br.com.objectos.cnab;
 
-import static com.google.common.base.Preconditions.checkNotNull;
+import static br.com.objectos.core.Preconditions.checkNotNull;
 
-import br.com.objectos.way.base.br.Cep;
+import br.com.objectos.br.Cep;
 
 /**
  * @author marcos.piazzolla@objectos.com.br (Marcos Piazzolla)
@@ -28,7 +28,7 @@ class ColunaCep extends Coluna<Cep> {
 
   public ColunaCep(int inicio, int fim) {
     super(inicio, fim);
-    this.valor = Cep.vazio();
+    valor = Cep.vazio();
   }
 
   private ColunaCep(int inicio, int fim, Cep valor) {
@@ -42,6 +42,11 @@ class ColunaCep extends Coluna<Cep> {
   @Override
   public String get() {
     return format(inicio, fim, valor);
+  }
+
+  @Override
+  public Class<Cep> getType() {
+    return Cep.class;
   }
 
   @Override

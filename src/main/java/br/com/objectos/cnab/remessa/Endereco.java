@@ -15,36 +15,29 @@
  */
 package br.com.objectos.cnab.remessa;
 
-import br.com.objectos.way.base.br.Cep;
-import br.com.objectos.way.base.br.Estado;
+import java.util.Optional;
+
+import br.com.objectos.br.Cep;
+import br.com.objectos.br.Estado;
+import br.com.objectos.pojo.Pojo;
 
 /**
  * @author marcio.endo@objectos.com.br (Marcio Endo)
  */
-public interface Endereco {
+@Pojo
+public abstract class Endereco {
 
-  interface Construtor extends br.com.objectos.comuns.base.Construtor<Endereco> {
+  public abstract String getLogradouro();
+  public abstract String getCidade();
+  public abstract String getBairro();
+  public abstract Optional<Estado> getEstado();
+  public abstract Cep getCep();
 
-    String getLogradouro();
-
-    String getCidade();
-
-    String getBairro();
-
-    Estado getEstado();
-
-    Cep getCep();
-
+  protected Endereco() {
   }
 
-  String getLogradouro();
-
-  String getCidade();
-
-  String getBairro();
-
-  Estado getEstado();
-
-  Cep getCep();
+  public static EnderecoBuilder builder() {
+    return new EnderecoBuilderPojo();
+  }
 
 }

@@ -15,7 +15,7 @@
  */
 package br.com.objectos.cnab;
 
-import static com.google.common.base.Preconditions.checkArgument;
+import static br.com.objectos.core.Preconditions.checkArgument;
 
 /**
  * @author marcos.piazzolla@objectos.com.br (Marcos Piazzolla)

@@ -15,8 +15,7 @@
  */
 package br.com.objectos.cnab;
 
-import static com.google.common.collect.Maps.newHashMap;
-
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
@@ -67,16 +66,17 @@ abstract class AbstractRegistroRemessa<T extends AbstractRegistroRemessa<T>> {
     return write();
   }
 
-  abstract static class AbstractBuilder<S extends AbstractBuilder<S, R>, R extends AbstractRegistroRemessa<R>>
-      implements br.com.objectos.core.lang.Builder<R> {
+  abstract static class AbstractBuilder<S extends AbstractBuilder<S, R>, R extends AbstractRegistroRemessa<R>> {
 
     final Banco banco;
 
-    final Map<CnabKey<?, ?>, Object> map = newHashMap();
+    final Map<CnabKey<?, ?>, Object> map = new HashMap<>();
 
     public AbstractBuilder(Banco banco) {
       this.banco = banco;
     }
+
+    public abstract R build();
 
     public <T> S put(CnabKey<?, T> key, T value) {
       map.put(key, value);

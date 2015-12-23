@@ -15,23 +15,23 @@
  */
 package br.com.objectos.cnab.remessa;
 
-import br.com.objectos.way.base.br.CadastroRFB;
+import br.com.objectos.br.CadastroRFB;
+import br.com.objectos.pojo.Pojo;
 
 /**
  * @author marcio.endo@objectos.com.br (Marcio Endo)
  */
-public interface Cedente {
+@Pojo
+public abstract class Cedente {
 
-  interface Construtor extends br.com.objectos.comuns.base.Construtor<Cedente> {
+  public abstract CadastroRFB getCadastroRFB();
+  public abstract String getNome();
 
-    CadastroRFB getCadastroRFB();
-
-    String getNome();
-
+  protected Cedente() {
   }
 
-  CadastroRFB getCadastroRFB();
-
-  String getNome();
+  public static CedenteBuilder builder() {
+    return new CedenteBuilderPojo();
+  }
 
 }

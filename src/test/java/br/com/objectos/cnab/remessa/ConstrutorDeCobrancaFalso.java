@@ -15,22 +15,10 @@
  */
 package br.com.objectos.cnab.remessa;
 
-import br.com.objectos.cnab.remessa.Agencia;
-import br.com.objectos.cnab.remessa.Carteira;
-import br.com.objectos.cnab.remessa.Cobranca;
-import br.com.objectos.cnab.remessa.CobrancaCnab;
-import br.com.objectos.cnab.remessa.CobrancaOpcoes;
-import br.com.objectos.cnab.remessa.Comando;
-import br.com.objectos.cnab.remessa.Conta;
-import br.com.objectos.cnab.remessa.Titulo;
-
-
-
-
 /**
  * @author marcio.endo@objectos.com.br (Marcio Endo)
  */
-public class ConstrutorDeCobrancaFalso implements Cobranca.Construtor {
+public class ConstrutorDeCobrancaFalso {
 
   private Carteira carteira;
   private Agencia agencia;
@@ -39,9 +27,15 @@ public class ConstrutorDeCobrancaFalso implements Cobranca.Construtor {
   private Titulo titulo;
   private CobrancaOpcoes opcoes = CobrancaOpcoes.padrao();
 
-  @Override
   public Cobranca novaInstancia() {
-    return new CobrancaCnab(this);
+    return Cobranca.builder()
+        .carteira(carteira)
+        .agencia(agencia)
+        .conta(conta)
+        .comando(comando)
+        .titulo(titulo)
+        .opcoes(opcoes)
+        .build();
   }
 
   public ConstrutorDeCobrancaFalso carteira(Carteira carteira) {
@@ -72,36 +66,6 @@ public class ConstrutorDeCobrancaFalso implements Cobranca.Construtor {
   public ConstrutorDeCobrancaFalso opcoes(CobrancaOpcoes opcoes) {
     this.opcoes = opcoes;
     return this;
-  }
-
-  @Override
-  public Carteira getCarteira() {
-    return carteira;
-  }
-
-  @Override
-  public Agencia getAgencia() {
-    return agencia;
-  }
-
-  @Override
-  public Conta getConta() {
-    return conta;
-  }
-
-  @Override
-  public Comando getComando() {
-    return comando;
-  }
-
-  @Override
-  public Titulo getTitulo() {
-    return titulo;
-  }
-
-  @Override
-  public CobrancaOpcoes getOpcoes() {
-    return opcoes;
   }
 
 }

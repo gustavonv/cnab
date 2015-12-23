@@ -15,27 +15,21 @@
  */
 package br.com.objectos.cnab.remessa;
 
-import br.com.objectos.cnab.remessa.Cedente;
-import br.com.objectos.cnab.remessa.EspecieDeTitulo;
-import br.com.objectos.cnab.remessa.Sacado;
-import br.com.objectos.cnab.remessa.Titulo;
-import br.com.objectos.cnab.remessa.TituloCnab;
-
-import org.joda.time.LocalDate;
+import java.time.LocalDate;
 
 /**
  * @author marcio.endo@objectos.com.br (Marcio Endo)
  */
-public class ConstrutorDeTituloFalso implements Titulo.Construtor {
+public class ConstrutorDeTituloFalso {
 
-  private String usoDaEmpresa;
-  private EspecieDeTitulo especie;
+  private String usoDaEmpresa = "";
+  private EspecieDeTitulo especie = EspecieDeTitulo.DUPLICATA;
   private long nossoNumero;
-  private String numero;
-  private Cedente cedente;
-  private Sacado sacado;
+  private String numero = "";
+  private Cedente cedente = CedentesFalso.PF;
+  private Sacado sacado = SacadosFalso.CECILIA_MEIRELES;
   private LocalDate emissao;
-  private LocalDate vencimento;
+  private LocalDate vencimento = LocalDate.now();
   private int prazo;
   private double valor;
   private double valorDesconto;
@@ -43,9 +37,23 @@ public class ConstrutorDeTituloFalso implements Titulo.Construtor {
   private double valorAbatimento;
   private boolean negociado = true;
 
-  @Override
   public Titulo novaInstancia() {
-    return new TituloCnab(this);
+    return Titulo.builder()
+        .usoDaEmpresa(usoDaEmpresa)
+        .especie(especie)
+        .nossoNumero(nossoNumero)
+        .numero(numero)
+        .cedente(cedente)
+        .sacado(sacado)
+        .emissaoOfNullable(emissao)
+        .vencimento(vencimento)
+        .prazo(prazo)
+        .valor(valor)
+        .valorDesconto(valorDesconto)
+        .valorIof(valorIof)
+        .valorAbatimento(valorAbatimento)
+        .negociado(negociado)
+        .build();
   }
 
   public ConstrutorDeTituloFalso usoDaEmpresa(String usoDaEmpresa) {
@@ -111,76 +119,6 @@ public class ConstrutorDeTituloFalso implements Titulo.Construtor {
   public ConstrutorDeTituloFalso negociado(boolean negociado) {
     this.negociado = negociado;
     return this;
-  }
-
-  @Override
-  public String getUsoDaEmpresa() {
-    return usoDaEmpresa;
-  }
-
-  @Override
-  public EspecieDeTitulo getEspecie() {
-    return especie;
-  }
-
-  @Override
-  public long getNossoNumero() {
-    return nossoNumero;
-  }
-
-  @Override
-  public String getNumero() {
-    return numero;
-  }
-
-  @Override
-  public Cedente getCedente() {
-    return cedente;
-  }
-
-  @Override
-  public Sacado getSacado() {
-    return sacado;
-  }
-
-  @Override
-  public LocalDate getEmissao() {
-    return emissao;
-  }
-
-  @Override
-  public LocalDate getVencimento() {
-    return vencimento;
-  }
-
-  @Override
-  public int getPrazo() {
-    return prazo;
-  }
-
-  @Override
-  public double getValor() {
-    return valor;
-  }
-
-  @Override
-  public double getValorDesconto() {
-    return valorDesconto;
-  }
-
-  @Override
-  public double getValorIof() {
-    return valorIof;
-  }
-
-  @Override
-  public double getValorAbatimento() {
-    return valorAbatimento;
-  }
-
-  @Override
-  public boolean isNegociado() {
-    return negociado;
   }
 
 }

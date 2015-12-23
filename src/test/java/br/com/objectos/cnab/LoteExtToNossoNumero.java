@@ -15,8 +15,6 @@
  */
 package br.com.objectos.cnab;
 
-import br.com.objectos.cnab.LoteExt;
-
 import com.google.common.base.Function;
 
 /**

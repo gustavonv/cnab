@@ -15,25 +15,22 @@
  */
 package br.com.objectos.cnab;
 
-import static com.google.common.collect.Maps.newLinkedHashMap;
-
 import java.util.Collection;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
 import br.com.objectos.cnab.remessa.Instrucao;
-import br.com.objectos.cnab.remessa.InstrucaoCnab;
 import br.com.objectos.cnab.remessa.InstrucaoTipo;
 import br.com.objectos.cnab.remessa.InstrucaoTipoVazio;
-
-import com.google.common.collect.ImmutableList;
+import br.com.objectos.collections.ImmutableList;
 
 /**
  * @author marcio.endo@objectos.com.br (Marcio Endo)
  */
 public class BradescoInstrucao implements InstrucaoTipo {
 
-  private static final Map<Integer, InstrucaoTipo> values = newLinkedHashMap();
+  private static final Map<Integer, InstrucaoTipo> values = new LinkedHashMap<>();
 
   static {
     put(0, "N/A");
@@ -88,17 +85,24 @@ public class BradescoInstrucao implements InstrucaoTipo {
 
   @Override
   public Instrucao with() {
-    return new InstrucaoCnab(this, 0);
+    return instrucao(0);
   }
 
   @Override
   public Instrucao with(int value) {
-    return new InstrucaoCnab(this, value);
+    return instrucao(value);
   }
 
   @Override
   public Instrucao with(double value) {
-    return new InstrucaoCnab(this, value);
+    return instrucao(value);
+  }
+
+  private Instrucao instrucao(double value) {
+    return Instrucao.builder()
+        .tipo(this)
+        .value(value)
+        .build();
   }
 
 }

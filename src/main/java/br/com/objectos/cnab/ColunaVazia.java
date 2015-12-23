@@ -24,7 +24,7 @@ class ColunaVazia extends Coluna<String> {
 
   public ColunaVazia(int inicio, int fim) {
     super(inicio, fim);
-    this.valor = "";
+    valor = "";
   }
 
   private ColunaVazia(int inicio, int fim, String valor) {
@@ -35,6 +35,11 @@ class ColunaVazia extends Coluna<String> {
   @Override
   public String get() {
     return format(inicio, fim, valor);
+  }
+
+  @Override
+  public Class<String> getType() {
+    return String.class;
   }
 
   @Override

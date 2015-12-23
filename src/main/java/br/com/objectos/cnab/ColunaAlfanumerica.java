@@ -15,11 +15,11 @@
  */
 package br.com.objectos.cnab;
 
-import static com.google.common.base.Preconditions.checkArgument;
-import static com.google.common.base.Preconditions.checkNotNull;
+import static br.com.objectos.core.Preconditions.checkArgument;
+import static br.com.objectos.core.Preconditions.checkNotNull;
 
 import br.com.objectos.cnab.remessa.Caixa;
-import br.com.objectos.core.lang.Strings;
+import br.com.objectos.core.Strings;
 
 /**
  * @author marcos.piazzolla@objectos.com.br (Marcos Piazzolla)
@@ -52,6 +52,11 @@ class ColunaAlfanumerica extends Coluna<String> {
   @Override
   public String get() {
     return format(inicio, fim, valor, caixa);
+  }
+
+  @Override
+  public Class<String> getType() {
+    return String.class;
   }
 
   @Override

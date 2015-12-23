@@ -15,7 +15,7 @@
  */
 package br.com.objectos.cnab.remessa;
 
-import br.com.objectos.comuns.matematica.financeira.Percentual;
+import br.com.objectos.br.Percentual;
 
 /**
  * @author marcio.endo@objectos.com.br (Marcio Endo)

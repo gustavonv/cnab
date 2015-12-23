@@ -15,7 +15,7 @@
  */
 package br.com.objectos.cnab;
 
-import com.google.common.base.Preconditions;
+import br.com.objectos.core.Preconditions;
 
 /**
  * @author marcio.endo@objectos.com.br (Marcio Endo)
@@ -43,6 +43,11 @@ class ColunaBoolean extends Coluna<Boolean> {
   @Override
   public String get() {
     return value ? trueText : falseText;
+  }
+
+  @Override
+  public Class<Boolean> getType() {
+    return Boolean.class;
   }
 
   @Override

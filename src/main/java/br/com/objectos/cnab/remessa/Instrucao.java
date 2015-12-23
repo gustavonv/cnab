@@ -15,16 +15,34 @@
  */
 package br.com.objectos.cnab.remessa;
 
+import br.com.objectos.pojo.Pojo;
+
 /**
  * @author marcio.endo@objectos.com.br (Marcio Endo)
  */
-public interface Instrucao {
+@Pojo
+public abstract class Instrucao {
 
-  InstrucaoTipo getTipo();
+  public abstract InstrucaoTipo getTipo();
+  public abstract double value();
 
-  int getCodigo();
+  protected Instrucao() {
+  }
 
-  int intValue();
-  double doubleValue();
+  public static InstrucaoBuilder builder() {
+    return new InstrucaoBuilderPojo();
+  }
+
+  public int getCodigo() {
+    return getTipo().getCodigo();
+  }
+
+  public int intValue() {
+    return (int) value();
+  }
+
+  public double doubleValue() {
+    return value();
+  }
 
 }

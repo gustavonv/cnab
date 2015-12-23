@@ -15,16 +15,15 @@
  */
 package br.com.objectos.cnab;
 
+import java.time.LocalDate;
 import java.util.Map;
 
+import br.com.objectos.br.CadastroRFB;
+import br.com.objectos.br.Cep;
 import br.com.objectos.cnab.bradesco.TipoDeIncricaoDoSacado;
 import br.com.objectos.cnab.remessa.Comando;
 import br.com.objectos.cnab.remessa.EspecieDeTitulo;
 import br.com.objectos.cnab.remessa.TipoDeIdentificacao;
-import br.com.objectos.way.base.br.CadastroRFB;
-import br.com.objectos.way.base.br.Cep;
-
-import org.joda.time.LocalDate;
 
 /**
  * @author marcos.piazzolla@objectos.com.br (Marcos Piazzolla)

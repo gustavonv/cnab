@@ -29,6 +29,11 @@ class ColunaLong extends ColunaNumerica<Long> {
   }
 
   @Override
+  public Class<Long> getType() {
+    return Long.class;
+  }
+
+  @Override
   public ColunaWriter<Long> set(Object valor) {
     Long val = Long.class.cast(valor);
     return new ColunaLong(inicio, fim, val);

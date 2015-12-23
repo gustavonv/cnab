@@ -18,9 +18,6 @@ package br.com.objectos.cnab;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
 
-import br.com.objectos.cnab.ColunaBoolean;
-import br.com.objectos.cnab.ColunaWriter;
-
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 

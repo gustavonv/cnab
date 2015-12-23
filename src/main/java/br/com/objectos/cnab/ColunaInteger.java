@@ -29,6 +29,11 @@ class ColunaInteger extends ColunaNumerica<Integer> {
   }
 
   @Override
+  public Class<Integer> getType() {
+    return Integer.class;
+  }
+
+  @Override
   public ColunaWriter<Integer> set(Object valor) {
     Integer val = Integer.class.cast(valor);
     return new ColunaInteger(inicio, fim, val);

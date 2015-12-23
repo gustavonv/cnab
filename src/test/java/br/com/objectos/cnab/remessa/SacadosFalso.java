@@ -15,55 +15,64 @@
  */
 package br.com.objectos.cnab.remessa;
 
-import br.com.objectos.cnab.remessa.Sacado;
-import br.com.objectos.way.base.br.Estado;
+import br.com.objectos.br.Cep;
+import br.com.objectos.br.Cpf;
+import br.com.objectos.br.Estado;
 
 /**
  * @author marcio.endo@objectos.com.br (Marcio Endo)
  */
 public class SacadosFalso {
 
-  public static final Sacado MACHADO_ASSIS = novo()
+  public static final Sacado MACHADO_ASSIS = Sacado.builder()
+      .cadastroRFB(Cpf.valueOf(11641451505l))
       .nome("Machado de Assis")
-      .cpf(11641451505l)
-      .logradouro("Rua ABL, sem no.")
-      .cidade("Rio de Janeiro")
-      .estado(Estado.RJ)
-      .cep(12345020)
-      .novaInstancia();
+      .endereco(Endereco.builder()
+          .logradouro("Rua ABL, sem no.")
+          .cidade("Rio de Janeiro")
+          .bairro("")
+          .estadoOf(Estado.RJ)
+          .cep(Cep.valueOf(12345020))
+          .build())
+      .build();
 
-  public static final Sacado JOSE_ALENCAR = novo()
+  public static final Sacado JOSE_ALENCAR = Sacado.builder()
+      .cadastroRFB(Cpf.valueOf(54114537554l))
       .nome("José de Alencar")
-      .cpf(54114537554l)
-      .logradouro("Rua Whatever, 345")
-      .bairro("Vilarejo")
-      .cidade("Messejana")
-      .estado(Estado.CE)
-      .cep(78910020)
-      .novaInstancia();
+      .endereco(Endereco.builder()
+          .logradouro("Rua Whatever, 345")
+          .cidade("Messejana")
+          .bairro("Vilarejo")
+          .estadoOf(Estado.CE)
+          .cep(Cep.valueOf(78910020))
+          .build())
+      .build();
 
-  public static final Sacado CECILIA_MEIRELES = novo()
+  public static final Sacado CECILIA_MEIRELES = Sacado.builder()
+      .cadastroRFB(Cpf.valueOf(72825188824l))
       .nome("Cecília Meireles")
-      .cpf(72825188824l)
-      .logradouro("Av Principal, 97")
-      .bairro("Um bairro")
-      .cidade("Rio de Janeiro")
-      .estado(Estado.RJ)
-      .cep(13506555)
-      .novaInstancia();
+      .endereco(Endereco.builder()
+          .logradouro("Av Principal, 97")
+          .cidade("Rio de Janeiro")
+          .bairro("Um bairro")
+          .estadoOf(Estado.RJ)
+          .cep(Cep.valueOf(13506555))
+          .build())
+      .build();
 
-  public static final Sacado JORGE_LUIS_BORGES = novo()
+  public static final Sacado JORGE_LUIS_BORGES = Sacado.builder()
+      .cadastroRFB(Cpf.valueOf(16723128176l))
       .nome("Jorge Luís Borges")
-      .cpf(16723128176l)
-      .logradouro("Argentina")
-      .cep(13506555)
-      .novaInstancia();
+      .endereco(Endereco.builder()
+          .logradouro("Argentina")
+          .cidade("")
+          .bairro("")
+          .estado()
+          .cep(Cep.valueOf(13506555))
+          .build())
+      .build();
 
   private SacadosFalso() {
-  }
-
-  private static ConstrutorDeSacadoFalso novo() {
-    return new ConstrutorDeSacadoFalso();
   }
 
 }

@@ -15,7 +15,7 @@
  */
 package br.com.objectos.cnab;
 
-import com.google.common.base.Strings;
+import br.com.objectos.core.Strings;
 
 /**
  * @author marcio.endo@objectos.com.br (Marcio Endo)
@@ -28,7 +28,7 @@ public class Codigo {
 
   private Codigo(String text, String value) {
     this.text = text;
-    this.codigo = value;
+    codigo = value;
   }
 
   public String getText() {

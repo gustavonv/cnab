@@ -1,20 +1,22 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
 	<modelVersion>4.0.0</modelVersion>
-	
+
 	<parent>
 		<groupId>br.com.objectos</groupId>
-		<artifactId>way</artifactId>
-		<version>2.5.0</version>
+		<artifactId>parent</artifactId>
+		<version>97</version>
 	</parent>
-	
+
 	<artifactId>cnab</artifactId>
 	<packaging>jar</packaging>
 	<version>0.1.1-SNAPSHOT</version>
-	
+
 	<name>objectos :: cnab</name>
 	<description>CNAB400: Arquivos retorno e remessa</description>
 	<url>https://github.com/objectos/cnab</url>
-	
+
 	<licenses>
 		<license>
 			<name>The Apache Software License, Version 2.0</name>
@@ -22,14 +24,19 @@
 			<distribution>repo</distribution>
 		</license>
 	</licenses>
-	
+
 	<scm>
-		<connection>scm:git:git://objectos/cnab.git</connection>
-		<developerConnection>scm:git:git@github.com:objectos/cnab.git</developerConnection>
+		<connection>scm:git:file:///srv/bitbucket/shared/data/repositories/273</connection>
+		<developerConnection>scm:git:file:///srv/bitbucket/shared/data/repositories/273</developerConnection>
 		<url>https://github.com/objectos/cnab</url>
 		<tag>HEAD</tag>
 	</scm>
-	
+
+	<issueManagement>
+		<system>GitHub Issues</system>
+		<url>http://github.com/objectos/cnab/issues</url>
+	</issueManagement>
+
 	<developers>
 		<developer>
 			<id>moe</id>
@@ -37,38 +44,49 @@
 			<email>marcio.endo@objectos.com.br</email>
 		</developer>
 	</developers>
-	
+
 	<contributors>
 		<contributor>
 			<name>Marcos Piazzolla</name>
 			<email>marcos.piazzolla@objectos.com.br</email>
 		</contributor>
 	</contributors>
-	
+
 	<organization>
 		<name>Objectos Software LTDA</name>
 		<url>http://www.objectos.com.br</url>
 	</organization>
-	
-	<properties>
-		<objectos.io.version>0.2.1</objectos.io.version>
-	</properties>
-	
+
 	<dependencies>
 		<dependency>
 			<groupId>br.com.objectos</groupId>
-			<artifactId>core</artifactId>
+			<artifactId>assertion</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>br.com.objectos</groupId>
+			<artifactId>br</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>br.com.objectos</groupId>
 			<artifactId>io-legacy</artifactId>
-			<version>${objectos.io.version}</version>
 		</dependency>
-
 		<dependency>
 			<groupId>br.com.objectos</groupId>
-			<artifactId>testing</artifactId>
+			<artifactId>pojo</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>br.com.objectos</groupId>
+			<artifactId>pojo-compiler</artifactId>
+			<optional>true</optional>
+		</dependency>
+		<dependency>
+			<groupId>br.com.objectos</groupId>
+			<artifactId>preconditions</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>br.com.objectos</groupId>
+			<artifactId>strings</artifactId>
 		</dependency>
 	</dependencies>
-	
+
 </project>

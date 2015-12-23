@@ -15,7 +15,6 @@
  */
 package br.com.objectos.cnab;
 
-import static com.google.common.collect.Lists.newArrayList;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
 import static org.testng.Assert.fail;
@@ -23,11 +22,10 @@ import static org.testng.Assert.fail;
 import java.io.IOException;
 import java.io.StringReader;
 import java.net.URL;
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
-import br.com.objectos.cnab.Banco;
-import br.com.objectos.cnab.ItauInstrucao;
-import br.com.objectos.cnab.WayCnab;
 import br.com.objectos.cnab.remessa.Agencia;
 import br.com.objectos.cnab.remessa.AgenciasFalso;
 import br.com.objectos.cnab.remessa.Carteira;
@@ -52,7 +50,6 @@ import com.google.common.collect.ImmutableList;
 import com.google.common.io.CharStreams;
 import com.google.common.io.Resources;
 
-import org.joda.time.LocalDate;
 import org.testng.annotations.Test;
 
 /**
@@ -65,7 +62,7 @@ public class TesteDeRemessaItau {
 
   Empresa empresa = EmpresasFalso.OBJECTOS;
   int sequenciaArquivo = 720;
-  LocalDate dataArquivo = new LocalDate(2012, 10, 23);
+  LocalDate dataArquivo = LocalDate.of(2012, 10, 23);
 
   Carteira carteira = Carteira.COBRANCA_SIMPLES_COM_REGISTRO;
   Agencia agencia = AgenciasFalso.AGENCIA_A;
@@ -82,8 +79,8 @@ public class TesteDeRemessaItau {
         .cedente(CedentesFalso.ARMAZEM)
         .sacado(SacadosFalso.MACHADO_ASSIS)
         .prazo(2)
-        .emissao(new LocalDate(2012, 10, 9))
-        .vencimento(new LocalDate(2012, 11, 12))
+        .emissao(LocalDate.of(2012, 10, 9))
+        .vencimento(LocalDate.of(2012, 11, 12))
         .valor(948.14)
         .novaInstancia();
     CobrancaOpcoes opt0 = CobrancaOpcoes.padrao()
@@ -103,8 +100,8 @@ public class TesteDeRemessaItau {
         .cedente(CedentesFalso.LOJA)
         .sacado(SacadosFalso.JOSE_ALENCAR)
         .prazo(2)
-        .emissao(new LocalDate(2012, 10, 9))
-        .vencimento(new LocalDate(2012, 11, 6))
+        .emissao(LocalDate.of(2012, 10, 9))
+        .vencimento(LocalDate.of(2012, 11, 6))
         .valor(4715.76)
         .novaInstancia();
     CobrancaOpcoes opt1 = CobrancaOpcoes.padrao()
@@ -155,7 +152,7 @@ public class TesteDeRemessaItau {
 
     assertThat(lines.size(), equalTo(prova.size()));
 
-    List<String> invalids = newArrayList();
+    List<String> invalids = new ArrayList<>();
 
     for (int i = 0; i < prova.size(); i++) {
       String exp = prova.get(i);

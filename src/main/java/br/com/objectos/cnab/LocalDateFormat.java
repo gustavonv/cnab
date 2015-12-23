@@ -1,5 +1,5 @@
 /*
- * Copyright 2014 Objectos, Fábrica de Software LTDA.
+ * Copyright 2015 Objectos, Fábrica de Software LTDA.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -15,15 +15,34 @@
  */
 package br.com.objectos.cnab;
 
-import com.google.common.base.Function;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 /**
  * @author marcio.endo@objectos.com.br (Marcio Endo)
  */
-enum LoteExtToOcorrencia implements Function<LoteExt, Ocorrencia> {
-  INSTANCE;
-  @Override
-  public Ocorrencia apply(LoteExt input) {
-    return input.get(WayCnab.lote().ocorrencia());
+enum LocalDateFormat {
+
+  DD_MM_YY("ddMMyy");
+
+  private final DateTimeFormatter formatter;
+
+  private LocalDateFormat(String pattern) {
+    formatter = DateTimeFormatter.ofPattern(pattern);
   }
+
+  public LocalDate parse(String input) {
+    try {
+      return LocalDate.parse(input, formatter);
+    } catch (IllegalArgumentException e) {
+      return null;
+    } catch (NullPointerException e) {
+      return null;
+    }
+  }
+
+  public String format(LocalDate date) {
+    return date != null ? formatter.format(date) : "";
+  }
+
 }

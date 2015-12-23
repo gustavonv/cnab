@@ -21,22 +21,18 @@ import static org.hamcrest.Matchers.equalTo;
 
 import java.io.IOException;
 import java.net.URL;
+import java.time.LocalDate;
 
-import br.com.objectos.cnab.Banco;
-import br.com.objectos.cnab.CnabKey;
-import br.com.objectos.cnab.ItauLoteRemessa;
-import br.com.objectos.cnab.LoteRemessa;
+import br.com.objectos.br.CadastroRFB;
+import br.com.objectos.br.Cep;
+import br.com.objectos.br.Estado;
+import br.com.objectos.br.TipoDeCadastroRFB;
 import br.com.objectos.cnab.remessa.Comando;
 import br.com.objectos.cnab.remessa.EspecieDeTitulo;
-import br.com.objectos.way.base.br.CadastroRFB;
-import br.com.objectos.way.base.br.Cep;
-import br.com.objectos.way.base.br.Estado;
-import br.com.objectos.way.base.br.TipoDeCadastroRFB;
 
 import com.google.common.base.Charsets;
 import com.google.common.io.Resources;
 
-import org.joda.time.LocalDate;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
@@ -159,7 +155,7 @@ public class TesteDeLoteRemessaItau {
 
   public void vencimento_do_titulo() {
     CnabKey<ItauLoteRemessa, LocalDate> col = loteRemessa().vencimento();
-    LocalDate valor = new LocalDate(2012, 11, 12);
+    LocalDate valor = LocalDate.of(2012, 11, 12);
     writeAndAssert(col, valor);
   }
 
@@ -195,7 +191,7 @@ public class TesteDeLoteRemessaItau {
 
   public void emissao_do_titulo() {
     CnabKey<ItauLoteRemessa, LocalDate> col = loteRemessa().emissao();
-    LocalDate valor = new LocalDate(2012, 10, 9);
+    LocalDate valor = LocalDate.of(2012, 10, 9);
     writeAndAssert(col, valor);
   }
 

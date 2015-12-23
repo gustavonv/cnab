@@ -21,16 +21,10 @@ import static org.hamcrest.Matchers.equalTo;
 import java.util.Arrays;
 import java.util.List;
 
-import br.com.objectos.cnab.Bradesco;
-import br.com.objectos.cnab.Motivo;
-import br.com.objectos.cnab.Ocorrencia;
-import br.com.objectos.cnab.OcorrenciaCodigo;
-import br.com.objectos.cnab.OcorrenciaParser;
+import br.com.objectos.collections.MoreCollectors;
 import br.com.objectos.comuns.io.FixedLine;
 import br.com.objectos.comuns.io.ParsedFixedLines;
 import br.com.objectos.comuns.io.csv.FixedFile;
-
-import com.google.common.collect.ImmutableList;
 
 import org.testng.annotations.Test;
 
@@ -99,7 +93,7 @@ public class TesteDeBradescoOcorrenciaParser {
     String line = toLine(ocorrencia, motivos);
     FixedFile file = FixedFile.parseString(line);
     ParsedFixedLines _lines = file.getLines();
-    List<FixedLine> lines = ImmutableList.copyOf(_lines);
+    List<FixedLine> lines = _lines.stream().collect(MoreCollectors.toImmutableList());
     return lines.get(0);
   }
 
