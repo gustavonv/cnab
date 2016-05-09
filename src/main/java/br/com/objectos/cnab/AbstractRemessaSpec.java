@@ -20,8 +20,8 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Set;
 
-import br.com.objectos.br.CadastroRFB;
-import br.com.objectos.br.Cep;
+import br.com.objectos.jabuticava.CadastroRFB;
+import br.com.objectos.jabuticava.Cep;
 import br.com.objectos.cnab.remessa.Caixa;
 
 /**

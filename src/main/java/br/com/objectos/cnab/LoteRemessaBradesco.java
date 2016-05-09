@@ -18,8 +18,8 @@ package br.com.objectos.cnab;
 import java.time.LocalDate;
 import java.util.Map;
 
-import br.com.objectos.br.CadastroRFB;
-import br.com.objectos.br.Cep;
+import br.com.objectos.jabuticava.CadastroRFB;
+import br.com.objectos.jabuticava.Cep;
 import br.com.objectos.cnab.bradesco.TipoDeIncricaoDoSacado;
 import br.com.objectos.cnab.remessa.Comando;
 import br.com.objectos.cnab.remessa.EspecieDeTitulo;

@@ -15,7 +15,7 @@
  */
 package br.com.objectos.cnab.remessa;
 
-import br.com.objectos.br.CadastroRFB;
+import br.com.objectos.jabuticava.CadastroRFB;
 import br.com.objectos.pojo.Pojo;
 
 /**

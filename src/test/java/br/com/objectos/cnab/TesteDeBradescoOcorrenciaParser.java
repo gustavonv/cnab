@@ -21,7 +21,7 @@ import static org.hamcrest.Matchers.equalTo;
 import java.util.Arrays;
 import java.util.List;
 
-import br.com.objectos.collections.MoreCollectors;
+import br.com.objectos.core.util.MoreCollectors;
 import br.com.objectos.comuns.io.FixedLine;
 import br.com.objectos.comuns.io.ParsedFixedLines;
 import br.com.objectos.comuns.io.csv.FixedFile;

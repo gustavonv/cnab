@@ -15,7 +15,7 @@
  */
 package br.com.objectos.cnab;
 
-import static br.com.objectos.br.TipoDeCadastroRFB.CPF;
+import static br.com.objectos.jabuticava.TipoDeCadastroRFB.CPF;
 import static br.com.objectos.cnab.Itau.headerRemessa;
 import static br.com.objectos.cnab.Itau.loteRemessa;
 import static br.com.objectos.cnab.Itau.trailerRemessa;
@@ -25,9 +25,9 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Stream;
 
-import br.com.objectos.br.CadastroRFB;
-import br.com.objectos.br.Estado;
-import br.com.objectos.br.TipoDeCadastroRFB;
+import br.com.objectos.jabuticava.CadastroRFB;
+import br.com.objectos.jabuticava.Estado;
+import br.com.objectos.jabuticava.TipoDeCadastroRFB;
 import br.com.objectos.cnab.remessa.Agencia;
 import br.com.objectos.cnab.remessa.Cedente;
 import br.com.objectos.cnab.remessa.Cobranca;

@@ -5,3 +5,4 @@ test-output/
 .factorypath
 .project
 .settings/
+/.apt_generated/

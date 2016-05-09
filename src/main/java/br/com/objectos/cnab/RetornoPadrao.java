@@ -17,7 +17,7 @@ package br.com.objectos.cnab;
 
 import java.util.List;
 
-import br.com.objectos.collections.MoreCollectors;
+import br.com.objectos.core.util.MoreCollectors;
 import br.com.objectos.comuns.io.ParsedFixedLines;
 
 /**

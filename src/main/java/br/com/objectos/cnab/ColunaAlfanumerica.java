@@ -15,11 +15,11 @@
  */
 package br.com.objectos.cnab;
 
-import static br.com.objectos.core.Preconditions.checkArgument;
-import static br.com.objectos.core.Preconditions.checkNotNull;
+import static br.com.objectos.core.lang.Preconditions.checkArgument;
+import static br.com.objectos.core.lang.Preconditions.checkNotNull;
 
 import br.com.objectos.cnab.remessa.Caixa;
-import br.com.objectos.core.Strings;
+import br.com.objectos.core.lang.Strings;
 
 /**
  * @author marcos.piazzolla@objectos.com.br (Marcos Piazzolla)

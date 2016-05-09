@@ -15,9 +15,9 @@
  */
 package br.com.objectos.cnab;
 
-import static br.com.objectos.core.Preconditions.checkNotNull;
+import static br.com.objectos.core.lang.Preconditions.checkNotNull;
 
-import br.com.objectos.br.Cep;
+import br.com.objectos.jabuticava.Cep;
 
 /**
  * @author marcos.piazzolla@objectos.com.br (Marcos Piazzolla)

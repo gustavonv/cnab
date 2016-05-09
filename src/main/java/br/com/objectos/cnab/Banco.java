@@ -25,8 +25,8 @@ import java.util.Map;
 import br.com.objectos.cnab.remessa.InstrucaoSet;
 import br.com.objectos.cnab.remessa.InstrucaoTipo;
 import br.com.objectos.cnab.remessa.InstrucaoTipoVazio;
-import br.com.objectos.collections.ImmutableList;
-import br.com.objectos.collections.MoreCollectors;
+import br.com.objectos.core.util.ImmutableList;
+import br.com.objectos.core.util.MoreCollectors;
 import br.com.objectos.comuns.io.FixedLine;
 
 /**
