@@ -17,8 +17,8 @@ package br.com.objectos.cnab.remessa;
 
 import java.util.Optional;
 
-import br.com.objectos.br.Cep;
-import br.com.objectos.br.Estado;
+import br.com.objectos.jabuticava.Cep;
+import br.com.objectos.jabuticava.Estado;
 import br.com.objectos.pojo.Pojo;
 
 /**

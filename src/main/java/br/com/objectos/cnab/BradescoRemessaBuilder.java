@@ -24,8 +24,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import br.com.objectos.br.CadastroRFB;
-import br.com.objectos.br.Estado;
+import br.com.objectos.jabuticava.CadastroRFB;
+import br.com.objectos.jabuticava.Estado;
 import br.com.objectos.cnab.bradesco.TipoDeIncricaoDoSacado;
 import br.com.objectos.cnab.remessa.Cedente;
 import br.com.objectos.cnab.remessa.Cobranca;
@@ -34,7 +34,7 @@ import br.com.objectos.cnab.remessa.Endereco;
 import br.com.objectos.cnab.remessa.Instrucao;
 import br.com.objectos.cnab.remessa.Sacado;
 import br.com.objectos.cnab.remessa.Titulo;
-import br.com.objectos.core.Strings;
+import br.com.objectos.core.lang.Strings;
 
 /**
  * @author marcio.endo@objectos.com.br (Marcio Endo)

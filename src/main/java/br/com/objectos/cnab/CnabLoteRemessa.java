@@ -17,8 +17,8 @@ package br.com.objectos.cnab;
 
 import java.time.LocalDate;
 
-import br.com.objectos.br.CadastroRFB;
-import br.com.objectos.br.Cep;
+import br.com.objectos.jabuticava.CadastroRFB;
+import br.com.objectos.jabuticava.Cep;
 
 /**
  * @author marcos.piazzolla@objectos.com.br (Marcos Piazzolla)

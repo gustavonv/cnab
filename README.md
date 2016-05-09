@@ -1,4 +1,4 @@
-# objectos :: cnab
+# objectos::cnab [![Build Status](https://travis-ci.org/objectos/cnab.svg?branch=master)](https://travis-ci.org/objectos/cnab) 
 
 Arquivos de retorno e remessa (CNAB / Febraban) para Java (&trade;). Simples.
 
@@ -32,15 +32,15 @@ for (Lote lote : lotes) {
 
 ```xml
 <dependency>
-    <groupId>br.com.objectos</groupId>
+    <groupId>br.com.objectos.cnab</groupId>
     <artifactId>cnab</artifactId>
-    <version>0.1.0</version>
+    <version>0.2.0</version>
 </dependency>
 ```
 
 # Licença de uso
 
-Copyright 2012-2015 [objectos, fábrica de software LTDA](http://www.objectos.com.br)
+Copyright 2012-2016 [objectos, fábrica de software LTDA](http://www.objectos.com.br)
 
 Licensed under the Apache License, Version 2.0 (the "License"); 
 you may not use this file except in compliance with the License. 

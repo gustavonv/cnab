@@ -23,7 +23,7 @@ import java.util.Map;
 import br.com.objectos.cnab.remessa.Instrucao;
 import br.com.objectos.cnab.remessa.InstrucaoTipo;
 import br.com.objectos.cnab.remessa.InstrucaoTipoVazio;
-import br.com.objectos.collections.ImmutableList;
+import br.com.objectos.core.util.ImmutableList;
 
 /**
  * @author marcio.endo@objectos.com.br (Marcio Endo)

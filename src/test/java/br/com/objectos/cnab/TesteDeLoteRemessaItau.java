@@ -23,10 +23,10 @@ import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
 
-import br.com.objectos.br.CadastroRFB;
-import br.com.objectos.br.Cep;
-import br.com.objectos.br.Estado;
-import br.com.objectos.br.TipoDeCadastroRFB;
+import br.com.objectos.jabuticava.CadastroRFB;
+import br.com.objectos.jabuticava.Cep;
+import br.com.objectos.jabuticava.Estado;
+import br.com.objectos.jabuticava.TipoDeCadastroRFB;
 import br.com.objectos.cnab.remessa.Comando;
 import br.com.objectos.cnab.remessa.EspecieDeTitulo;
 

@@ -19,7 +19,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
-import br.com.objectos.collections.ImmutableList;
+import br.com.objectos.core.util.ImmutableList;
 import br.com.objectos.comuns.io.FixedLine;
 
 /**

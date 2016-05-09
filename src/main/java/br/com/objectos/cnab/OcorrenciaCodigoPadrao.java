@@ -18,9 +18,9 @@ package br.com.objectos.cnab;
 import java.util.List;
 import java.util.Set;
 
-import br.com.objectos.collections.ImmutableList;
+import br.com.objectos.core.util.ImmutableList;
 import br.com.objectos.comuns.io.FixedLine;
-import br.com.objectos.core.Preconditions;
+import br.com.objectos.core.lang.Preconditions;
 
 /**
  * @author marcio.endo@objectos.com.br (Marcio Endo)

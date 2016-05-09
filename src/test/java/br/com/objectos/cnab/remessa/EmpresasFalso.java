@@ -15,7 +15,7 @@
  */
 package br.com.objectos.cnab.remessa;
 
-import br.com.objectos.br.Cnpj;
+import br.com.objectos.jabuticava.Cnpj;
 
 /**
  * @author marcio.endo@objectos.com.br (Marcio Endo)

@@ -19,7 +19,7 @@ import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
 import java.util.Arrays;
 
-import br.com.objectos.core.Preconditions;
+import br.com.objectos.core.lang.Preconditions;
 
 /**
  * @author marcos.piazzolla@objectos.com.br (Marcos Piazzolla)

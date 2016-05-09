@@ -15,8 +15,8 @@
  */
 package br.com.objectos.cnab;
 
-import br.com.objectos.br.CadastroRFB;
-import br.com.objectos.br.TipoDeCadastroRFB;
+import br.com.objectos.jabuticava.CadastroRFB;
+import br.com.objectos.jabuticava.TipoDeCadastroRFB;
 import br.com.objectos.cnab.remessa.Cedente;
 import br.com.objectos.cnab.remessa.Empresa;
 import br.com.objectos.cnab.remessa.Titulo;

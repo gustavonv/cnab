@@ -15,7 +15,7 @@
  */
 package br.com.objectos.cnab;
 
-import br.com.objectos.core.Preconditions;
+import br.com.objectos.core.lang.Preconditions;
 
 /**
  * @author marcio.endo@objectos.com.br (Marcio Endo)

@@ -22,7 +22,7 @@ import java.util.List;
 import java.util.function.Function;
 import java.util.stream.Stream;
 
-import br.com.objectos.collections.MoreCollectors;
+import br.com.objectos.core.util.MoreCollectors;
 
 /**
  * @author marcio.endo@objectos.com.br (Marcio Endo)

@@ -1,0 +1,21 @@
+#!/bin/bash
+if [ -z "$bamboo_planRepository_1_branch" -o ! "$bamboo_planRepository_1_branch" = "master" ]; then
+  echo "Not in master branch. Exiting."
+  exit 0
+fi
+
+wasMerge=`git log -1 --pretty=%B | cat | grep 'Merge pull request'`
+
+if [ -z "$wasMerge" ]; then
+  echo "Not a pull request. Exiting."
+  exit 0
+fi
+
+echo "Releasing..."
+mvn -Prelease -N verify
+  
+echo "Rio Deploy"
+mvn -Prio deploy -DskipTests=true
+  
+echo "OSS Sonatype Deploy"
+mvn -Poss deploy -DskipTests=true

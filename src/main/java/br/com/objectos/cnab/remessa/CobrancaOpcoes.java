@@ -15,7 +15,7 @@
  */
 package br.com.objectos.cnab.remessa;
 
-import br.com.objectos.br.Percentual;
+import br.com.objectos.jabuticava.Percentual;
 
 /**
  * @author marcio.endo@objectos.com.br (Marcio Endo)

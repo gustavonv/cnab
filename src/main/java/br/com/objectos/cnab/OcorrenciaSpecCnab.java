@@ -21,8 +21,8 @@ import java.util.Map;
 import java.util.TreeMap;
 import java.util.stream.Collectors;
 
-import br.com.objectos.collections.ImmutableList;
-import br.com.objectos.collections.MoreCollectors;
+import br.com.objectos.core.util.ImmutableList;
+import br.com.objectos.core.util.MoreCollectors;
 
 /**
  * @author marcio.endo@objectos.com.br (Marcio Endo)

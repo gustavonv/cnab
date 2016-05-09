@@ -22,7 +22,7 @@ import java.util.function.Supplier;
 
 import br.com.objectos.comuns.io.ColumnConversionException;
 import br.com.objectos.comuns.io.FixedLine;
-import br.com.objectos.core.Preconditions;
+import br.com.objectos.core.lang.Preconditions;
 
 /**
  * @author marcio.endo@objectos.com.br (Marcio Endo)

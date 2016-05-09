@@ -15,12 +15,12 @@
  */
 package br.com.objectos.cnab;
 
-import static br.com.objectos.br.TipoDeCadastroRFB.CPF;
+import static br.com.objectos.jabuticava.TipoDeCadastroRFB.CPF;
 
-import br.com.objectos.br.CadastroRFB;
-import br.com.objectos.br.Cnpj;
-import br.com.objectos.br.Cpf;
-import br.com.objectos.br.TipoDeCadastroRFB;
+import br.com.objectos.jabuticava.CadastroRFB;
+import br.com.objectos.jabuticava.Cnpj;
+import br.com.objectos.jabuticava.Cpf;
+import br.com.objectos.jabuticava.TipoDeCadastroRFB;
 
 /**
  * @author marcio.endo@objectos.com.br (Marcio Endo)
