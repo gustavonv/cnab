@@ -27,12 +27,12 @@
 	</licenses>
 
 	<scm>
-		<connection>scm:git:file:///srv/bitbucket/shared/data/repositories/273</connection>
-		<developerConnection>scm:git:file:///srv/bitbucket/shared/data/repositories/273</developerConnection>
+		<connection>scm:git:ssh://git@rio.objectos.com.br:7999/objectos/cnab.git</connection>
+		<developerConnection>scm:git:ssh://git@rio.objectos.com.br:7999/objectos/cnab.git</developerConnection>
 		<url>https://github.com/objectos/cnab</url>
 		<tag>HEAD</tag>
 	</scm>
-
+	
 	<issueManagement>
 		<system>GitHub Issues</system>
 		<url>http://github.com/objectos/cnab/issues</url>
