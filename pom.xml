@@ -12,7 +12,7 @@
 	<groupId>br.com.objectos.cnab</groupId>
 	<artifactId>cnab</artifactId>
 	<packaging>jar</packaging>
-	<version>0.2.-1</version>
+	<version>0.2.0</version>
 
 	<name>objectos :: cnab</name>
 	<description>CNAB400: Arquivos retorno e remessa</description>
