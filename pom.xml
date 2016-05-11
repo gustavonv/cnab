@@ -10,11 +10,11 @@
 	</parent>
 
 	<groupId>br.com.objectos.cnab</groupId>
-	<artifactId>cnab</artifactId>
-	<packaging>jar</packaging>
-	<version>0.2.0</version>
+	<artifactId>parent</artifactId>
+	<packaging>pom</packaging>
+	<version>0.3.-1</version>
 
-	<name>objectos :: cnab</name>
+	<name>objectos :: cnab :: parent</name>
 	<description>CNAB400: Arquivos retorno e remessa</description>
 	<url>https://github.com/objectos/cnab</url>
 
@@ -58,70 +58,8 @@
 		<url>http://www.objectos.com.br</url>
 	</organization>
 
-	<dependencies>
-		<dependency>
-			<groupId>br.com.objectos</groupId>
-			<artifactId>assertion</artifactId>
-			<version>0.3.0</version>
-			<scope>test</scope>
-		</dependency>
-
-		<dependency>
-			<groupId>br.com.objectos.jabuticava</groupId>
-			<artifactId>br</artifactId>
-			<version>0.4.0</version>
-		</dependency>
-		<dependency>
-			<groupId>br.com.objectos.jabuticava</groupId>
-			<artifactId>docs</artifactId>
-			<version>0.4.0</version>
-		</dependency>
-		<dependency>
-			<groupId>br.com.objectos.jabuticava</groupId>
-			<artifactId>financeiro</artifactId>
-			<version>0.4.0</version>
-		</dependency>
-		<dependency>
-			<groupId>br.com.objectos.jabuticava</groupId>
-			<artifactId>postal</artifactId>
-			<version>0.4.0</version>
-		</dependency>
-
-		<dependency>
-			<groupId>br.com.objectos.pojo</groupId>
-			<artifactId>annotations</artifactId>
-			<version>0.8.0</version>
-		</dependency>
-		<dependency>
-			<groupId>br.com.objectos.pojo</groupId>
-			<artifactId>compiler</artifactId>
-			<version>0.8.0</version>
-			<optional>true</optional>
-		</dependency>
-
-		<dependency>
-			<groupId>br.com.objectos</groupId>
-			<artifactId>collections</artifactId>
-			<version>0.2.1</version>
-		</dependency>
-
-		<dependency>
-			<groupId>br.com.objectos</groupId>
-			<artifactId>preconditions</artifactId>
-			<version>0.2.0</version>
-		</dependency>
-
-		<dependency>
-			<groupId>br.com.objectos</groupId>
-			<artifactId>strings</artifactId>
-			<version>0.3.0</version>
-		</dependency>
-
-		<dependency>
-			<groupId>br.com.objectos.core</groupId>
-			<artifactId>io-legacy</artifactId>
-			<version>0.3.2</version>
-		</dependency>
-	</dependencies>
-
+	<modules>
+		<module>cnab</module>
+		<module>core</module>
+	</modules>
 </project>
