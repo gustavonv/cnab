@@ -1,0 +1,81 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	
+	<modelVersion>4.0.0</modelVersion>
+	
+	<parent>
+		<groupId>br.com.objectos.cnab</groupId>
+		<artifactId>parent</artifactId>
+		<version>0.3.-1</version>
+	</parent>
+	
+	<artifactId>cnab</artifactId>
+	<name>objectos :: cnab :: cnab</name>
+
+	<dependencies>
+		<dependency>
+			<groupId>br.com.objectos</groupId>
+			<artifactId>assertion</artifactId>
+			<version>0.3.0</version>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>br.com.objectos.jabuticava</groupId>
+			<artifactId>br</artifactId>
+			<version>0.4.0</version>
+		</dependency>
+		<dependency>
+			<groupId>br.com.objectos.jabuticava</groupId>
+			<artifactId>docs</artifactId>
+			<version>0.4.0</version>
+		</dependency>
+		<dependency>
+			<groupId>br.com.objectos.jabuticava</groupId>
+			<artifactId>financeiro</artifactId>
+			<version>0.4.0</version>
+		</dependency>
+		<dependency>
+			<groupId>br.com.objectos.jabuticava</groupId>
+			<artifactId>postal</artifactId>
+			<version>0.4.0</version>
+		</dependency>
+
+		<dependency>
+			<groupId>br.com.objectos.pojo</groupId>
+			<artifactId>annotations</artifactId>
+			<version>0.8.0</version>
+		</dependency>
+		<dependency>
+			<groupId>br.com.objectos.pojo</groupId>
+			<artifactId>compiler</artifactId>
+			<version>0.8.0</version>
+			<optional>true</optional>
+		</dependency>
+
+		<dependency>
+			<groupId>br.com.objectos</groupId>
+			<artifactId>collections</artifactId>
+			<version>0.2.1</version>
+		</dependency>
+
+		<dependency>
+			<groupId>br.com.objectos</groupId>
+			<artifactId>preconditions</artifactId>
+			<version>0.2.0</version>
+		</dependency>
+
+		<dependency>
+			<groupId>br.com.objectos</groupId>
+			<artifactId>strings</artifactId>
+			<version>0.3.0</version>
+		</dependency>
+
+		<dependency>
+			<groupId>br.com.objectos.core</groupId>
+			<artifactId>io-legacy</artifactId>
+			<version>0.3.2</version>
+		</dependency>
+	</dependencies>
+
+</project>
