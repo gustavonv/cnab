@@ -60,5 +60,6 @@
 
 	<modules>
 		<module>cnab</module>
+		<module>core</module>
 	</modules>
 </project>
