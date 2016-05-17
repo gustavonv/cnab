@@ -1,0 +1,42 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>br.com.objectos.cnab</groupId>
+		<artifactId>parent</artifactId>
+		<version>0.3.-1</version>
+	</parent>
+
+	<artifactId>testing</artifactId>
+	<name>objectos :: cnab :: testing</name>
+
+	<dependencies>
+		<dependency>
+			<groupId>br.com.objectos.cnab</groupId>
+			<artifactId>core</artifactId>
+			<version>0.3.-1</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>br.com.objectos.flat</groupId>
+			<artifactId>pojo-plugin</artifactId>
+			<version>0.4.-1</version>
+			<optional>true</optional>
+		</dependency>
+		
+		<dependency>
+			<groupId>br.com.objectos.pojo</groupId>
+			<artifactId>annotations</artifactId>
+			<version>0.10.1</version>
+		</dependency>
+		<dependency>
+			<groupId>br.com.objectos.pojo</groupId>
+			<artifactId>compiler</artifactId>
+			<version>0.10.1</version>
+			<optional>true</optional>
+		</dependency>		
+	</dependencies>
+
+</project>
