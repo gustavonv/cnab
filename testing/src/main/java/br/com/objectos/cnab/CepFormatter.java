@@ -15,24 +15,25 @@
  */
 package br.com.objectos.cnab;
 
-import br.com.objectos.flat.FlatEnum;
+import br.com.objectos.flat.CustomFormatter;
+import br.com.objectos.jabuticava.Cep;
 
 /**
  * @author marcio.endo@objectos.com.br (Marcio Endo)
  */
-public enum Carteira implements FlatEnum {
+public class CepFormatter implements CustomFormatter<Cep> {
 
-  COBRANCA_SIMPLES_COM_REGISTRO("CSR", "Cobrança simples (com registro)");
-
-  private final String codigo;
-
-  private Carteira(String codigo, String descricao) {
-    this.codigo = codigo;
+  @Override
+  public Cep parse(String text) {
+    return Cep.valueOf(text);
   }
 
   @Override
-  public String flatValue() {
-    return codigo;
+  public String write(Cep cep) {
+    return new StringBuilder()
+        .append(cep.getPrefixo())
+        .append(cep.getSufixo())
+        .toString();
   }
 
 }

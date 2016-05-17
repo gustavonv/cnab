@@ -15,43 +15,40 @@
  */
 package br.com.objectos.cnab;
 
+import br.com.objectos.flat.FlatEnum;
+
 /**
  * @author marcio.endo@objectos.com.br (Marcio Endo)
  */
-public enum Especie {
+public enum Especie implements FlatEnum {
 
-  DUPLICATA(1, "Duplicata"),
+  DUPLICATA("01", "Duplicata"),
 
-  NOTA_PROMISSORIA(2, "Nota promissória"),
+  NOTA_PROMISSORIA("02", "Nota promissória"),
 
-  NOTA_SEGURO(3, "Nota seguro"),
+  NOTA_SEGURO("03", "Nota seguro"),
 
-  COBRANCA_SERIADA(4, "Cobrança seriada"),
+  COBRANCA_SERIADA("04", "Cobrança seriada"),
 
-  RECIBO(5, "Recibo"),
+  RECIBO("05", "Recibo"),
 
-  LETRA_DE_CAMBIO(10, "Letra de câmbio"),
+  LETRA_DE_CAMBIO("10", "Letra de câmbio"),
 
-  NOTA_DE_DEBITO(11, "Nota de débito"),
+  NOTA_DE_DEBITO("11", "Nota de débito"),
 
-  DUPLICATA_DE_SERV(12, "Duplicata de serviço"),
+  DUPLICATA_DE_SERV("12", "Duplicata de serviço"),
 
-  OUTROS(99, "Outros");
+  OUTROS("99", "Outros");
 
-  private final int codigo;
-  private final String descricao;
+  private final String codigo;
 
-  private Especie(int codigo, String descricao) {
+  private Especie(String codigo, String descricao) {
     this.codigo = codigo;
-    this.descricao = descricao;
   }
 
-  public int codigo() {
+  @Override
+  public String flatValue() {
     return codigo;
-  }
-
-  public String descricao() {
-    return descricao;
   }
 
 }

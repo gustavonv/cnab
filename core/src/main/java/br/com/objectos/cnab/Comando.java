@@ -15,10 +15,12 @@
  */
 package br.com.objectos.cnab;
 
+import br.com.objectos.flat.FlatEnum;
+
 /**
  * @author marcio.endo@objectos.com.br (Marcio Endo)
  */
-public enum Comando {
+public enum Comando implements FlatEnum {
 
   // 01..Remessa
   // 02..Pedido de baixa
@@ -65,11 +67,15 @@ public enum Comando {
 
   CANCELAMENTO("69");
 
-  @SuppressWarnings("unused")
   private final String valor;
 
   private Comando(String valor) {
     this.valor = valor;
+  }
+
+  @Override
+  public String flatValue() {
+    return valor;
   }
 
 }

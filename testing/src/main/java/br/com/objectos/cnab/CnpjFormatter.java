@@ -15,24 +15,29 @@
  */
 package br.com.objectos.cnab;
 
-import br.com.objectos.flat.FlatEnum;
+import br.com.objectos.flat.CustomFormatter;
+import br.com.objectos.jabuticava.Cnpj;
 
 /**
  * @author marcio.endo@objectos.com.br (Marcio Endo)
  */
-public enum Carteira implements FlatEnum {
+class CnpjFormatter implements CustomFormatter<Cnpj> {
 
-  COBRANCA_SIMPLES_COM_REGISTRO("CSR", "Cobrança simples (com registro)");
+  private static final CnpjFormatter INSTANCE = new CnpjFormatter();
 
-  private final String codigo;
-
-  private Carteira(String codigo, String descricao) {
-    this.codigo = codigo;
+  public static CnpjFormatter get() {
+    return INSTANCE;
   }
 
   @Override
-  public String flatValue() {
-    return codigo;
+  public Cnpj parse(String text) {
+    long value = Long.parseLong(text, 10);
+    return Cnpj.valueOf(value);
+  }
+
+  @Override
+  public String write(Cnpj value) {
+    return String.format("%014d", value.longValue());
   }
 
 }

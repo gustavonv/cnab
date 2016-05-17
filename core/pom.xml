@@ -37,12 +37,6 @@
 			<artifactId>api</artifactId>
 			<version>0.4.-1</version>
 		</dependency>
-		<dependency>
-			<groupId>br.com.objectos.flat</groupId>
-			<artifactId>pojo-plugin</artifactId>
-			<version>0.4.-1</version>
-			<optional>true</optional>
-		</dependency>
 
 		<dependency>
 			<groupId>br.com.objectos.jabuticava</groupId>

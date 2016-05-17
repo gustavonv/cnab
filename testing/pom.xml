@@ -18,6 +18,25 @@
 			<artifactId>core</artifactId>
 			<version>0.3.-1</version>
 		</dependency>
+		
+		<dependency>
+			<groupId>br.com.objectos.flat</groupId>
+			<artifactId>pojo-plugin</artifactId>
+			<version>0.4.-1</version>
+			<optional>true</optional>
+		</dependency>
+		
+		<dependency>
+			<groupId>br.com.objectos.pojo</groupId>
+			<artifactId>annotations</artifactId>
+			<version>0.10.1</version>
+		</dependency>
+		<dependency>
+			<groupId>br.com.objectos.pojo</groupId>
+			<artifactId>compiler</artifactId>
+			<version>0.10.1</version>
+			<optional>true</optional>
+		</dependency>		
 	</dependencies>
 
 </project>

@@ -15,24 +15,30 @@
  */
 package br.com.objectos.cnab;
 
-import br.com.objectos.flat.FlatEnum;
+import br.com.objectos.flat.CustomFormatter;
+import br.com.objectos.jabuticava.Cpf;
 
 /**
  * @author marcio.endo@objectos.com.br (Marcio Endo)
  */
-public enum Carteira implements FlatEnum {
+class CpfFormatter implements CustomFormatter<Cpf> {
 
-  COBRANCA_SIMPLES_COM_REGISTRO("CSR", "Cobrança simples (com registro)");
+  private static final CpfFormatter INSTANCE = new CpfFormatter();
 
-  private final String codigo;
-
-  private Carteira(String codigo, String descricao) {
-    this.codigo = codigo;
+  public static CpfFormatter get() {
+    return INSTANCE;
   }
 
   @Override
-  public String flatValue() {
-    return codigo;
+  public Cpf parse(String text) {
+    String core = text.substring(0, 11);
+    long value = Long.parseLong(core, 10);
+    return Cpf.valueOf(value);
+  }
+
+  @Override
+  public String write(Cpf value) {
+    return String.format("%011d", value.longValue()) + "000";
   }
 
 }

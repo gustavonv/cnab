@@ -15,24 +15,22 @@
  */
 package br.com.objectos.cnab;
 
-import br.com.objectos.flat.FlatEnum;
+import java.util.List;
+
+import br.com.objectos.flat.FlatContainer;
+import br.com.objectos.pojo.Pojo;
 
 /**
  * @author marcio.endo@objectos.com.br (Marcio Endo)
  */
-public enum Carteira implements FlatEnum {
+@Pojo
+public abstract class TestingRemessa implements FlatContainer {
 
-  COBRANCA_SIMPLES_COM_REGISTRO("CSR", "Cobrança simples (com registro)");
+  abstract TestingRemessaHeader header();
 
-  private final String codigo;
+  abstract List<TestingCobranca> cobrancaList();
 
-  private Carteira(String codigo, String descricao) {
-    this.codigo = codigo;
-  }
-
-  @Override
-  public String flatValue() {
-    return codigo;
+  TestingRemessa() {
   }
 
 }

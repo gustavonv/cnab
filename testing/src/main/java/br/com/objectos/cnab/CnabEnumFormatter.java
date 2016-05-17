@@ -15,24 +15,9 @@
  */
 package br.com.objectos.cnab;
 
-import br.com.objectos.flat.FlatEnum;
-
 /**
  * @author marcio.endo@objectos.com.br (Marcio Endo)
  */
-public enum Carteira implements FlatEnum {
-
-  COBRANCA_SIMPLES_COM_REGISTRO("CSR", "Cobrança simples (com registro)");
-
-  private final String codigo;
-
-  private Carteira(String codigo, String descricao) {
-    this.codigo = codigo;
-  }
-
-  @Override
-  public String flatValue() {
-    return codigo;
-  }
+public class CnabEnumFormatter {
 
 }
