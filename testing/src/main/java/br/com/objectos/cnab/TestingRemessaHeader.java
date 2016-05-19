@@ -23,8 +23,12 @@ import br.com.objectos.flat.pojo.CustomFormat;
 import br.com.objectos.flat.pojo.Fixed;
 import br.com.objectos.flat.pojo.IntegerFormat;
 import br.com.objectos.flat.pojo.LocalDateFormat;
+import br.com.objectos.flat.pojo.LongFormat;
 import br.com.objectos.flat.pojo.Text;
 import br.com.objectos.jabuticava.CadastroRFB;
+import br.com.objectos.jabuticava.cnab.remessa.Agencia;
+import br.com.objectos.jabuticava.cnab.remessa.Conta;
+import br.com.objectos.jabuticava.cnab.remessa.Empresa;
 import br.com.objectos.pojo.Pojo;
 
 /**
@@ -41,6 +45,9 @@ public abstract class TestingRemessaHeader implements FlatRecord {
 
   @LocalDateFormat(LocalDatePattern.YYYYMMDD)
   abstract LocalDate data();
+
+  @LongFormat(length = 20)
+  abstract long codigo();
 
   @CustomFormat(formatter = CadastroRfbFormatter.class, length = 14)
   abstract CadastroRFB cadastroRfb();
@@ -59,5 +66,30 @@ public abstract class TestingRemessaHeader implements FlatRecord {
 
   @IntegerFormat(length = 1)
   abstract int contaDigito();
+
+  TestingRemessaHeader() {
+  }
+
+  Agencia toAgencia() {
+    return Agencia.builder()
+        .codigo(agenciaNumero())
+        .digito(agenciaDigito())
+        .build();
+  }
+
+  Conta toConta() {
+    return Conta.builder()
+        .numero(contaNumero())
+        .digito(contaDigito())
+        .build();
+  }
+
+  Empresa toEmpresa() {
+    return Empresa.builder()
+        .codigo(codigo())
+        .cadastroRFB(cadastroRfb())
+        .razaoSocial(razaoSocial())
+        .build();
+  }
 
 }

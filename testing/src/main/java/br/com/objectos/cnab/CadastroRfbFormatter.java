@@ -19,7 +19,6 @@ import br.com.objectos.flat.CustomFormatter;
 import br.com.objectos.jabuticava.CadastroRFB;
 import br.com.objectos.jabuticava.Cnpj;
 import br.com.objectos.jabuticava.Cpf;
-import br.com.objectos.jabuticava.ExcecaoDeCnpjInvalido;
 
 /**
  * @author marcio.endo@objectos.com.br (Marcio Endo)
@@ -37,11 +36,9 @@ public class CadastroRfbFormatter implements CustomFormatter<CadastroRFB> {
 
   @Override
   public CadastroRFB parse(String text) {
-    try {
-      return CNPJ.parse(text);
-    } catch (ExcecaoDeCnpjInvalido e) {
-      return CPF.parse(text);
-    }
+    return text.endsWith("000")
+        ? CPF.parse(text)
+        : CNPJ.parse(text);
   }
 
   @Override

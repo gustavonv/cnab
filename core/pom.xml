@@ -16,7 +16,7 @@
 		<dependency>
 			<groupId>br.com.objectos</groupId>
 			<artifactId>assertion</artifactId>
-			<version>0.3.0</version>
+			<version>0.4.-1</version>
 			<scope>test</scope>
 		</dependency>
 

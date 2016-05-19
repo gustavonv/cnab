@@ -62,5 +62,6 @@
 		<module>cnab</module>
 		<module>core</module>
 		<module>testing</module>
+		<module>bradesco</module>
 	</modules>
 </project>

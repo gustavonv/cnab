@@ -16,8 +16,13 @@
 package br.com.objectos.cnab;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
+import br.com.objectos.core.util.zip.UnzipEntry;
 import br.com.objectos.flat.FlatContainer;
+import br.com.objectos.flat.FlatReader;
+import br.com.objectos.jabuticava.cnab.Banco;
+import br.com.objectos.jabuticava.cnab.WayCnab;
 import br.com.objectos.pojo.Pojo;
 
 /**
@@ -27,10 +32,28 @@ import br.com.objectos.pojo.Pojo;
 public abstract class TestingRemessa implements FlatContainer {
 
   abstract TestingRemessaHeader header();
-
   abstract List<TestingCobranca> cobrancaList();
 
   TestingRemessa() {
+  }
+
+  static TestingRemessa readFrom(UnzipEntry entry) {
+    try (FlatReader reader = FlatReader.open(entry.open())) {
+      return TestingRemessaPojo.readFrom(reader);
+    }
+  }
+
+  public String toTxt(Banco banco) {
+    return WayCnab.remessaPara(banco)
+        .sequenciaArquivo(header().sequencia())
+        .empresa(header().toEmpresa())
+        .agencia(header().toAgencia())
+        .conta(header().toConta())
+        .dataArquivo(header().data())
+        .cobrancas(cobrancaList().stream()
+            .map(cob -> cob.toCobranca(banco))
+            .collect(Collectors.toList()))
+        .toString();
   }
 
 }

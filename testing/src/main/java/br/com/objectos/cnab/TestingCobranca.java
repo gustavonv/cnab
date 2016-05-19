@@ -33,6 +33,16 @@ import br.com.objectos.flat.pojo.WhenAbsent;
 import br.com.objectos.jabuticava.CadastroRFB;
 import br.com.objectos.jabuticava.Cep;
 import br.com.objectos.jabuticava.Estado;
+import br.com.objectos.jabuticava.cnab.Banco;
+import br.com.objectos.jabuticava.cnab.remessa.Agencia;
+import br.com.objectos.jabuticava.cnab.remessa.Cedente;
+import br.com.objectos.jabuticava.cnab.remessa.Cobranca;
+import br.com.objectos.jabuticava.cnab.remessa.CobrancaOpcoes;
+import br.com.objectos.jabuticava.cnab.remessa.Conta;
+import br.com.objectos.jabuticava.cnab.remessa.Endereco;
+import br.com.objectos.jabuticava.cnab.remessa.EspecieDeTitulo;
+import br.com.objectos.jabuticava.cnab.remessa.Sacado;
+import br.com.objectos.jabuticava.cnab.remessa.Titulo;
 import br.com.objectos.pojo.Pojo;
 
 /**
@@ -77,7 +87,7 @@ public abstract class TestingCobranca implements FlatRecord {
   @CustomFormat(length = 14, formatter = CadastroRfbFormatter.class)
   abstract CadastroRFB cedenteCadastroRfb();
 
-  @Text(length = 40)
+  @Text(length = 60)
   abstract String cedenteNome();
 
   @CustomFormat(length = 14, formatter = CadastroRfbFormatter.class)
@@ -86,16 +96,16 @@ public abstract class TestingCobranca implements FlatRecord {
   @Text(length = 40)
   abstract String sacadoNome();
 
-  @Text(length = 40)
+  @Text(length = 60)
   abstract String logradouro();
 
-  @Text(length = 40)
+  @Text(length = 30)
   abstract String cidade();
 
-  @Text(length = 40)
+  @Text(length = 30)
   abstract String bairro();
 
-  @CustomFormat(length = 2, formatter = EstadorFormatter.class)
+  @CustomFormat(length = 2, formatter = EstadoFormatter.class)
   abstract Estado estado();
 
   @CustomFormat(length = 8, formatter = CepFormatter.class)
@@ -141,7 +151,59 @@ public abstract class TestingCobranca implements FlatRecord {
   @IntegerFormat(length = 2)
   abstract int instrucao2Valor();
 
-  @DecimalFormat(precision = 4, scale = 2)
+  @DecimalFormat(precision = 13, scale = 2)
   abstract double moraDia();
+
+  TestingCobranca() {
+  }
+
+  Cobranca toCobranca(Banco banco) {
+    return Cobranca.builder()
+        .carteira(br.com.objectos.jabuticava.cnab.remessa.Carteira.load(carteira().flatValue()))
+        .agencia(Agencia.builder()
+            .codigo(agenciaNumero())
+            .digito(agenciaDigito())
+            .build())
+        .conta(Conta.builder()
+            .numero(contaNumero())
+            .digito(contaDigito())
+            .build())
+        .comando(br.com.objectos.jabuticava.cnab.remessa.Comando.of(comando().flatValue()))
+        .titulo(Titulo.builder()
+            .usoDaEmpresa(usoDaEmpresa())
+            .especie(EspecieDeTitulo.valueOf(Integer.parseInt(especie().flatValue())))
+            .nossoNumero(nossoNumero())
+            .numero(numero())
+            .cedente(Cedente.builder()
+                .cadastroRFB(cedenteCadastroRfb())
+                .nome(cedenteNome())
+                .build())
+            .sacado(Sacado.builder()
+                .cadastroRFB(sacadoCadastroRfb())
+                .nome(sacadoNome())
+                .endereco(Endereco.builder()
+                    .logradouro(logradouro())
+                    .cidade(cidade())
+                    .bairro(bairro())
+                    .estadoOf(estado())
+                    .cep(cep())
+                    .build())
+                .build())
+            .emissao(emissao())
+            .vencimento(vencimento())
+            .prazo(prazo())
+            .valor(valor())
+            .valorDesconto(valorDesconto())
+            .valorIof(valorIof())
+            .valorAbatimento(valorAbatimento())
+            .negociado(negociado())
+            .build())
+        .opcoes(CobrancaOpcoes.padrao()
+            .aceite(aceite())
+            .moraDia(moraDia())
+            .instrucao1(banco.getInstrucao(instrucao1()).with(instrucao1Valor()))
+            .instrucao2(banco.getInstrucao(instrucao2()).with(instrucao2Valor())))
+        .build();
+  }
 
 }
