@@ -15,33 +15,23 @@
  */
 package br.com.objectos.cnab;
 
-import java.time.LocalDate;
-import java.util.List;
-
-import br.com.objectos.pojo.Pojo;
-
 /**
  * @author marcio.endo@objectos.com.br (Marcio Endo)
  */
-@Pojo
-public abstract class Remessa {
+public class Bradesco implements Banco {
 
-  abstract int sequencia();
-  abstract LocalDate data();
-  abstract Empresa empresa();
-  abstract Agencia agencia();
-  abstract Conta conta();
-  abstract List<Cobranca> cobrancaList();
+  private static final Bradesco INSTANCE = new Bradesco();
 
-  Remessa() {
+  private Bradesco() {
   }
 
-  public static RemessaBuilder builder() {
-    return new RemessaBuilderPojo();
+  public static Bradesco instance() {
+    return INSTANCE;
   }
 
-  public String toString(Banco banco) {
-    return banco.toString(this);
+  @Override
+  public String toString(Remessa remessa) {
+    return null;
   }
 
 }

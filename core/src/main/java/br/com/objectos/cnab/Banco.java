@@ -15,33 +15,11 @@
  */
 package br.com.objectos.cnab;
 
-import java.time.LocalDate;
-import java.util.List;
-
-import br.com.objectos.pojo.Pojo;
-
 /**
  * @author marcio.endo@objectos.com.br (Marcio Endo)
  */
-@Pojo
-public abstract class Remessa {
+public interface Banco {
 
-  abstract int sequencia();
-  abstract LocalDate data();
-  abstract Empresa empresa();
-  abstract Agencia agencia();
-  abstract Conta conta();
-  abstract List<Cobranca> cobrancaList();
-
-  Remessa() {
-  }
-
-  public static RemessaBuilder builder() {
-    return new RemessaBuilderPojo();
-  }
-
-  public String toString(Banco banco) {
-    return banco.toString(this);
-  }
+  String toString(Remessa remessa);
 
 }
