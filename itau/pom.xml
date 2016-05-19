@@ -9,9 +9,9 @@
 		<version>0.3.-1</version>
 	</parent>
 	
-	<artifactId>bradesco</artifactId>
-	<name>objectos :: cnab :: bradesco</name>
-	
+	<artifactId>itau</artifactId>
+	<name>objectos :: cnab :: itau</name>
+
 	<dependencies>
 		<dependency>
 			<groupId>br.com.objectos.cnab</groupId>
@@ -25,5 +25,5 @@
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
-	
+
 </project>

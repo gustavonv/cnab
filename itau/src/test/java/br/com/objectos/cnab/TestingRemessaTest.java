@@ -28,7 +28,7 @@ public class TestingRemessaTest {
 
   @Test(groups = "rio")
   public void cnabLegacy() {
-    List<CnabAssert> list = CnabWget.of(Banco.BRADESCO);
+    List<CnabAssert> list = CnabWget.of(Banco.ITAU);
     for (CnabAssert cnab : list) {
       cnab.verifyTestingRemessa();
     }
