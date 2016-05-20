@@ -15,24 +15,28 @@
  */
 package br.com.objectos.cnab;
 
-import java.util.List;
-
-import br.com.objectos.flat.FlatContainer;
+import br.com.objectos.flat.FlatRecord;
+import br.com.objectos.flat.pojo.Fill;
+import br.com.objectos.flat.pojo.Fixed;
+import br.com.objectos.flat.pojo.IntegerFormat;
 import br.com.objectos.pojo.Pojo;
 
 /**
  * @author marcio.endo@objectos.com.br (Marcio Endo)
  */
 @Pojo
-abstract class RemessaContainer implements FlatContainer {
+abstract class RemessaTrailer implements FlatRecord {
 
-  abstract RemessaHeader header();
+  @Fixed("9")
+  abstract String id();
 
-  abstract List<RemessaTransacao> transacaoList();
+  @Fill(character = ' ', length = 393)
+  abstract String branco();
 
-  abstract RemessaTrailer trailer();
+  @IntegerFormat(length = 6)
+  abstract int seq();
 
-  RemessaContainer() {
+  RemessaTrailer() {
   }
 
 }
