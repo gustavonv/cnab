@@ -33,8 +33,11 @@ import br.com.objectos.pojo.Pojo;
 @Pojo
 abstract class RemessaHeader implements FlatRecord {
 
-  @Fixed("01REMESSA01COBRANCA       ")
+  @Fixed("0")
   abstract String id();
+
+  @Fixed("1REMESSA01COBRANCA       ")
+  abstract String literalRemessa();
 
   @LongFormat(length = 20)
   abstract long codigoEmpresa();

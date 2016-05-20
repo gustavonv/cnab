@@ -1,5 +1,5 @@
 /*
- * Copyright 2016 Objectos, Fábrica de Software LTDA.
+ * Copyright 2012 Objectos, Fábrica de Software LTDA.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -15,22 +15,28 @@
  */
 package br.com.objectos.cnab;
 
-import java.util.List;
-
-import br.com.objectos.flat.FlatContainer;
-import br.com.objectos.pojo.Pojo;
+import br.com.objectos.flat.FlatEnum;
 
 /**
  * @author marcio.endo@objectos.com.br (Marcio Endo)
  */
-@Pojo
-abstract class RemessaContainer implements FlatContainer {
+public enum EnderecamentoDebitoAutomatico implements FlatEnum {
 
-  abstract RemessaHeader header();
+  EMITE_AVISO("1"),
 
-  abstract List<RemessaTransacao> transacaoList();
+  NAO_EMITE_AVISO("2"),
 
-  RemessaContainer() {
+  CADASTRO_CONSTANTE(" ");
+
+  private final String value;
+
+  private EnderecamentoDebitoAutomatico(String value) {
+    this.value = value;
+  }
+
+  @Override
+  public String flatValue() {
+    return value;
   }
 
 }
