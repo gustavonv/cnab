@@ -97,6 +97,20 @@ public class Bradesco implements Banco {
 
     Cedente cedente = titulo.cedente();
 
+    Instrucao instrucao1 = cobranca.instrucao1();
+    int instrucao1Value = instrucao1.codigo();
+
+    Instrucao instrucao2 = cobranca.instrucao2();
+    int instrucao2Value = instrucao2.codigo();
+
+    switch (instrucao1.codigo()) {
+    case 5: // protesto falimentar
+    case 6: // protesto
+    case 18: // decurso prazo
+      instrucao2Value = instrucao1.valor();
+      break;
+    }
+
     return RemessaTransacaoTipo1.builder()
         .agenciaCredito(0)
         .agenciaCreditoDigito(0)
@@ -113,7 +127,7 @@ public class Bradesco implements Banco {
         .nossoNumero(titulo.nossoNumero())
         .descontoBonificacaoPorDia(0)
         .condicaoParaEmissaoDeCobranca(1)
-        .debitoAutomatico(false)
+        .debitoAutomatico(true)
         .rateiroCredito(false)
         .enderecamentoParaAvisoDeDebito(EnderecamentoDebitoAutomatico.CADASTRO_CONSTANTE)
         .ocorrencia(cobranca.comando())
@@ -123,8 +137,8 @@ public class Bradesco implements Banco {
         .especie(titulo.especie())
         .aceite(cobranca.aceite())
         .emissao(titulo.emissao())
-        .primeiraInstrucao(cobranca.instrucao1().codigo())
-        .segundaInstrucao(cobranca.instrucao2().codigo())
+        .primeiraInstrucao(instrucao1Value)
+        .segundaInstrucao(instrucao2Value)
         .moraDia(cobranca.moraDia())
         .limiteParaConcessaoDeDesconto()
         .valorDesconto(titulo.valorDesconto())

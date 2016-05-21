@@ -18,12 +18,14 @@ package br.com.objectos.cnab.bradesco;
 import java.time.LocalDate;
 import java.util.Optional;
 
-import br.com.objectos.cnab.CadastroRfbFormatter;
 import br.com.objectos.cnab.CepFormatter;
 import br.com.objectos.cnab.Comando;
 import br.com.objectos.cnab.Especie;
+import br.com.objectos.flat.DecimalOption;
 import br.com.objectos.flat.FlatRecord;
+import br.com.objectos.flat.IntegerOption;
 import br.com.objectos.flat.LocalDatePattern;
+import br.com.objectos.flat.LongOption;
 import br.com.objectos.flat.TextOption;
 import br.com.objectos.flat.pojo.BooleanFormat;
 import br.com.objectos.flat.pojo.CustomFormat;
@@ -76,10 +78,10 @@ public abstract class RemessaTransacaoTipo1 implements FlatRecord {
   @FlatEnumFormat(length = 3)
   abstract Carteira carteira();
 
-  @IntegerFormat(length = 5)
+  @IntegerFormat(length = 5, options = IntegerOption.ZEROFILL)
   abstract int agencia();
 
-  @IntegerFormat(length = 7)
+  @IntegerFormat(length = 7, options = IntegerOption.ZEROFILL)
   abstract int contaCorrente();
 
   @IntegerFormat(length = 1)
@@ -88,25 +90,26 @@ public abstract class RemessaTransacaoTipo1 implements FlatRecord {
   @Text(length = 25)
   abstract String usoDaEmpresa();
 
-  @Fixed("237")
+  @Fixed("000")
   abstract String codigoDoBanco();
 
   @BooleanFormat(trueValue = "2", falseValue = "0")
   abstract boolean multa();
 
-  @DecimalFormat(precision = 4, scale = 2)
+  @DecimalFormat(precision = 4, scale = 2, options = DecimalOption.ZEROFILL)
   abstract double percentualMulta();
 
-  @LongFormat(length = 12)
+  @LongFormat(length = 12, options = LongOption.ZEROFILL)
   abstract long nossoNumero();
 
   @DecimalFormat(precision = 10, scale = 2)
+  @WhenZero("          ")
   abstract double descontoBonificacaoPorDia();
 
   @IntegerFormat(length = 1)
   abstract int condicaoParaEmissaoDeCobranca();
 
-  @BooleanFormat(trueValue = "S", falseValue = "N")
+  @BooleanFormat(trueValue = " ", falseValue = "N")
   abstract boolean debitoAutomatico();
 
   @Fill(character = ' ', length = 10)
@@ -127,10 +130,10 @@ public abstract class RemessaTransacaoTipo1 implements FlatRecord {
   @Text(length = 10)
   abstract String numero();
 
-  @LocalDateFormat(LocalDatePattern.YYMMDD)
+  @LocalDateFormat(LocalDatePattern.DDMMYY)
   abstract LocalDate vencimento();
 
-  @DecimalFormat(precision = 13, scale = 2)
+  @DecimalFormat(precision = 13, scale = 2, options = DecimalOption.ZEROFILL)
   abstract double valor();
 
   @Fixed("000")
@@ -145,30 +148,30 @@ public abstract class RemessaTransacaoTipo1 implements FlatRecord {
   @BooleanFormat(trueValue = "A", falseValue = "N")
   abstract boolean aceite();
 
-  @LocalDateFormat(LocalDatePattern.YYMMDD)
+  @LocalDateFormat(LocalDatePattern.DDMMYY)
   @WhenAbsent("      ")
   abstract Optional<LocalDate> emissao();
 
-  @IntegerFormat(length = 2)
+  @IntegerFormat(length = 2, options = IntegerOption.ZEROFILL)
   abstract int primeiraInstrucao();
 
-  @IntegerFormat(length = 2)
+  @IntegerFormat(length = 2, options = IntegerOption.ZEROFILL)
   abstract int segundaInstrucao();
 
-  @DecimalFormat(precision = 13, scale = 2)
+  @DecimalFormat(precision = 13, scale = 2, options = DecimalOption.ZEROFILL)
   abstract double moraDia();
 
-  @LocalDateFormat(LocalDatePattern.YYMMDD)
-  @WhenAbsent("      ")
+  @LocalDateFormat(LocalDatePattern.DDMMYY)
+  @WhenAbsent("000000")
   abstract Optional<LocalDate> limiteParaConcessaoDeDesconto();
 
-  @DecimalFormat(precision = 13, scale = 2)
+  @DecimalFormat(precision = 13, scale = 2, options = DecimalOption.ZEROFILL)
   abstract double valorDesconto();
 
-  @DecimalFormat(precision = 13, scale = 2)
+  @DecimalFormat(precision = 13, scale = 2, options = DecimalOption.ZEROFILL)
   abstract double valorIof();
 
-  @DecimalFormat(precision = 13, scale = 2)
+  @DecimalFormat(precision = 13, scale = 2, options = DecimalOption.ZEROFILL)
   abstract double valorAbatimento();
 
   @FlatEnumFormat(length = 2)
@@ -177,10 +180,10 @@ public abstract class RemessaTransacaoTipo1 implements FlatRecord {
   @CustomFormat(length = 14, formatter = CadastroRfbFormatter.class)
   abstract CadastroRFB numeroDeInscricaoDoSacado();
 
-  @Text(length = 40, options = { TextOption.UPPERCASE })
+  @Text(length = 40, options = { TextOption.UPPERCASE, TextOption.STRIP_ACCENTS })
   abstract String nomeDoSacado();
 
-  @Text(length = 40)
+  @Text(length = 40, options = { TextOption.STRIP_ACCENTS })
   abstract String enderecoDoSacado();
 
   @Text(length = 12)
@@ -192,7 +195,7 @@ public abstract class RemessaTransacaoTipo1 implements FlatRecord {
   @CustomFormat(length = 60, formatter = SacadorAvalistaFormatter.class)
   abstract SacadorAvalista sacadorAvalista();
 
-  @IntegerFormat(length = 6)
+  @IntegerFormat(length = 6, options = IntegerOption.ZEROFILL)
   abstract int numeroSequencialDoRegistro();
 
   RemessaTransacaoTipo1() {

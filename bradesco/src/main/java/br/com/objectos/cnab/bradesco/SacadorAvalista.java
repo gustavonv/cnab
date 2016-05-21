@@ -19,6 +19,9 @@ import static br.com.objectos.jabuticava.TipoDeCadastroRFB.CPF;
 
 import br.com.objectos.auto.AutoPojo;
 import br.com.objectos.flat.FlatWriter;
+import br.com.objectos.flat.IntegerOption;
+import br.com.objectos.flat.LongOption;
+import br.com.objectos.flat.TextOption;
 import br.com.objectos.jabuticava.CadastroRFB;
 import br.com.objectos.jabuticava.TipoDeCadastroRFB;
 
@@ -46,19 +49,19 @@ public abstract class SacadorAvalista {
   private FlatWriter fisica(FlatWriter writer, int length) {
     CadastroRFB cpf = cadastroRfb();
     return writer
-        .integer(cpf.getInscricao(), 9)
+        .integer(cpf.getInscricao(), 9, IntegerOption.ZEROFILL)
         .fixed("0000")
         .integer(cpf.getDigito(), 2)
         .fixed("  ")
-        .text(nome(), 43);
+        .text(nome(), 43, TextOption.STRIP_ACCENTS);
   }
 
   private FlatWriter juridica(FlatWriter writer, int length) {
     CadastroRFB cnpj = cadastroRfb();
     return writer
-        .longValue(cnpj.longValue(), 15)
+        .longValue(cnpj.longValue(), 15, LongOption.ZEROFILL)
         .fixed("  ")
-        .text(nome(), 43);
+        .text(nome(), 43, TextOption.STRIP_ACCENTS);
   }
 
 }

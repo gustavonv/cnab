@@ -77,13 +77,13 @@ public abstract class TestingCobranca implements FlatRecord {
   @Text(length = 10)
   abstract String numero();
 
-  @CustomFormat(length = 14, formatter = CadastroRfbFormatter.class)
+  @CustomFormat(length = 15, formatter = CadastroRfbFormatter.class)
   abstract CadastroRFB cedenteCadastroRfb();
 
   @Text(length = 60)
   abstract String cedenteNome();
 
-  @CustomFormat(length = 14, formatter = CadastroRfbFormatter.class)
+  @CustomFormat(length = 15, formatter = CadastroRfbFormatter.class)
   abstract CadastroRFB sacadoCadastroRfb();
 
   @Text(length = 40)

@@ -15,8 +15,11 @@
  */
 package br.com.objectos.cnab;
 
+import java.util.function.LongFunction;
+
 import br.com.objectos.flat.CustomFormatter;
 import br.com.objectos.flat.FlatWriter;
+import br.com.objectos.flat.LongOption;
 import br.com.objectos.jabuticava.CadastroRFB;
 import br.com.objectos.jabuticava.Cnpj;
 import br.com.objectos.jabuticava.Cpf;
@@ -24,12 +27,9 @@ import br.com.objectos.jabuticava.Cpf;
 /**
  * @author marcio.endo@objectos.com.br (Marcio Endo)
  */
-public class CadastroRfbFormatter implements CustomFormatter<CadastroRFB> {
+class CadastroRfbFormatter implements CustomFormatter<CadastroRFB> {
 
   private static final CadastroRfbFormatter INSTANCE = new CadastroRfbFormatter();
-
-  private static final CnpjFormatter CNPJ = CnpjFormatter.get();
-  private static final CpfFormatter CPF = CpfFormatter.get();
 
   public static CadastroRfbFormatter get() {
     return INSTANCE;
@@ -37,16 +37,26 @@ public class CadastroRfbFormatter implements CustomFormatter<CadastroRFB> {
 
   @Override
   public CadastroRFB parse(String text) {
-    return text.endsWith("000")
-        ? CPF.parse(text)
-        : CNPJ.parse(text);
+    return text.startsWith("F")
+        ? parse0(text, Cpf::valueOf)
+        : parse0(text, Cnpj::valueOf);
   }
 
   @Override
   public FlatWriter write(FlatWriter writer, CadastroRFB value, int length) {
     return value instanceof Cnpj
-        ? CNPJ.write(writer, (Cnpj) value, length)
-        : CPF.write(writer, (Cpf) value, length);
+        ? write(writer, "J", value.longValue())
+        : write(writer, "F", value.longValue());
+  }
+
+  private CadastroRFB parse0(String text, LongFunction<CadastroRFB> f) {
+    String value = text.substring(1);
+    long longValue = Long.parseLong(value, 10);
+    return f.apply(longValue);
+  }
+
+  private FlatWriter write(FlatWriter writer, String prefix, long longValue) {
+    return writer.fixed(prefix).longValue(longValue, 14, LongOption.ZEROFILL);
   }
 
 }

@@ -18,7 +18,9 @@ package br.com.objectos.cnab.bradesco;
 import java.time.LocalDate;
 
 import br.com.objectos.flat.FlatRecord;
+import br.com.objectos.flat.IntegerOption;
 import br.com.objectos.flat.LocalDatePattern;
+import br.com.objectos.flat.LongOption;
 import br.com.objectos.flat.pojo.Fill;
 import br.com.objectos.flat.pojo.Fixed;
 import br.com.objectos.flat.pojo.IntegerFormat;
@@ -39,7 +41,7 @@ public abstract class RemessaHeader implements FlatRecord {
   @Fixed("1REMESSA01COBRANCA       ")
   abstract String literalRemessa();
 
-  @LongFormat(length = 20)
+  @LongFormat(length = 20, options = LongOption.ZEROFILL)
   abstract long codigoEmpresa();
 
   @Text(length = 30)
@@ -51,7 +53,7 @@ public abstract class RemessaHeader implements FlatRecord {
   @Fixed("BRADESCO       ")
   abstract String nomeBanco();
 
-  @LocalDateFormat(LocalDatePattern.YYMMDD)
+  @LocalDateFormat(LocalDatePattern.DDMMYY)
   abstract LocalDate dataArquivo();
 
   @Fill(length = 8, character = ' ')
@@ -60,7 +62,7 @@ public abstract class RemessaHeader implements FlatRecord {
   @Fixed("MX")
   abstract String idSistema();
 
-  @IntegerFormat(length = 7)
+  @IntegerFormat(length = 7, options = IntegerOption.ZEROFILL)
   abstract int seqRemessa();
 
   @Fill(length = 277, character = ' ')

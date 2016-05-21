@@ -16,6 +16,7 @@
 package br.com.objectos.cnab.bradesco;
 
 import br.com.objectos.flat.FlatRecord;
+import br.com.objectos.flat.IntegerOption;
 import br.com.objectos.flat.pojo.Fill;
 import br.com.objectos.flat.pojo.Fixed;
 import br.com.objectos.flat.pojo.IntegerFormat;
@@ -33,7 +34,7 @@ public abstract class RemessaTrailer implements FlatRecord {
   @Fill(character = ' ', length = 393)
   abstract String branco();
 
-  @IntegerFormat(length = 6)
+  @IntegerFormat(length = 6, options = IntegerOption.ZEROFILL)
   abstract int seq();
 
   RemessaTrailer() {

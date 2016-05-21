@@ -13,36 +13,31 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  */
-package br.com.objectos.cnab;
+package br.com.objectos.cnab.bradesco;
 
 import br.com.objectos.flat.CustomFormatter;
 import br.com.objectos.flat.FlatWriter;
 import br.com.objectos.flat.LongOption;
+import br.com.objectos.jabuticava.CadastroRFB;
+import br.com.objectos.jabuticava.Cnpj;
 import br.com.objectos.jabuticava.Cpf;
 
 /**
  * @author marcio.endo@objectos.com.br (Marcio Endo)
  */
-class CpfFormatter implements CustomFormatter<Cpf> {
+class CadastroRfbFormatter implements CustomFormatter<CadastroRFB> {
 
-  private static final CpfFormatter INSTANCE = new CpfFormatter();
-
-  public static CpfFormatter get() {
-    return INSTANCE;
+  @Override
+  public CadastroRFB parse(String text) {
+    Long longValue = Long.valueOf(text, 10);
+    return text.startsWith("000")
+        ? Cpf.valueOf(longValue)
+        : Cnpj.valueOf(longValue);
   }
 
   @Override
-  public Cpf parse(String text) {
-    String core = text.substring(0, 11);
-    long value = Long.parseLong(core, 10);
-    return Cpf.valueOf(value);
-  }
-
-  @Override
-  public FlatWriter write(FlatWriter writer, Cpf value, int length) {
-    return writer
-        .longValue(value.longValue(), 11, LongOption.ZEROFILL)
-        .fixed("000");
+  public FlatWriter write(FlatWriter writer, CadastroRFB value, int length) {
+    return writer.longValue(value.longValue(), length, LongOption.ZEROFILL);
   }
 
 }
