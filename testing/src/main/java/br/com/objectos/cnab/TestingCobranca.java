@@ -34,15 +34,8 @@ import br.com.objectos.jabuticava.CadastroRFB;
 import br.com.objectos.jabuticava.Cep;
 import br.com.objectos.jabuticava.Estado;
 import br.com.objectos.jabuticava.cnab.Banco;
-import br.com.objectos.jabuticava.cnab.remessa.Agencia;
-import br.com.objectos.jabuticava.cnab.remessa.Cedente;
-import br.com.objectos.jabuticava.cnab.remessa.Cobranca;
 import br.com.objectos.jabuticava.cnab.remessa.CobrancaOpcoes;
-import br.com.objectos.jabuticava.cnab.remessa.Conta;
-import br.com.objectos.jabuticava.cnab.remessa.Endereco;
 import br.com.objectos.jabuticava.cnab.remessa.EspecieDeTitulo;
-import br.com.objectos.jabuticava.cnab.remessa.Sacado;
-import br.com.objectos.jabuticava.cnab.remessa.Titulo;
 import br.com.objectos.pojo.Pojo;
 
 /**
@@ -157,31 +150,31 @@ public abstract class TestingCobranca implements FlatRecord {
   TestingCobranca() {
   }
 
-  Cobranca toCobranca(Banco banco) {
-    return Cobranca.builder()
+  br.com.objectos.jabuticava.cnab.remessa.Cobranca legacyCobranca(Banco banco) {
+    return br.com.objectos.jabuticava.cnab.remessa.Cobranca.builder()
         .carteira(br.com.objectos.jabuticava.cnab.remessa.Carteira.load(carteira().flatValue()))
-        .agencia(Agencia.builder()
+        .agencia(br.com.objectos.jabuticava.cnab.remessa.Agencia.builder()
             .codigo(agenciaNumero())
             .digito(agenciaDigito())
             .build())
-        .conta(Conta.builder()
+        .conta(br.com.objectos.jabuticava.cnab.remessa.Conta.builder()
             .numero(contaNumero())
             .digito(contaDigito())
             .build())
         .comando(br.com.objectos.jabuticava.cnab.remessa.Comando.of(comando().flatValue()))
-        .titulo(Titulo.builder()
+        .titulo(br.com.objectos.jabuticava.cnab.remessa.Titulo.builder()
             .usoDaEmpresa(usoDaEmpresa())
             .especie(EspecieDeTitulo.valueOf(Integer.parseInt(especie().flatValue())))
             .nossoNumero(nossoNumero())
             .numero(numero())
-            .cedente(Cedente.builder()
+            .cedente(br.com.objectos.jabuticava.cnab.remessa.Cedente.builder()
                 .cadastroRFB(cedenteCadastroRfb())
                 .nome(cedenteNome())
                 .build())
-            .sacado(Sacado.builder()
+            .sacado(br.com.objectos.jabuticava.cnab.remessa.Sacado.builder()
                 .cadastroRFB(sacadoCadastroRfb())
                 .nome(sacadoNome())
-                .endereco(Endereco.builder()
+                .endereco(br.com.objectos.jabuticava.cnab.remessa.Endereco.builder()
                     .logradouro(logradouro())
                     .cidade(cidade())
                     .bairro(bairro())
@@ -203,6 +196,45 @@ public abstract class TestingCobranca implements FlatRecord {
             .moraDia(moraDia())
             .instrucao1(banco.getInstrucao(instrucao1()).with(instrucao1Valor()))
             .instrucao2(banco.getInstrucao(instrucao2()).with(instrucao2Valor())))
+        .build();
+  }
+
+  Cobranca toCobranca() {
+    return Cobranca.builder()
+        .carteira(carteira())
+        .agencia(Agencia.of(agenciaNumero(), agenciaDigito()))
+        .conta(Conta.of(contaNumero(), contaDigito()))
+        .comando(comando())
+        .titulo(Titulo.builder()
+            .usoDaEmpresa(usoDaEmpresa())
+            .especie(especie())
+            .nossoNumero(nossoNumero())
+            .numero(numero())
+            .cedente(Cedente.of(cedenteCadastroRfb(), cedenteNome()))
+            .sacado(Sacado.of(sacadoCadastroRfb(), sacadoNome(), sacadoEndereco()))
+            .emissao(emissao())
+            .vencimento(vencimento())
+            .prazo(prazo())
+            .valor(valor())
+            .valorDesconto(valorDesconto())
+            .valorIof(valorIof())
+            .valorAbatimento(valorAbatimento())
+            .negociado(negociado())
+            .build())
+        .aceite(aceite())
+        .instrucao1(TestingInstrucao.of(instrucao1(), instrucao1Valor()))
+        .instrucao2(TestingInstrucao.of(instrucao2(), instrucao2Valor()))
+        .moraDia(moraDia())
+        .build();
+  }
+
+  private Endereco sacadoEndereco() {
+    return Endereco.builder()
+        .logradouro(logradouro())
+        .cidade(cidade())
+        .bairro(bairro())
+        .estado(estado())
+        .cep(cep())
         .build();
   }
 

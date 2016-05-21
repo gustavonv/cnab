@@ -16,6 +16,8 @@
 package br.com.objectos.cnab;
 
 import br.com.objectos.flat.CustomFormatter;
+import br.com.objectos.flat.FlatWriter;
+import br.com.objectos.flat.LongOption;
 import br.com.objectos.jabuticava.Cpf;
 
 /**
@@ -37,8 +39,10 @@ class CpfFormatter implements CustomFormatter<Cpf> {
   }
 
   @Override
-  public String write(Cpf value) {
-    return String.format("%011d", value.longValue()) + "000";
+  public FlatWriter write(FlatWriter writer, Cpf value, int length) {
+    return writer
+        .longValue(value.longValue(), 11, LongOption.ZEROFILL)
+        .fixed("000");
   }
 
 }

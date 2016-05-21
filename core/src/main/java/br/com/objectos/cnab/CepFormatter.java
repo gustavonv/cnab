@@ -16,6 +16,8 @@
 package br.com.objectos.cnab;
 
 import br.com.objectos.flat.CustomFormatter;
+import br.com.objectos.flat.FlatWriter;
+import br.com.objectos.flat.IntegerOption;
 import br.com.objectos.jabuticava.Cep;
 
 /**
@@ -29,11 +31,10 @@ public class CepFormatter implements CustomFormatter<Cep> {
   }
 
   @Override
-  public String write(Cep cep) {
-    return new StringBuilder()
-        .append(cep.getPrefixo())
-        .append(cep.getSufixo())
-        .toString();
+  public FlatWriter write(FlatWriter writer, Cep value, int length) {
+    return writer
+        .integer(value.getPrefixo(), 5, IntegerOption.ZEROFILL)
+        .integer(value.getSufixo(), 3, IntegerOption.ZEROFILL);
   }
 
 }

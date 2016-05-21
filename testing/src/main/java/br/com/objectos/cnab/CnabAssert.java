@@ -20,26 +20,24 @@ import static br.com.objectos.assertion.StringAssertion.assertThat;
 import java.util.List;
 import java.util.Map;
 
-import br.com.objectos.jabuticava.cnab.Banco;
-
 /**
  * @author marcio.endo@objectos.com.br (Marcio Endo)
  */
 public class CnabAssert {
 
-  private final Banco banco;
+  private final br.com.objectos.jabuticava.cnab.Banco banco;
   private final String id;
   private final TestingRemessa remessa;
   private final String expectedOutput;
 
-  private CnabAssert(Banco banco, String id, TestingRemessa remessa, String expectedOutput) {
+  private CnabAssert(br.com.objectos.jabuticava.cnab.Banco banco, String id, TestingRemessa remessa, String expectedOutput) {
     this.banco = banco;
     this.id = id;
     this.remessa = remessa;
     this.expectedOutput = expectedOutput;
   }
 
-  static CnabAssert of(Banco banco, Map.Entry<String, List<CnabEntry>> entry) {
+  static CnabAssert of(br.com.objectos.jabuticava.cnab.Banco banco, Map.Entry<String, List<CnabEntry>> entry) {
     List<CnabEntry> valueList = entry.getValue();
     return new CnabAssert(
         banco,
@@ -52,9 +50,15 @@ public class CnabAssert {
     return id;
   }
 
+  public void verifyRemessa(Banco banco) {
+    Remessa remessa = this.remessa.toRemessa();
+    String txt = remessa.toString(banco);
+    assertThat(txt).hasLinesEqualTo(expectedOutput);
+  }
+
   public void verifyTestingRemessa() {
     try {
-      String txt = remessa.toTxt(banco);
+      String txt = remessa.legacyTxt(banco);
       assertThat(txt).hasLinesEqualTo(expectedOutput);
     } catch (AssertionError e) {
       System.out.println(id);

@@ -31,4 +31,8 @@ public abstract class Sacado {
   Sacado() {
   }
 
+  public static Sacado of(CadastroRFB cadastroRfb, String nome, Endereco endereco) {
+    return new SacadoPojo(cadastroRfb, nome, endereco);
+  }
+
 }

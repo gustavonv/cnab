@@ -20,4 +20,8 @@ package br.com.objectos.cnab;
  */
 public interface Instrucao {
 
+  int codigo();
+
+  int valor();
+
 }

@@ -16,6 +16,7 @@
 package br.com.objectos.cnab;
 
 import br.com.objectos.flat.CustomFormatter;
+import br.com.objectos.flat.FlatWriter;
 import br.com.objectos.jabuticava.Estado;
 
 /**
@@ -29,8 +30,8 @@ public class EstadoFormatter implements CustomFormatter<Estado> {
   }
 
   @Override
-  public String write(Estado estado) {
-    return estado.name();
+  public FlatWriter write(FlatWriter writer, Estado estado, int length) {
+    return writer.fixed(estado.name());
   }
 
 }

@@ -13,7 +13,7 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  */
-package br.com.objectos.cnab;
+package br.com.objectos.cnab.bradesco;
 
 import java.time.LocalDate;
 
@@ -31,7 +31,7 @@ import br.com.objectos.pojo.Pojo;
  * @author marcio.endo@objectos.com.br (Marcio Endo)
  */
 @Pojo
-abstract class RemessaHeader implements FlatRecord {
+public abstract class RemessaHeader implements FlatRecord {
 
   @Fixed("0")
   abstract String id();

@@ -13,26 +13,24 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  */
-package br.com.objectos.cnab;
+package br.com.objectos.cnab.bradesco;
 
-import java.util.List;
-
-import br.com.objectos.flat.FlatContainer;
-import br.com.objectos.pojo.Pojo;
+import br.com.objectos.flat.CustomFormatter;
+import br.com.objectos.flat.FlatWriter;
 
 /**
  * @author marcio.endo@objectos.com.br (Marcio Endo)
  */
-@Pojo
-abstract class RemessaContainer implements FlatContainer {
+class SacadorAvalistaFormatter implements CustomFormatter<SacadorAvalista> {
 
-  abstract RemessaHeader header();
+  @Override
+  public SacadorAvalista parse(String text) {
+    return null;
+  }
 
-  abstract List<RemessaTransacao> transacaoList();
-
-  abstract RemessaTrailer trailer();
-
-  RemessaContainer() {
+  @Override
+  public FlatWriter write(FlatWriter writer, SacadorAvalista value, int length) {
+    return value.write(writer, length);
   }
 
 }

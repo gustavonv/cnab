@@ -37,6 +37,11 @@
 						<artifactId>pojo-plugin</artifactId>
 						<version>0.4.-1</version>
 					</dependency>
+					<dependency>
+						<groupId>br.com.objectos.auto</groupId>
+						<artifactId>compiler</artifactId>
+						<version>0.8.0</version>
+					</dependency>
 				</dependencies>
 			</plugin>
 		</plugins>
@@ -48,7 +53,7 @@
 			<artifactId>core</artifactId>
 			<version>0.3.-1</version>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>br.com.objectos</groupId>
 			<artifactId>assertion</artifactId>

@@ -16,6 +16,7 @@
 package br.com.objectos.cnab;
 
 import br.com.objectos.flat.CustomFormatter;
+import br.com.objectos.flat.FlatWriter;
 import br.com.objectos.jabuticava.CadastroRFB;
 import br.com.objectos.jabuticava.Cnpj;
 import br.com.objectos.jabuticava.Cpf;
@@ -42,10 +43,10 @@ public class CadastroRfbFormatter implements CustomFormatter<CadastroRFB> {
   }
 
   @Override
-  public String write(CadastroRFB value) {
+  public FlatWriter write(FlatWriter writer, CadastroRFB value, int length) {
     return value instanceof Cnpj
-        ? CNPJ.write((Cnpj) value)
-        : CPF.write((Cpf) value);
+        ? CNPJ.write(writer, (Cnpj) value, length)
+        : CPF.write(writer, (Cpf) value, length);
   }
 
 }

@@ -30,4 +30,8 @@ public abstract class Cedente {
   Cedente() {
   }
 
+  public static Cedente of(CadastroRFB cadastroRfb, String nome) {
+    return new CedentePojo(cadastroRfb, nome);
+  }
+
 }

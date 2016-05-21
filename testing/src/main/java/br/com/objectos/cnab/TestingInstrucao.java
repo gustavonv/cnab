@@ -16,23 +16,18 @@
 package br.com.objectos.cnab;
 
 import br.com.objectos.auto.AutoPojo;
-import br.com.objectos.jabuticava.CadastroRFB;
 
 /**
  * @author marcio.endo@objectos.com.br (Marcio Endo)
  */
 @AutoPojo
-public abstract class Empresa {
+abstract class TestingInstrucao implements Instrucao {
 
-  abstract long codigo();
-  abstract CadastroRFB cadastroRfb();
-  abstract String razaoSocial();
-
-  Empresa() {
+  TestingInstrucao() {
   }
 
-  public static Empresa of(long codigo, CadastroRFB cadastroRfb, String razaoSocial) {
-    return new EmpresaPojo(codigo, cadastroRfb, razaoSocial);
+  public static Instrucao of(int codigo, int valor) {
+    return new TestingInstrucaoPojo(codigo, valor);
   }
 
 }

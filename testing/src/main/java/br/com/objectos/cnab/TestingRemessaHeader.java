@@ -26,9 +26,6 @@ import br.com.objectos.flat.pojo.LocalDateFormat;
 import br.com.objectos.flat.pojo.LongFormat;
 import br.com.objectos.flat.pojo.Text;
 import br.com.objectos.jabuticava.CadastroRFB;
-import br.com.objectos.jabuticava.cnab.remessa.Agencia;
-import br.com.objectos.jabuticava.cnab.remessa.Conta;
-import br.com.objectos.jabuticava.cnab.remessa.Empresa;
 import br.com.objectos.pojo.Pojo;
 
 /**
@@ -70,26 +67,38 @@ public abstract class TestingRemessaHeader implements FlatRecord {
   TestingRemessaHeader() {
   }
 
-  Agencia toAgencia() {
-    return Agencia.builder()
+  br.com.objectos.jabuticava.cnab.remessa.Agencia legacyAgencia() {
+    return br.com.objectos.jabuticava.cnab.remessa.Agencia.builder()
         .codigo(agenciaNumero())
         .digito(agenciaDigito())
         .build();
   }
 
-  Conta toConta() {
-    return Conta.builder()
+  br.com.objectos.jabuticava.cnab.remessa.Conta legacyConta() {
+    return br.com.objectos.jabuticava.cnab.remessa.Conta.builder()
         .numero(contaNumero())
         .digito(contaDigito())
         .build();
   }
 
-  Empresa toEmpresa() {
-    return Empresa.builder()
+  br.com.objectos.jabuticava.cnab.remessa.Empresa legacyEmpresa() {
+    return br.com.objectos.jabuticava.cnab.remessa.Empresa.builder()
         .codigo(codigo())
         .cadastroRFB(cadastroRfb())
         .razaoSocial(razaoSocial())
         .build();
+  }
+
+  Agencia toAgencia() {
+    return Agencia.of(agenciaNumero(), agenciaDigito());
+  }
+
+  Conta toConta() {
+    return Conta.of(contaNumero(), contaDigito());
+  }
+
+  Empresa toEmpresa() {
+    return Empresa.of(codigo(), cadastroRfb(), razaoSocial());
   }
 
 }

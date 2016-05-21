@@ -1,5 +1,5 @@
 /*
- * Copyright 2016 Objectos, Fábrica de Software LTDA.
+ * Copyright 2012 Objectos, Fábrica de Software LTDA.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -13,25 +13,30 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  */
-package br.com.objectos.cnab;
+package br.com.objectos.cnab.bradesco;
 
-import java.util.List;
-
-import br.com.objectos.jabuticava.cnab.Banco;
-
-import org.testng.annotations.Test;
+import br.com.objectos.flat.FlatEnum;
 
 /**
  * @author marcio.endo@objectos.com.br (Marcio Endo)
  */
-public class TestingRemessaTest {
+public enum EnderecamentoDebitoAutomatico implements FlatEnum {
 
-  @Test(groups = "rio")
-  public void cnabLegacy() {
-    List<CnabAssert> list = CnabWget.of(Banco.BRADESCO);
-    for (CnabAssert cnab : list) {
-      cnab.verifyTestingRemessa();
-    }
+  EMITE_AVISO("1"),
+
+  NAO_EMITE_AVISO("2"),
+
+  CADASTRO_CONSTANTE(" ");
+
+  private final String value;
+
+  private EnderecamentoDebitoAutomatico(String value) {
+    this.value = value;
+  }
+
+  @Override
+  public String flatValue() {
+    return value;
   }
 
 }

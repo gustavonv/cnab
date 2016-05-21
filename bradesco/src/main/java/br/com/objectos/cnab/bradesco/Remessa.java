@@ -13,26 +13,30 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  */
-package br.com.objectos.cnab;
+package br.com.objectos.cnab.bradesco;
 
-import br.com.objectos.auto.AutoPojo;
-import br.com.objectos.jabuticava.CadastroRFB;
+import java.util.List;
+
+import br.com.objectos.flat.FlatContainer;
+import br.com.objectos.pojo.Pojo;
 
 /**
  * @author marcio.endo@objectos.com.br (Marcio Endo)
  */
-@AutoPojo
-public abstract class Empresa {
+@Pojo
+public abstract class Remessa implements FlatContainer {
 
-  abstract long codigo();
-  abstract CadastroRFB cadastroRfb();
-  abstract String razaoSocial();
+  abstract RemessaHeader header();
 
-  Empresa() {
+  abstract List<RemessaTransacaoTipo1> transacaoList();
+
+  abstract RemessaTrailer trailer();
+
+  Remessa() {
   }
 
-  public static Empresa of(long codigo, CadastroRFB cadastroRfb, String razaoSocial) {
-    return new EmpresaPojo(codigo, cadastroRfb, razaoSocial);
+  public static RemessaBuilder builder() {
+    return new RemessaBuilderPojo();
   }
 
 }

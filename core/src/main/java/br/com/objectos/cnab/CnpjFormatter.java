@@ -16,6 +16,8 @@
 package br.com.objectos.cnab;
 
 import br.com.objectos.flat.CustomFormatter;
+import br.com.objectos.flat.FlatWriter;
+import br.com.objectos.flat.LongOption;
 import br.com.objectos.jabuticava.Cnpj;
 
 /**
@@ -36,8 +38,8 @@ class CnpjFormatter implements CustomFormatter<Cnpj> {
   }
 
   @Override
-  public String write(Cnpj value) {
-    return String.format("%014d", value.longValue());
+  public FlatWriter write(FlatWriter writer, Cnpj value, int length) {
+    return writer.longValue(value.longValue(), length, LongOption.ZEROFILL);
   }
 
 }

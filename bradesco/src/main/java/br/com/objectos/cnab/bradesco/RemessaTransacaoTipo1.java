@@ -13,10 +13,15 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  */
-package br.com.objectos.cnab;
+package br.com.objectos.cnab.bradesco;
 
 import java.time.LocalDate;
+import java.util.Optional;
 
+import br.com.objectos.cnab.CadastroRfbFormatter;
+import br.com.objectos.cnab.CepFormatter;
+import br.com.objectos.cnab.Comando;
+import br.com.objectos.cnab.Especie;
 import br.com.objectos.flat.FlatRecord;
 import br.com.objectos.flat.LocalDatePattern;
 import br.com.objectos.flat.TextOption;
@@ -28,7 +33,9 @@ import br.com.objectos.flat.pojo.Fixed;
 import br.com.objectos.flat.pojo.FlatEnumFormat;
 import br.com.objectos.flat.pojo.IntegerFormat;
 import br.com.objectos.flat.pojo.LocalDateFormat;
+import br.com.objectos.flat.pojo.LongFormat;
 import br.com.objectos.flat.pojo.Text;
+import br.com.objectos.flat.pojo.WhenAbsent;
 import br.com.objectos.flat.pojo.WhenZero;
 import br.com.objectos.jabuticava.CadastroRFB;
 import br.com.objectos.jabuticava.Cep;
@@ -38,18 +45,18 @@ import br.com.objectos.pojo.Pojo;
  * @author marcio.endo@objectos.com.br (Marcio Endo)
  */
 @Pojo
-abstract class RemessaTransacao implements FlatRecord {
+public abstract class RemessaTransacaoTipo1 implements FlatRecord {
 
   @Fixed("1")
   abstract String id();
 
   @IntegerFormat(length = 5)
   @WhenZero("     ")
-  abstract int agencia();
+  abstract int agenciaCredito();
 
   @IntegerFormat(length = 0)
   @WhenZero(" ")
-  abstract int agenciaDigito();
+  abstract int agenciaCreditoDigito();
 
   @IntegerFormat(length = 5)
   @WhenZero("     ")
@@ -57,14 +64,26 @@ abstract class RemessaTransacao implements FlatRecord {
 
   @IntegerFormat(length = 7)
   @WhenZero("       ")
-  abstract int contaCorrente();
+  abstract int contaCorrenteCredito();
 
   @IntegerFormat(length = 1)
   @WhenZero(" ")
-  abstract int contaCorrenteDigito();
+  abstract int contaCorrenteCreditoDigito();
 
-  @Text(length = 17)
-  abstract String identificacaoEmpresa();
+  @Fixed("0")
+  abstract String zero();
+
+  @FlatEnumFormat(length = 3)
+  abstract Carteira carteira();
+
+  @IntegerFormat(length = 5)
+  abstract int agencia();
+
+  @IntegerFormat(length = 7)
+  abstract int contaCorrente();
+
+  @IntegerFormat(length = 1)
+  abstract int contaCorrenteDigito();
 
   @Text(length = 25)
   abstract String usoDaEmpresa();
@@ -78,8 +97,8 @@ abstract class RemessaTransacao implements FlatRecord {
   @DecimalFormat(precision = 4, scale = 2)
   abstract double percentualMulta();
 
-  @Text(length = 12)
-  abstract String identificacaoTituloBanco();
+  @LongFormat(length = 12)
+  abstract long nossoNumero();
 
   @DecimalFormat(precision = 10, scale = 2)
   abstract double descontoBonificacaoPorDia();
@@ -103,16 +122,16 @@ abstract class RemessaTransacao implements FlatRecord {
   abstract String brancos();
 
   @FlatEnumFormat(length = 2)
-  abstract br.com.objectos.cnab.Comando ocorrencia();
+  abstract Comando ocorrencia();
 
   @Text(length = 10)
-  abstract String numeroDoDocumento();
+  abstract String numero();
 
   @LocalDateFormat(LocalDatePattern.YYMMDD)
-  abstract LocalDate vencimentoDoTitulo();
+  abstract LocalDate vencimento();
 
   @DecimalFormat(precision = 13, scale = 2)
-  abstract double valorDoTitulo();
+  abstract double valor();
 
   @Fixed("000")
   abstract String bancoEncarregadoDaCobranca();
@@ -121,13 +140,14 @@ abstract class RemessaTransacao implements FlatRecord {
   abstract String agenciaDepositaria();
 
   @FlatEnumFormat(length = 2)
-  abstract Especie especieDeTitulo();
+  abstract Especie especie();
 
   @BooleanFormat(trueValue = "A", falseValue = "N")
   abstract boolean aceite();
 
   @LocalDateFormat(LocalDatePattern.YYMMDD)
-  abstract LocalDate emissaoDoTitulo();
+  @WhenAbsent("      ")
+  abstract Optional<LocalDate> emissao();
 
   @IntegerFormat(length = 2)
   abstract int primeiraInstrucao();
@@ -139,7 +159,8 @@ abstract class RemessaTransacao implements FlatRecord {
   abstract double moraDia();
 
   @LocalDateFormat(LocalDatePattern.YYMMDD)
-  abstract LocalDate limiteParaConcessaoDeDesconto();
+  @WhenAbsent("      ")
+  abstract Optional<LocalDate> limiteParaConcessaoDeDesconto();
 
   @DecimalFormat(precision = 13, scale = 2)
   abstract double valorDesconto();
@@ -168,13 +189,17 @@ abstract class RemessaTransacao implements FlatRecord {
   @CustomFormat(length = 8, formatter = CepFormatter.class)
   abstract Cep cep();
 
-  @Text(length = 60)
-  abstract String sacadoAvalista();
+  @CustomFormat(length = 60, formatter = SacadorAvalistaFormatter.class)
+  abstract SacadorAvalista sacadorAvalista();
 
   @IntegerFormat(length = 6)
   abstract int numeroSequencialDoRegistro();
 
-  RemessaTransacao() {
+  RemessaTransacaoTipo1() {
+  }
+
+  public static RemessaTransacaoTipo1Builder builder() {
+    return new RemessaTransacaoTipo1BuilderPojo();
   }
 
 }

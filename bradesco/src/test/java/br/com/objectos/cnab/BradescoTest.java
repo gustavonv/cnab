@@ -15,24 +15,36 @@
  */
 package br.com.objectos.cnab;
 
-import br.com.objectos.auto.AutoPojo;
-import br.com.objectos.jabuticava.CadastroRFB;
+import java.util.List;
+
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Test;
 
 /**
  * @author marcio.endo@objectos.com.br (Marcio Endo)
  */
-@AutoPojo
-public abstract class Empresa {
+public class BradescoTest {
 
-  abstract long codigo();
-  abstract CadastroRFB cadastroRfb();
-  abstract String razaoSocial();
+  private List<CnabAssert> cnabList;
 
-  Empresa() {
+  @BeforeClass
+  public void setUp() {
+    cnabList = CnabWget.of(br.com.objectos.jabuticava.cnab.Banco.BRADESCO);
   }
 
-  public static Empresa of(long codigo, CadastroRFB cadastroRfb, String razaoSocial) {
-    return new EmpresaPojo(codigo, cadastroRfb, razaoSocial);
+  @Test(groups = "rio")
+  public void bradesco() {
+    Bradesco bradesco = Bradesco.instance();
+    for (CnabAssert cnab : cnabList) {
+      cnab.verifyRemessa(bradesco);
+    }
+  }
+
+  @Test(groups = "rio")
+  public void cnabLegacy() {
+    for (CnabAssert cnab : cnabList) {
+      cnab.verifyTestingRemessa();
+    }
   }
 
 }

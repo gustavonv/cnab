@@ -43,17 +43,30 @@ public abstract class TestingRemessa implements FlatContainer {
     }
   }
 
-  public String toTxt(Banco banco) {
+  public String legacyTxt(Banco banco) {
     return WayCnab.remessaPara(banco)
         .sequenciaArquivo(header().sequencia())
+        .empresa(header().legacyEmpresa())
+        .agencia(header().legacyAgencia())
+        .conta(header().legacyConta())
+        .dataArquivo(header().data())
+        .cobrancas(cobrancaList().stream()
+            .map(cob -> cob.legacyCobranca(banco))
+            .collect(Collectors.toList()))
+        .toString();
+  }
+
+  public Remessa toRemessa() {
+    return Remessa.builder()
+        .sequencia(header().sequencia())
+        .data(header().data())
         .empresa(header().toEmpresa())
         .agencia(header().toAgencia())
         .conta(header().toConta())
-        .dataArquivo(header().data())
-        .cobrancas(cobrancaList().stream()
-            .map(cob -> cob.toCobranca(banco))
+        .cobrancaList(cobrancaList().stream()
+            .map(c -> c.toCobranca())
             .collect(Collectors.toList()))
-        .toString();
+        .build();
   }
 
 }
