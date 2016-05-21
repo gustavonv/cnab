@@ -15,37 +15,23 @@
  */
 package br.com.objectos.cnab;
 
-import java.time.LocalDate;
-import java.util.Optional;
-
-import br.com.objectos.pojo.Pojo;
-
 /**
  * @author marcio.endo@objectos.com.br (Marcio Endo)
  */
-@Pojo
-public abstract class Titulo {
+public class Itau implements Banco {
 
-  abstract String usoEmpresa();
-  abstract Especie especie();
-  abstract long nossoNumero();
-  abstract String numero();
-  abstract Cedente cedente();
-  abstract Sacado sacado();
-  abstract Optional<LocalDate> emissao();
-  abstract LocalDate vencimento();
-  abstract int prazo();
-  abstract double valor();
-  abstract double valorDesconto();
-  abstract double valorIof();
-  abstract double valorAbatimento();
-  abstract boolean negociado();
+  private static final Itau INSTANCE = new Itau();
 
-  Titulo() {
+  private Itau() {
   }
 
-  public static TituloBuilder builder() {
-    return new TituloBuilderPojo();
+  public static Itau instance() {
+    return INSTANCE;
+  }
+
+  @Override
+  public String toString(Remessa remessa) {
+    return null;
   }
 
 }

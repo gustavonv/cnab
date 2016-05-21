@@ -20,13 +20,13 @@ import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import br.com.objectos.cnab.bradesco.Carteira;
+import br.com.objectos.cnab.bradesco.CarteiraBradesco;
 import br.com.objectos.cnab.bradesco.EnderecamentoDebitoAutomatico;
 import br.com.objectos.cnab.bradesco.RemessaHeader;
 import br.com.objectos.cnab.bradesco.RemessaTrailer;
 import br.com.objectos.cnab.bradesco.RemessaTransacaoTipo1;
 import br.com.objectos.cnab.bradesco.SacadorAvalista;
-import br.com.objectos.cnab.bradesco.TipoDeIncricaoDoSacado;
+import br.com.objectos.cnab.bradesco.TipoSacadoBradesco;
 import br.com.objectos.core.lang.Strings;
 import br.com.objectos.flat.FlatWriter;
 import br.com.objectos.jabuticava.CadastroRFB;
@@ -91,8 +91,8 @@ public class Bradesco implements Banco {
 
     Sacado sacado = titulo.sacado();
     CadastroRFB cadastroSacado = sacado.cadastroRfb();
-    TipoDeIncricaoDoSacado tipoDeIncricaoDoSacado;
-    tipoDeIncricaoDoSacado = TipoDeIncricaoDoSacado.valueOf(cadastroSacado);
+    TipoSacadoBradesco tipoDeIncricaoDoSacado;
+    tipoDeIncricaoDoSacado = TipoSacadoBradesco.valueOf(cadastroSacado);
     Endereco endereco = sacado.endereco();
 
     Cedente cedente = titulo.cedente();
@@ -117,11 +117,11 @@ public class Bradesco implements Banco {
         .razaoContaCorrente(0)
         .contaCorrenteCredito(0)
         .contaCorrenteCreditoDigito(0)
-        .carteira(Carteira.of(cobranca.carteira()))
+        .carteira(CarteiraBradesco.of(cobranca.carteira()))
         .agencia(agencia.numero())
         .contaCorrente(conta.numero())
         .contaCorrenteDigito(conta.digito())
-        .usoDaEmpresa(titulo.usoDaEmpresa())
+        .usoDaEmpresa(titulo.usoEmpresa())
         .multa(false)
         .percentualMulta(0)
         .nossoNumero(titulo.nossoNumero())

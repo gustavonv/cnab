@@ -66,7 +66,7 @@ public abstract class TestingCobranca implements FlatRecord {
   abstract Comando comando();
 
   @Text(length = 25)
-  abstract String usoDaEmpresa();
+  abstract String usoEmpresa();
 
   @FlatEnumFormat(length = 2)
   abstract Especie especie();
@@ -77,13 +77,13 @@ public abstract class TestingCobranca implements FlatRecord {
   @Text(length = 10)
   abstract String numero();
 
-  @CustomFormat(length = 15, formatter = CadastroRfbFormatter.class)
+  @CustomFormat(length = 15, formatter = TestingCadastroRfbFormatter.class)
   abstract CadastroRFB cedenteCadastroRfb();
 
   @Text(length = 60)
   abstract String cedenteNome();
 
-  @CustomFormat(length = 15, formatter = CadastroRfbFormatter.class)
+  @CustomFormat(length = 15, formatter = TestingCadastroRfbFormatter.class)
   abstract CadastroRFB sacadoCadastroRfb();
 
   @Text(length = 40)
@@ -163,7 +163,7 @@ public abstract class TestingCobranca implements FlatRecord {
             .build())
         .comando(br.com.objectos.jabuticava.cnab.remessa.Comando.of(comando().flatValue()))
         .titulo(br.com.objectos.jabuticava.cnab.remessa.Titulo.builder()
-            .usoDaEmpresa(usoDaEmpresa())
+            .usoDaEmpresa(usoEmpresa())
             .especie(EspecieDeTitulo.valueOf(Integer.parseInt(especie().flatValue())))
             .nossoNumero(nossoNumero())
             .numero(numero())
@@ -206,7 +206,7 @@ public abstract class TestingCobranca implements FlatRecord {
         .conta(Conta.of(contaNumero(), contaDigito()))
         .comando(comando())
         .titulo(Titulo.builder()
-            .usoDaEmpresa(usoDaEmpresa())
+            .usoEmpresa(usoEmpresa())
             .especie(especie())
             .nossoNumero(nossoNumero())
             .numero(numero())

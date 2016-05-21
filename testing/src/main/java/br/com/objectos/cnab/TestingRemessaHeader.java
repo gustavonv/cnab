@@ -46,7 +46,7 @@ public abstract class TestingRemessaHeader implements FlatRecord {
   @LongFormat(length = 20)
   abstract long codigo();
 
-  @CustomFormat(formatter = CadastroRfbFormatter.class, length = 15)
+  @CustomFormat(formatter = TestingCadastroRfbFormatter.class, length = 15)
   abstract CadastroRFB cadastroRfb();
 
   @Text(length = 100)

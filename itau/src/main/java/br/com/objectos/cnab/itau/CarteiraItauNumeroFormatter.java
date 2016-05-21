@@ -13,30 +13,24 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  */
-package br.com.objectos.cnab.bradesco;
+package br.com.objectos.cnab.itau;
 
-import br.com.objectos.flat.FlatEnum;
+import br.com.objectos.flat.CustomFormatter;
+import br.com.objectos.flat.FlatWriter;
 
 /**
  * @author marcio.endo@objectos.com.br (Marcio Endo)
  */
-public enum Carteira implements FlatEnum {
+class CarteiraItauNumeroFormatter implements CustomFormatter<CarteiraItau> {
 
-  COBRANCA_SIMPLES_COM_REGISTRO("009");
-
-  private final String value;
-
-  private Carteira(String value) {
-    this.value = value;
-  }
-
-  public static Carteira of(br.com.objectos.cnab.Carteira carteira) {
-    return Carteira.valueOf(carteira.name());
+  @Override
+  public CarteiraItau parse(String arg0) {
+    return null;
   }
 
   @Override
-  public String flatValue() {
-    return value;
+  public FlatWriter write(FlatWriter arg0, CarteiraItau arg1, int arg2) {
+    return null;
   }
 
 }

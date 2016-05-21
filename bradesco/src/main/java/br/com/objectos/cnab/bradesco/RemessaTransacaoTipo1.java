@@ -18,6 +18,7 @@ package br.com.objectos.cnab.bradesco;
 import java.time.LocalDate;
 import java.util.Optional;
 
+import br.com.objectos.cnab.CadastroRfbFormatter;
 import br.com.objectos.cnab.CepFormatter;
 import br.com.objectos.cnab.Comando;
 import br.com.objectos.cnab.Especie;
@@ -76,7 +77,7 @@ public abstract class RemessaTransacaoTipo1 implements FlatRecord {
   abstract String zero();
 
   @FlatEnumFormat(length = 3)
-  abstract Carteira carteira();
+  abstract CarteiraBradesco carteira();
 
   @IntegerFormat(length = 5, options = IntegerOption.ZEROFILL)
   abstract int agencia();
@@ -175,7 +176,7 @@ public abstract class RemessaTransacaoTipo1 implements FlatRecord {
   abstract double valorAbatimento();
 
   @FlatEnumFormat(length = 2)
-  abstract TipoDeIncricaoDoSacado tipoDeInscricaoDoSacado();
+  abstract TipoSacadoBradesco tipoDeInscricaoDoSacado();
 
   @CustomFormat(length = 14, formatter = CadastroRfbFormatter.class)
   abstract CadastroRFB numeroDeInscricaoDoSacado();

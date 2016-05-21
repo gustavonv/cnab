@@ -13,25 +13,30 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  */
-package br.com.objectos.cnab;
+package br.com.objectos.cnab.itau;
 
-import java.util.List;
-
-import br.com.objectos.jabuticava.cnab.Banco;
-
-import org.testng.annotations.Test;
+import br.com.objectos.flat.FlatEnum;
 
 /**
  * @author marcio.endo@objectos.com.br (Marcio Endo)
  */
-public class TestingRemessaTest {
+public enum TipoInscricao implements FlatEnum {
 
-  @Test(groups = "rio")
-  public void cnabLegacy() {
-    List<CnabAssert> list = CnabWget.of(Banco.ITAU);
-    for (CnabAssert cnab : list) {
-      cnab.verifyTestingRemessa();
-    }
+  CEDENTE_CPF("1"),
+  CEDENTE_CNPJ("2"),
+
+  SACADOR_CPF("3"),
+  SACADOR_CNPJ("4");
+
+  private final String value;
+
+  private TipoInscricao(String value) {
+    this.value = value;
+  }
+
+  @Override
+  public String flatValue() {
+    return value;
   }
 
 }

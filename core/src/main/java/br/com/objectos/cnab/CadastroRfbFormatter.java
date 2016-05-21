@@ -13,7 +13,7 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  */
-package br.com.objectos.cnab.bradesco;
+package br.com.objectos.cnab;
 
 import br.com.objectos.flat.CustomFormatter;
 import br.com.objectos.flat.FlatWriter;
@@ -25,7 +25,7 @@ import br.com.objectos.jabuticava.Cpf;
 /**
  * @author marcio.endo@objectos.com.br (Marcio Endo)
  */
-class CadastroRfbFormatter implements CustomFormatter<CadastroRFB> {
+public class CadastroRfbFormatter implements CustomFormatter<CadastroRFB> {
 
   @Override
   public CadastroRFB parse(String text) {

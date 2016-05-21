@@ -13,7 +13,7 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  */
-package br.com.objectos.cnab;
+package br.com.objectos.cnab.itau;
 
 import java.util.function.LongFunction;
 
@@ -27,26 +27,20 @@ import br.com.objectos.jabuticava.Cpf;
 /**
  * @author marcio.endo@objectos.com.br (Marcio Endo)
  */
-class CadastroRfbFormatter implements CustomFormatter<CadastroRFB> {
-
-  private static final CadastroRfbFormatter INSTANCE = new CadastroRfbFormatter();
-
-  public static CadastroRfbFormatter get() {
-    return INSTANCE;
-  }
+class InscricaoSacadoFormatter implements CustomFormatter<CadastroRFB> {
 
   @Override
   public CadastroRFB parse(String text) {
-    return text.startsWith("F")
+    return text.startsWith("1")
         ? parse0(text, Cpf::valueOf)
         : parse0(text, Cnpj::valueOf);
   }
 
   @Override
   public FlatWriter write(FlatWriter writer, CadastroRFB value, int length) {
-    return value instanceof Cnpj
-        ? write(writer, "J", value.longValue())
-        : write(writer, "F", value.longValue());
+    return value instanceof Cpf
+        ? write(writer, "1", value.longValue())
+        : write(writer, "2", value.longValue());
   }
 
   private CadastroRFB parse0(String text, LongFunction<CadastroRFB> f) {

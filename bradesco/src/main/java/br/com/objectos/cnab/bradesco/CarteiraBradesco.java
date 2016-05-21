@@ -13,39 +13,31 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  */
-package br.com.objectos.cnab;
+package br.com.objectos.cnab.bradesco;
 
-import java.time.LocalDate;
-import java.util.Optional;
-
-import br.com.objectos.pojo.Pojo;
+import br.com.objectos.cnab.Carteira;
+import br.com.objectos.flat.FlatEnum;
 
 /**
  * @author marcio.endo@objectos.com.br (Marcio Endo)
  */
-@Pojo
-public abstract class Titulo {
+public enum CarteiraBradesco implements FlatEnum {
 
-  abstract String usoEmpresa();
-  abstract Especie especie();
-  abstract long nossoNumero();
-  abstract String numero();
-  abstract Cedente cedente();
-  abstract Sacado sacado();
-  abstract Optional<LocalDate> emissao();
-  abstract LocalDate vencimento();
-  abstract int prazo();
-  abstract double valor();
-  abstract double valorDesconto();
-  abstract double valorIof();
-  abstract double valorAbatimento();
-  abstract boolean negociado();
+  COBRANCA_SIMPLES_COM_REGISTRO("009");
 
-  Titulo() {
+  private final String value;
+
+  private CarteiraBradesco(String value) {
+    this.value = value;
   }
 
-  public static TituloBuilder builder() {
-    return new TituloBuilderPojo();
+  public static CarteiraBradesco of(Carteira carteira) {
+    return CarteiraBradesco.valueOf(carteira.name());
+  }
+
+  @Override
+  public String flatValue() {
+    return value;
   }
 
 }

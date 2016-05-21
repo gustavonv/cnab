@@ -15,37 +15,36 @@
  */
 package br.com.objectos.cnab;
 
-import java.time.LocalDate;
-import java.util.Optional;
+import java.util.List;
 
-import br.com.objectos.pojo.Pojo;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Test;
 
 /**
  * @author marcio.endo@objectos.com.br (Marcio Endo)
  */
-@Pojo
-public abstract class Titulo {
+public class ItauTest {
 
-  abstract String usoEmpresa();
-  abstract Especie especie();
-  abstract long nossoNumero();
-  abstract String numero();
-  abstract Cedente cedente();
-  abstract Sacado sacado();
-  abstract Optional<LocalDate> emissao();
-  abstract LocalDate vencimento();
-  abstract int prazo();
-  abstract double valor();
-  abstract double valorDesconto();
-  abstract double valorIof();
-  abstract double valorAbatimento();
-  abstract boolean negociado();
+  private List<CnabAssert> cnabList;
 
-  Titulo() {
+  @BeforeClass
+  public void setUp() {
+    cnabList = CnabWget.of(br.com.objectos.jabuticava.cnab.Banco.ITAU);
   }
 
-  public static TituloBuilder builder() {
-    return new TituloBuilderPojo();
+  @Test(groups = "rio")
+  public void itau() {
+    Itau itau = Itau.instance();
+    for (CnabAssert cnab : cnabList) {
+      cnab.verifyRemessa(itau);
+    }
+  }
+
+  @Test(groups = "rio")
+  public void cnabLegacy() {
+    for (CnabAssert cnab : cnabList) {
+      cnab.verifyTestingRemessa();
+    }
   }
 
 }

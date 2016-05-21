@@ -13,39 +13,26 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  */
-package br.com.objectos.cnab;
+package br.com.objectos.cnab.itau;
 
-import java.time.LocalDate;
-import java.util.Optional;
-
+import br.com.objectos.flat.FlatContainer;
 import br.com.objectos.pojo.Pojo;
 
 /**
  * @author marcio.endo@objectos.com.br (Marcio Endo)
  */
 @Pojo
-public abstract class Titulo {
+public abstract class RemessaItau implements FlatContainer {
 
-  abstract String usoEmpresa();
-  abstract Especie especie();
-  abstract long nossoNumero();
-  abstract String numero();
-  abstract Cedente cedente();
-  abstract Sacado sacado();
-  abstract Optional<LocalDate> emissao();
-  abstract LocalDate vencimento();
-  abstract int prazo();
-  abstract double valor();
-  abstract double valorDesconto();
-  abstract double valorIof();
-  abstract double valorAbatimento();
-  abstract boolean negociado();
+  public abstract RemessaItauHeader header();
 
-  Titulo() {
+  public abstract RemessaItauTrailer trailer();
+
+  RemessaItau() {
   }
 
-  public static TituloBuilder builder() {
-    return new TituloBuilderPojo();
+  public static RemessaItauBuilder builder() {
+    return new RemessaItauBuilderPojo();
   }
 
 }

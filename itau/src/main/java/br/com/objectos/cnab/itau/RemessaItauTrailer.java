@@ -13,39 +13,35 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  */
-package br.com.objectos.cnab;
+package br.com.objectos.cnab.itau;
 
-import java.time.LocalDate;
-import java.util.Optional;
-
+import br.com.objectos.flat.FlatRecord;
+import br.com.objectos.flat.IntegerOption;
+import br.com.objectos.flat.pojo.Fill;
+import br.com.objectos.flat.pojo.Fixed;
+import br.com.objectos.flat.pojo.IntegerFormat;
 import br.com.objectos.pojo.Pojo;
 
 /**
  * @author marcio.endo@objectos.com.br (Marcio Endo)
  */
 @Pojo
-public abstract class Titulo {
+public abstract class RemessaItauTrailer implements FlatRecord {
 
-  abstract String usoEmpresa();
-  abstract Especie especie();
-  abstract long nossoNumero();
-  abstract String numero();
-  abstract Cedente cedente();
-  abstract Sacado sacado();
-  abstract Optional<LocalDate> emissao();
-  abstract LocalDate vencimento();
-  abstract int prazo();
-  abstract double valor();
-  abstract double valorDesconto();
-  abstract double valorIof();
-  abstract double valorAbatimento();
-  abstract boolean negociado();
+  @Fixed("9")
+  abstract String id();
 
-  Titulo() {
+  @Fill(character = ' ', length = 393)
+  abstract String brancos();
+
+  @IntegerFormat(length = 6, options = { IntegerOption.ZEROFILL })
+  public abstract int seq();
+
+  RemessaItauTrailer() {
   }
 
-  public static TituloBuilder builder() {
-    return new TituloBuilderPojo();
+  public static RemessaItauTrailerBuilder builder() {
+    return new RemessaItauTrailerBuilderPojo();
   }
 
 }

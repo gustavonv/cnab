@@ -22,7 +22,7 @@ import br.com.objectos.jabuticava.TipoDeCadastroRFB;
 /**
  * @author marcos.piazzolla@objectos.com.br (Marcos Piazzolla)
  */
-public enum TipoDeIncricaoDoSacado implements FlatEnum {
+public enum TipoSacadoBradesco implements FlatEnum {
 
   CPF("01"),
 
@@ -36,11 +36,11 @@ public enum TipoDeIncricaoDoSacado implements FlatEnum {
 
   private String value;
 
-  private TipoDeIncricaoDoSacado(String value) {
+  private TipoSacadoBradesco(String value) {
     this.value = value;
   }
 
-  public static TipoDeIncricaoDoSacado valueOf(CadastroRFB cadastro) {
+  public static TipoSacadoBradesco valueOf(CadastroRFB cadastro) {
     TipoDeCadastroRFB tipo = cadastro.getTipo();
     switch (tipo) {
     case CPF:

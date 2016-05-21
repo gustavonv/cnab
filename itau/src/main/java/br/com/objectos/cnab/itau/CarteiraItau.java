@@ -13,39 +13,27 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  */
-package br.com.objectos.cnab;
+package br.com.objectos.cnab.itau;
 
-import java.time.LocalDate;
-import java.util.Optional;
-
-import br.com.objectos.pojo.Pojo;
+import br.com.objectos.cnab.Carteira;
 
 /**
  * @author marcio.endo@objectos.com.br (Marcio Endo)
  */
-@Pojo
-public abstract class Titulo {
+public enum CarteiraItau {
 
-  abstract String usoEmpresa();
-  abstract Especie especie();
-  abstract long nossoNumero();
-  abstract String numero();
-  abstract Cedente cedente();
-  abstract Sacado sacado();
-  abstract Optional<LocalDate> emissao();
-  abstract LocalDate vencimento();
-  abstract int prazo();
-  abstract double valor();
-  abstract double valorDesconto();
-  abstract double valorIof();
-  abstract double valorAbatimento();
-  abstract boolean negociado();
+  COBRANCA_SIMPLES_COM_REGISTRO("I", 112);
 
-  Titulo() {
+  final String codigo;
+  final int numero;
+
+  private CarteiraItau(String codigo, int numero) {
+    this.codigo = codigo;
+    this.numero = numero;
   }
 
-  public static TituloBuilder builder() {
-    return new TituloBuilderPojo();
+  public static CarteiraItau of(Carteira carteira) {
+    return CarteiraItau.valueOf(carteira.name());
   }
 
 }
