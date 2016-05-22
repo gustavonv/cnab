@@ -13,30 +13,27 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  */
-package br.com.objectos.cnab.itau;
+package br.com.objectos.cnab;
 
-import br.com.objectos.flat.FlatEnum;
+import br.com.objectos.cnab.Carteira;
 
 /**
  * @author marcio.endo@objectos.com.br (Marcio Endo)
  */
-public enum TipoInscricao implements FlatEnum {
+public enum CarteiraItau {
 
-  CEDENTE_CPF("1"),
-  CEDENTE_CNPJ("2"),
+  COBRANCA_SIMPLES_COM_REGISTRO("I", 112);
 
-  SACADOR_CPF("3"),
-  SACADOR_CNPJ("4");
+  final String codigo;
+  final int numero;
 
-  private final String value;
-
-  private TipoInscricao(String value) {
-    this.value = value;
+  private CarteiraItau(String codigo, int numero) {
+    this.codigo = codigo;
+    this.numero = numero;
   }
 
-  @Override
-  public String flatValue() {
-    return value;
+  public static CarteiraItau of(Carteira carteira) {
+    return CarteiraItau.valueOf(carteira.name());
   }
 
 }

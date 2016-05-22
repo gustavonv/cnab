@@ -15,6 +15,8 @@
  */
 package br.com.objectos.cnab.itau;
 
+import java.util.List;
+
 import br.com.objectos.flat.FlatContainer;
 import br.com.objectos.pojo.Pojo;
 
@@ -25,6 +27,8 @@ import br.com.objectos.pojo.Pojo;
 public abstract class RemessaItau implements FlatContainer {
 
   public abstract RemessaItauHeader header();
+
+  public abstract List<RemessaItauTrx> trxList();
 
   public abstract RemessaItauTrailer trailer();
 

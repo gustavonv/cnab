@@ -15,6 +15,7 @@
  */
 package br.com.objectos.cnab.itau;
 
+import br.com.objectos.cnab.CarteiraItau;
 import br.com.objectos.flat.CustomFormatter;
 import br.com.objectos.flat.FlatWriter;
 

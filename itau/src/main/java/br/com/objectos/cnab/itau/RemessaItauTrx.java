@@ -19,9 +19,12 @@ import java.time.LocalDate;
 import java.util.Optional;
 
 import br.com.objectos.cnab.CadastroRfbFormatter;
+import br.com.objectos.cnab.CarteiraItau;
 import br.com.objectos.cnab.CepFormatter;
 import br.com.objectos.cnab.Especie;
 import br.com.objectos.cnab.EstadoFormatter;
+import br.com.objectos.cnab.OcorrenciaItau;
+import br.com.objectos.cnab.TipoInscricaoItau;
 import br.com.objectos.flat.DecimalOption;
 import br.com.objectos.flat.FlatRecord;
 import br.com.objectos.flat.IntegerOption;
@@ -53,7 +56,7 @@ public abstract class RemessaItauTrx implements FlatRecord {
   abstract String id();
 
   @FlatEnumFormat(length = 1)
-  public abstract TipoInscricao tipoInscricaoEmpresa();
+  public abstract TipoInscricaoItau tipoInscricaoEmpresa();
 
   @CustomFormat(length = 14, formatter = CadastroRfbFormatter.class)
   public abstract CadastroRFB numeroInscricaoEmpresa();
@@ -188,6 +191,10 @@ public abstract class RemessaItauTrx implements FlatRecord {
   public abstract int seq();
 
   RemessaItauTrx() {
+  }
+
+  public static RemessaItauTrxBuilder builder() {
+    return new RemessaItauTrxBuilderPojo();
   }
 
 }
