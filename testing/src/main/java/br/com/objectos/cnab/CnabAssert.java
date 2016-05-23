@@ -53,7 +53,7 @@ public class CnabAssert {
   public void verifyRemessa(Banco banco) {
     Remessa remessa = this.remessa.toRemessa();
     String txt = remessa.toString(banco);
-    assertThat(txt).hasLinesEqualTo(expectedOutput.trim().replace("\r\n", "\n").concat("\n"));
+    assertThat(txt).hasLinesEqualTo(expectedOutput.trim().concat("\r\n"));
   }
 
   public void verifyTestingRemessa() {

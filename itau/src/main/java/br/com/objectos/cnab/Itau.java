@@ -24,7 +24,7 @@ import br.com.objectos.flat.FlatWriter;
 /**
  * @author marcio.endo@objectos.com.br (Marcio Endo)
  */
-public class Itau implements Banco {
+public class Itau extends Banco {
 
   private static final Itau INSTANCE = new Itau();
 
@@ -36,17 +36,13 @@ public class Itau implements Banco {
   }
 
   @Override
-  public String toString(Remessa remessa) {
-    StringBuilder str = new StringBuilder();
-    try (FlatWriter writer = FlatWriter.of(str)) {
-      RemessaItau remessaItau = RemessaItau.builder()
-          .header(header(remessa))
-          .trxList(trxList(remessa))
-          .trailer(trailer(remessa))
-          .build();
-      remessaItau.writeTo(writer);
-    }
-    return str.toString();
+  void writeRemessaTo(Remessa remessa, FlatWriter writer) {
+    RemessaItau remessaItau = RemessaItau.builder()
+        .header(header(remessa))
+        .trxList(trxList(remessa))
+        .trailer(trailer(remessa))
+        .build();
+    remessaItau.writeTo(writer);
   }
 
   private RemessaItauHeader header(Remessa remessa) {

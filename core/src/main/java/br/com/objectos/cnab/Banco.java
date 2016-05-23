@@ -15,11 +15,24 @@
  */
 package br.com.objectos.cnab;
 
+import br.com.objectos.flat.FlatWriter;
+
 /**
  * @author marcio.endo@objectos.com.br (Marcio Endo)
  */
-public interface Banco {
+public abstract class Banco {
 
-  String toString(Remessa remessa);
+  Banco() {
+  }
+
+  public final String toString(Remessa remessa) {
+    StringBuilder str = new StringBuilder();
+    try (FlatWriter writer = FlatWriter.of(str).withLineSeparator("\r\n")) {
+      writeRemessaTo(remessa, writer);
+    }
+    return str.toString();
+  }
+
+  abstract void writeRemessaTo(Remessa remessa, FlatWriter writer);
 
 }

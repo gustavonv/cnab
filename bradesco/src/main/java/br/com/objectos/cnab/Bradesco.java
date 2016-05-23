@@ -35,7 +35,7 @@ import br.com.objectos.jabuticava.Estado;
 /**
  * @author marcio.endo@objectos.com.br (Marcio Endo)
  */
-public class Bradesco implements Banco {
+public class Bradesco extends Banco {
 
   private static final Bradesco INSTANCE = new Bradesco();
 
@@ -47,17 +47,13 @@ public class Bradesco implements Banco {
   }
 
   @Override
-  public String toString(Remessa remessa) {
-    StringBuilder str = new StringBuilder();
-    try (FlatWriter writer = FlatWriter.of(str)) {
-      br.com.objectos.cnab.bradesco.Remessa container = br.com.objectos.cnab.bradesco.Remessa.builder()
-          .header(header(remessa))
-          .transacaoList(transacaoList(remessa))
-          .trailer(trailer(remessa))
-          .build();
-      container.writeTo(writer);
-    }
-    return str.toString();
+  void writeRemessaTo(Remessa remessa, FlatWriter writer) {
+    br.com.objectos.cnab.bradesco.Remessa container = br.com.objectos.cnab.bradesco.Remessa.builder()
+        .header(header(remessa))
+        .transacaoList(transacaoList(remessa))
+        .trailer(trailer(remessa))
+        .build();
+    container.writeTo(writer);
   }
 
   private RemessaHeader header(Remessa remessa) {
