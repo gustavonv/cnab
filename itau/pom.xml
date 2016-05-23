@@ -6,7 +6,7 @@
 	<parent>
 		<groupId>br.com.objectos.cnab</groupId>
 		<artifactId>parent</artifactId>
-		<version>0.3.-1</version>
+		<version>0.3.0</version>
 	</parent>
 	
 	<artifactId>itau</artifactId>
@@ -51,12 +51,12 @@
 		<dependency>
 			<groupId>br.com.objectos.cnab</groupId>
 			<artifactId>core</artifactId>
-			<version>0.3.-1</version>
+			<version>0.3.0</version>
 		</dependency>
 		<dependency>
 			<groupId>br.com.objectos.cnab</groupId>
 			<artifactId>testing</artifactId>
-			<version>0.3.-1</version>
+			<version>0.3.0</version>
 			<scope>test</scope>
 		</dependency>
 
