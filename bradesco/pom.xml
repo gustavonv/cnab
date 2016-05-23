@@ -1,0 +1,76 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>br.com.objectos.cnab</groupId>
+		<artifactId>parent</artifactId>
+		<version>0.3.-1</version>
+	</parent>
+
+	<artifactId>bradesco</artifactId>
+	<name>objectos :: cnab :: bradesco</name>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.bsc.maven</groupId>
+				<artifactId>maven-processor-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>process</id>
+						<goals>
+							<goal>process</goal>
+						</goals>
+						<phase>generate-sources</phase>
+					</execution>
+				</executions>
+				<dependencies>
+					<dependency>
+						<groupId>br.com.objectos.pojo</groupId>
+						<artifactId>compiler</artifactId>
+						<version>0.10.1</version>
+					</dependency>
+					<dependency>
+						<groupId>br.com.objectos.flat</groupId>
+						<artifactId>pojo-plugin</artifactId>
+						<version>0.4.0</version>
+					</dependency>
+					<dependency>
+						<groupId>br.com.objectos.auto</groupId>
+						<artifactId>compiler</artifactId>
+						<version>0.8.0</version>
+					</dependency>
+				</dependencies>
+			</plugin>
+		</plugins>
+	</build>
+
+	<dependencies>
+		<dependency>
+			<groupId>br.com.objectos.cnab</groupId>
+			<artifactId>core</artifactId>
+			<version>0.3.-1</version>
+		</dependency>
+		<dependency>
+			<groupId>br.com.objectos.cnab</groupId>
+			<artifactId>testing</artifactId>
+			<version>0.3.-1</version>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>br.com.objectos.flat</groupId>
+			<artifactId>api</artifactId>
+			<version>0.4.0</version>
+		</dependency>
+
+		<dependency>
+			<groupId>br.com.objectos.pojo</groupId>
+			<artifactId>annotations</artifactId>
+			<version>0.10.1</version>
+		</dependency>
+	</dependencies>
+
+</project>
