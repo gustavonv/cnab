@@ -25,11 +25,11 @@ import br.com.objectos.jabuticava.TipoDeCadastroRFB;
  */
 public enum TipoInscricaoItau implements FlatEnum {
 
-  CEDENTE_CPF("1"),
-  CEDENTE_CNPJ("2"),
+  CEDENTE_CPF("01"),
+  CEDENTE_CNPJ("02"),
 
-  SACADOR_CPF("3"),
-  SACADOR_CNPJ("4");
+  SACADOR_CPF("03"),
+  SACADOR_CNPJ("04");
 
   private final String value;
 

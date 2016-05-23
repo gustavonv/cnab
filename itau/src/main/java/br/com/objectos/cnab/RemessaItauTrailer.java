@@ -15,18 +15,33 @@
  */
 package br.com.objectos.cnab;
 
-import br.com.objectos.flat.FlatEnum;
+import br.com.objectos.flat.FlatRecord;
+import br.com.objectos.flat.IntegerOption;
+import br.com.objectos.flat.pojo.Fill;
+import br.com.objectos.flat.pojo.Fixed;
+import br.com.objectos.flat.pojo.IntegerFormat;
+import br.com.objectos.pojo.Pojo;
 
 /**
  * @author marcio.endo@objectos.com.br (Marcio Endo)
  */
-public enum OcorrenciaItau implements FlatEnum {
+@Pojo
+public abstract class RemessaItauTrailer implements FlatRecord {
 
-  ;
+  @Fixed("9")
+  abstract String id();
 
-  @Override
-  public String flatValue() {
-    return null;
+  @Fill(character = ' ', length = 393)
+  abstract String brancos();
+
+  @IntegerFormat(length = 6, options = { IntegerOption.ZEROFILL })
+  public abstract int seq();
+
+  RemessaItauTrailer() {
+  }
+
+  public static RemessaItauTrailerBuilder builder() {
+    return new RemessaItauTrailerBuilderPojo();
   }
 
 }

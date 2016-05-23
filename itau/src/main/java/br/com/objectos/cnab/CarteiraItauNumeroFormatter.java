@@ -13,11 +13,11 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  */
-package br.com.objectos.cnab.itau;
+package br.com.objectos.cnab;
 
-import br.com.objectos.cnab.CarteiraItau;
 import br.com.objectos.flat.CustomFormatter;
 import br.com.objectos.flat.FlatWriter;
+import br.com.objectos.flat.IntegerOption;
 
 /**
  * @author marcio.endo@objectos.com.br (Marcio Endo)
@@ -25,13 +25,13 @@ import br.com.objectos.flat.FlatWriter;
 class CarteiraItauNumeroFormatter implements CustomFormatter<CarteiraItau> {
 
   @Override
-  public CarteiraItau parse(String arg0) {
+  public CarteiraItau parse(String text) {
     return null;
   }
 
   @Override
-  public FlatWriter write(FlatWriter arg0, CarteiraItau arg1, int arg2) {
-    return null;
+  public FlatWriter write(FlatWriter writer, CarteiraItau value, int length) {
+    return writer.integer(value.numero, length, IntegerOption.ZEROFILL);
   }
 
 }

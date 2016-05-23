@@ -13,25 +13,30 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  */
-package br.com.objectos.cnab.itau;
+package br.com.objectos.cnab;
 
-import br.com.objectos.cnab.CarteiraItau;
-import br.com.objectos.flat.CustomFormatter;
-import br.com.objectos.flat.FlatWriter;
+import java.util.List;
+
+import br.com.objectos.flat.FlatContainer;
+import br.com.objectos.pojo.Pojo;
 
 /**
  * @author marcio.endo@objectos.com.br (Marcio Endo)
  */
-class CarteiraItauCodigoFormatter implements CustomFormatter<CarteiraItau> {
+@Pojo
+public abstract class RemessaItau implements FlatContainer {
 
-  @Override
-  public CarteiraItau parse(String arg0) {
-    return null;
+  public abstract RemessaItauHeader header();
+
+  public abstract List<RemessaItauTrx> trxList();
+
+  public abstract RemessaItauTrailer trailer();
+
+  RemessaItau() {
   }
 
-  @Override
-  public FlatWriter write(FlatWriter arg0, CarteiraItau arg1, int arg2) {
-    return null;
+  public static RemessaItauBuilder builder() {
+    return new RemessaItauBuilderPojo();
   }
 
 }

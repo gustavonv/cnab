@@ -13,23 +13,17 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  */
-package br.com.objectos.cnab.itau;
+package br.com.objectos.cnab;
 
 import java.time.LocalDate;
 import java.util.Optional;
 
-import br.com.objectos.cnab.CadastroRfbFormatter;
-import br.com.objectos.cnab.CarteiraItau;
-import br.com.objectos.cnab.CepFormatter;
-import br.com.objectos.cnab.Especie;
-import br.com.objectos.cnab.EstadoFormatter;
-import br.com.objectos.cnab.OcorrenciaItau;
-import br.com.objectos.cnab.TipoInscricaoItau;
 import br.com.objectos.flat.DecimalOption;
 import br.com.objectos.flat.FlatRecord;
 import br.com.objectos.flat.IntegerOption;
 import br.com.objectos.flat.LocalDatePattern;
 import br.com.objectos.flat.LongOption;
+import br.com.objectos.flat.TextOption;
 import br.com.objectos.flat.pojo.BooleanFormat;
 import br.com.objectos.flat.pojo.CustomFormat;
 import br.com.objectos.flat.pojo.DecimalFormat;
@@ -41,6 +35,7 @@ import br.com.objectos.flat.pojo.LocalDateFormat;
 import br.com.objectos.flat.pojo.LongFormat;
 import br.com.objectos.flat.pojo.Text;
 import br.com.objectos.flat.pojo.WhenAbsent;
+import br.com.objectos.flat.pojo.WhenZero;
 import br.com.objectos.jabuticava.CadastroRFB;
 import br.com.objectos.jabuticava.Cep;
 import br.com.objectos.jabuticava.Estado;
@@ -55,7 +50,7 @@ public abstract class RemessaItauTrx implements FlatRecord {
   @Fixed("1")
   abstract String id();
 
-  @FlatEnumFormat(length = 1)
+  @FlatEnumFormat(length = 2)
   public abstract TipoInscricaoItau tipoInscricaoEmpresa();
 
   @CustomFormat(length = 14, formatter = CadastroRfbFormatter.class)
@@ -77,6 +72,7 @@ public abstract class RemessaItauTrx implements FlatRecord {
   abstract String brancos();
 
   @IntegerFormat(length = 4, options = { IntegerOption.ZEROFILL })
+  @WhenZero("    ")
   public abstract int instrucaoCancelada();
 
   @Text(length = 25)
@@ -85,7 +81,7 @@ public abstract class RemessaItauTrx implements FlatRecord {
   @LongFormat(length = 8, options = { LongOption.ZEROFILL })
   public abstract long nossoNumero();
 
-  @DecimalFormat(precision = 8, scale = 5, options = { DecimalOption.ZEROFILL })
+  @DecimalFormat(precision = 13, scale = 5, options = { DecimalOption.ZEROFILL })
   public abstract double quantidadeMoeda();
 
   @CustomFormat(length = 3, formatter = CarteiraItauNumeroFormatter.class)
@@ -98,7 +94,7 @@ public abstract class RemessaItauTrx implements FlatRecord {
   public abstract CarteiraItau carteiraCodigo();
 
   @FlatEnumFormat(length = 2)
-  public abstract OcorrenciaItau ocorrencia();
+  public abstract ComandoItau comando();
 
   @Text(length = 10)
   public abstract String numero();
@@ -106,7 +102,7 @@ public abstract class RemessaItauTrx implements FlatRecord {
   @LocalDateFormat(LocalDatePattern.DDMMYY)
   public abstract LocalDate vencimento();
 
-  @DecimalFormat(precision = 11, scale = 2, options = { DecimalOption.ZEROFILL })
+  @DecimalFormat(precision = 13, scale = 2, options = { DecimalOption.ZEROFILL })
   public abstract double valor();
 
   @Fixed("341")
@@ -131,54 +127,54 @@ public abstract class RemessaItauTrx implements FlatRecord {
   @IntegerFormat(length = 2, options = { IntegerOption.ZEROFILL })
   public abstract int instrucao2();
 
-  @DecimalFormat(precision = 11, scale = 2, options = { DecimalOption.ZEROFILL })
+  @DecimalFormat(precision = 13, scale = 2, options = { DecimalOption.ZEROFILL })
   public abstract double moraDia();
 
   @LocalDateFormat(LocalDatePattern.DDMMYY)
-  @WhenAbsent("      ")
+  @WhenAbsent("000000")
   public abstract Optional<LocalDate> descontoAte();
 
-  @DecimalFormat(precision = 11, scale = 2, options = { DecimalOption.ZEROFILL })
+  @DecimalFormat(precision = 13, scale = 2, options = { DecimalOption.ZEROFILL })
   public abstract double valorDesconto();
 
-  @DecimalFormat(precision = 11, scale = 2, options = { DecimalOption.ZEROFILL })
+  @DecimalFormat(precision = 13, scale = 2, options = { DecimalOption.ZEROFILL })
   public abstract double valorIof();
 
-  @DecimalFormat(precision = 11, scale = 2, options = { DecimalOption.ZEROFILL })
+  @DecimalFormat(precision = 13, scale = 2, options = { DecimalOption.ZEROFILL })
   public abstract double valorAbatimento();
 
-  @CustomFormat(length = 15, formatter = InscricaoSacadoFormatter.class)
+  @CustomFormat(length = 16, formatter = InscricaoSacadoFormatter.class)
   public abstract CadastroRFB sacadoInscricao();
 
-  @Text(length = 30)
+  @Text(length = 30, options = { TextOption.STRIP_ACCENTS })
   public abstract String sacadoNome();
 
   @Fill(character = ' ', length = 10)
   abstract String brancos2();
 
-  @Text(length = 40)
+  @Text(length = 40, options = { TextOption.STRIP_ACCENTS })
   public abstract String sacadoLogradouro();
 
-  @Text(length = 12)
+  @Text(length = 12, options = { TextOption.STRIP_ACCENTS })
   public abstract String sacadoBairro();
 
   @CustomFormat(length = 8, formatter = CepFormatter.class)
   public abstract Cep sacadoCep();
 
-  @Text(length = 15)
+  @Text(length = 15, options = { TextOption.STRIP_ACCENTS })
   public abstract String sacadoCidade();
 
   @CustomFormat(length = 2, formatter = EstadoFormatter.class)
   public abstract Estado sacadoEstado();
 
-  @Text(length = 30)
+  @Text(length = 30, options = { TextOption.STRIP_ACCENTS })
   public abstract String sacadorAvalista();
 
   @Fill(character = ' ', length = 4)
   abstract String brancos3();
 
   @LocalDateFormat(LocalDatePattern.DDMMYY)
-  @WhenAbsent("      ")
+  @WhenAbsent("000000")
   public abstract Optional<LocalDate> dataMora();
 
   @IntegerFormat(length = 2, options = { IntegerOption.ZEROFILL })

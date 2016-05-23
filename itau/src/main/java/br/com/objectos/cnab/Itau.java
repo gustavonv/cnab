@@ -19,13 +19,7 @@ import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 
-import br.com.objectos.cnab.itau.RemessaItau;
-import br.com.objectos.cnab.itau.RemessaItauHeader;
-import br.com.objectos.cnab.itau.RemessaItauTrailer;
-import br.com.objectos.cnab.itau.RemessaItauTrx;
 import br.com.objectos.flat.FlatWriter;
-import br.com.objectos.jabuticava.CadastroRFB;
-import br.com.objectos.jabuticava.cnab.remessa.EnderecamentoDebitoAutomatico;
 
 /**
  * @author marcio.endo@objectos.com.br (Marcio Endo)
@@ -91,6 +85,16 @@ public class Itau implements Banco {
     Conta conta = cobranca.conta();
 
     CarteiraItau carteira = CarteiraItau.of(cobranca.carteira());
+    ComandoItau comando = ComandoItau.of(cobranca.comando());
+
+    Instrucao instrucao1 = cobranca.instrucao1();
+    Instrucao instrucao2 = cobranca.instrucao2();
+
+    int prazo = prazoDe(instrucao1, 0);
+    prazo = prazoDe(instrucao2, prazo);
+
+    Sacado sacado = titulo.sacado();
+    Endereco endereco = sacado.endereco();
 
     return RemessaItauTrx.builder()
         .tipoInscricaoEmpresa(inscricao.tipo)
@@ -105,7 +109,50 @@ public class Itau implements Banco {
         .carteiraNumero(carteira)
         .usoBanco("")
         .carteiraCodigo(carteira)
-        .ocorrencia(ocorrencia)
+        .comando(comando)
+        .numero(titulo.numero())
+        .vencimento(titulo.vencimento())
+        .valor(titulo.valor())
+        .especie(titulo.especie())
+        .aceite(cobranca.aceite())
+        .emissao(titulo.emissao())
+        .instrucao1(instrucao1.codigo())
+        .instrucao2(instrucao2.codigo())
+        .moraDia(cobranca.moraDia())
+        .descontoAte()
+        .valorDesconto(titulo.valorDesconto())
+        .valorIof(titulo.valorIof())
+        .valorAbatimento(titulo.valorAbatimento())
+        .sacadoInscricao(sacado.cadastroRfb())
+        .sacadoNome(sacado.nome())
+        .sacadoLogradouro(endereco.logradouro())
+        .sacadoBairro(endereco.bairro())
+        .sacadoCep(endereco.cep())
+        .sacadoCidade(endereco.cidade())
+        .sacadoEstado(endereco.estado())
+        .sacadorAvalista(titulo.cedente().nome())
+        .dataMora()
+        .prazo(prazo)
+        .seq(seq)
+        .build();
+  }
+
+  private int prazoDe(Instrucao instrucao, int prazo) {
+    int codigo = instrucao.codigo();
+    switch (codigo) {
+    case 9:
+    case 34:
+    case 35:
+    case 42:
+    case 81:
+    case 82:
+    case 91:
+    case 92:
+      return instrucao.valor();
+
+    default:
+      return prazo;
+    }
   }
 
 }

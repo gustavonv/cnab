@@ -156,9 +156,7 @@ class ItauRemessaBuilder extends AbstractRemessaBuilder {
 
   private String doTrailer() {
     return TrailerRemessa.paraBanco(banco)
-
         .put(trailerRemessa().seqRegistro(), sequencia++)
-
         .toString();
   }
 

@@ -15,23 +15,52 @@
  */
 package br.com.objectos.cnab;
 
+import br.com.objectos.flat.FlatEnum;
+
 /**
  * @author marcio.endo@objectos.com.br (Marcio Endo)
  */
-public enum CarteiraItau {
+public enum ComandoItau implements FlatEnum {
 
-  COBRANCA_SIMPLES_COM_REGISTRO("I", 112);
+  REMESSA("01"),
 
-  final String codigo;
-  final int numero;
+  BAIXA("02"),
 
-  private CarteiraItau(String codigo, int numero) {
-    this.codigo = codigo;
-    this.numero = numero;
+  ABATIMENTO("04"),
+
+  CANCELAMENTO_DO_ABATIMENTO("05"),
+
+  ALTERACAO_DO_CONTROLE("07"),
+
+  ALTERACAO_DO_NUMERO("08"),
+
+  PEDIDO_DE_PROTESTO("09"),
+
+  BAIXAR_TITULO("18"),
+
+  MANTER_CARTEIRA("19"),
+
+  ALTERCAO_DE_OUTROS_DADOS("31"),
+
+  DESAGENDAMENTO("35"),
+
+  ACERTO("68"),
+
+  CANCELAMENTO("69");
+
+  private final String value;
+
+  private ComandoItau(String value) {
+    this.value = value;
   }
 
-  public static CarteiraItau of(Carteira carteira) {
-    return CarteiraItau.valueOf(carteira.name());
+  public static ComandoItau of(Comando comando) {
+    return ComandoItau.valueOf(comando.name());
+  }
+
+  @Override
+  public String flatValue() {
+    return value;
   }
 
 }

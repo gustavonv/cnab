@@ -13,35 +13,24 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  */
-package br.com.objectos.cnab.itau;
+package br.com.objectos.cnab;
 
-import br.com.objectos.flat.FlatRecord;
-import br.com.objectos.flat.IntegerOption;
-import br.com.objectos.flat.pojo.Fill;
-import br.com.objectos.flat.pojo.Fixed;
-import br.com.objectos.flat.pojo.IntegerFormat;
-import br.com.objectos.pojo.Pojo;
+import br.com.objectos.flat.CustomFormatter;
+import br.com.objectos.flat.FlatWriter;
 
 /**
  * @author marcio.endo@objectos.com.br (Marcio Endo)
  */
-@Pojo
-public abstract class RemessaItauTrailer implements FlatRecord {
+class CarteiraItauCodigoFormatter implements CustomFormatter<CarteiraItau> {
 
-  @Fixed("9")
-  abstract String id();
-
-  @Fill(character = ' ', length = 393)
-  abstract String brancos();
-
-  @IntegerFormat(length = 6, options = { IntegerOption.ZEROFILL })
-  public abstract int seq();
-
-  RemessaItauTrailer() {
+  @Override
+  public CarteiraItau parse(String arg0) {
+    return null;
   }
 
-  public static RemessaItauTrailerBuilder builder() {
-    return new RemessaItauTrailerBuilderPojo();
+  @Override
+  public FlatWriter write(FlatWriter writer, CarteiraItau value, int length) {
+    return writer.fixed(value.codigo);
   }
 
 }
