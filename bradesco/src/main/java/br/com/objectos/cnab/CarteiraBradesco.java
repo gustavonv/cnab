@@ -13,30 +13,30 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  */
-package br.com.objectos.cnab.bradesco;
+package br.com.objectos.cnab;
 
-import java.util.List;
-
-import br.com.objectos.flat.FlatContainer;
-import br.com.objectos.pojo.Pojo;
+import br.com.objectos.flat.FlatEnum;
 
 /**
  * @author marcio.endo@objectos.com.br (Marcio Endo)
  */
-@Pojo
-public abstract class Remessa implements FlatContainer {
+public enum CarteiraBradesco implements FlatEnum {
 
-  abstract RemessaHeader header();
+  COBRANCA_SIMPLES_COM_REGISTRO("009");
 
-  abstract List<RemessaTransacaoTipo1> transacaoList();
+  private final String value;
 
-  abstract RemessaTrailer trailer();
-
-  Remessa() {
+  private CarteiraBradesco(String value) {
+    this.value = value;
   }
 
-  public static RemessaBuilder builder() {
-    return new RemessaBuilderPojo();
+  public static CarteiraBradesco of(Carteira carteira) {
+    return CarteiraBradesco.valueOf(carteira.name());
+  }
+
+  @Override
+  public String flatValue() {
+    return value;
   }
 
 }

@@ -13,7 +13,7 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  */
-package br.com.objectos.cnab.bradesco;
+package br.com.objectos.cnab;
 
 import br.com.objectos.flat.CustomFormatter;
 import br.com.objectos.flat.FlatWriter;
@@ -21,15 +21,15 @@ import br.com.objectos.flat.FlatWriter;
 /**
  * @author marcio.endo@objectos.com.br (Marcio Endo)
  */
-class SacadorAvalistaFormatter implements CustomFormatter<SacadorAvalista> {
+class SacadorAvalistaBradescoFormatter implements CustomFormatter<SacadorAvalistaBradesco> {
 
   @Override
-  public SacadorAvalista parse(String text) {
+  public SacadorAvalistaBradesco parse(String text) {
     return null;
   }
 
   @Override
-  public FlatWriter write(FlatWriter writer, SacadorAvalista value, int length) {
+  public FlatWriter write(FlatWriter writer, SacadorAvalistaBradesco value, int length) {
     return value.write(writer, length);
   }
 

@@ -13,43 +13,25 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  */
-package br.com.objectos.cnab.bradesco;
+package br.com.objectos.cnab;
 
 import br.com.objectos.flat.FlatEnum;
-import br.com.objectos.jabuticava.CadastroRFB;
-import br.com.objectos.jabuticava.TipoDeCadastroRFB;
 
 /**
- * @author marcos.piazzolla@objectos.com.br (Marcos Piazzolla)
+ * @author marcio.endo@objectos.com.br (Marcio Endo)
  */
-public enum TipoSacadoBradesco implements FlatEnum {
+public enum EnderecamentoDebitoAutomatico implements FlatEnum {
 
-  CPF("01"),
+  EMITE_AVISO("1"),
 
-  CNPJ("02"),
+  NAO_EMITE_AVISO("2"),
 
-  PIS_PASEP("03"),
+  CADASTRO_CONSTANTE(" ");
 
-  NAO_TEM("98"),
+  private final String value;
 
-  OUTROS("99");
-
-  private String value;
-
-  private TipoSacadoBradesco(String value) {
+  private EnderecamentoDebitoAutomatico(String value) {
     this.value = value;
-  }
-
-  public static TipoSacadoBradesco valueOf(CadastroRFB cadastro) {
-    TipoDeCadastroRFB tipo = cadastro.getTipo();
-    switch (tipo) {
-    case CPF:
-      return CPF;
-    case CNPJ:
-      return CNPJ;
-    default:
-      return OUTROS;
-    }
   }
 
   @Override

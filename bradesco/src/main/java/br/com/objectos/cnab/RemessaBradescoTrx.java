@@ -13,15 +13,11 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  */
-package br.com.objectos.cnab.bradesco;
+package br.com.objectos.cnab;
 
 import java.time.LocalDate;
 import java.util.Optional;
 
-import br.com.objectos.cnab.CadastroRfbFormatter;
-import br.com.objectos.cnab.CepFormatter;
-import br.com.objectos.cnab.Comando;
-import br.com.objectos.cnab.Especie;
 import br.com.objectos.flat.DecimalOption;
 import br.com.objectos.flat.FlatRecord;
 import br.com.objectos.flat.IntegerOption;
@@ -48,7 +44,7 @@ import br.com.objectos.pojo.Pojo;
  * @author marcio.endo@objectos.com.br (Marcio Endo)
  */
 @Pojo
-public abstract class RemessaTransacaoTipo1 implements FlatRecord {
+public abstract class RemessaBradescoTrx implements FlatRecord {
 
   @Fixed("1")
   abstract String id();
@@ -193,17 +189,17 @@ public abstract class RemessaTransacaoTipo1 implements FlatRecord {
   @CustomFormat(length = 8, formatter = CepFormatter.class)
   abstract Cep cep();
 
-  @CustomFormat(length = 60, formatter = SacadorAvalistaFormatter.class)
-  abstract SacadorAvalista sacadorAvalista();
+  @CustomFormat(length = 60, formatter = SacadorAvalistaBradescoFormatter.class)
+  abstract SacadorAvalistaBradesco sacadorAvalista();
 
   @IntegerFormat(length = 6, options = IntegerOption.ZEROFILL)
   abstract int numeroSequencialDoRegistro();
 
-  RemessaTransacaoTipo1() {
+  RemessaBradescoTrx() {
   }
 
-  public static RemessaTransacaoTipo1Builder builder() {
-    return new RemessaTransacaoTipo1BuilderPojo();
+  public static RemessaBradescoTrxBuilder builder() {
+    return new RemessaBradescoTrxBuilderPojo();
   }
 
 }

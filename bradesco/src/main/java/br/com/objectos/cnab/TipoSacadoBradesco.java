@@ -1,5 +1,5 @@
 /*
- * Copyright 2016 Objectos, Fábrica de Software LTDA.
+ * Copyright 2012 Objectos, Fábrica de Software LTDA.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -13,26 +13,43 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  */
-package br.com.objectos.cnab.bradesco;
+package br.com.objectos.cnab;
 
-import br.com.objectos.cnab.Carteira;
 import br.com.objectos.flat.FlatEnum;
+import br.com.objectos.jabuticava.CadastroRFB;
+import br.com.objectos.jabuticava.TipoDeCadastroRFB;
 
 /**
- * @author marcio.endo@objectos.com.br (Marcio Endo)
+ * @author marcos.piazzolla@objectos.com.br (Marcos Piazzolla)
  */
-public enum CarteiraBradesco implements FlatEnum {
+public enum TipoSacadoBradesco implements FlatEnum {
 
-  COBRANCA_SIMPLES_COM_REGISTRO("009");
+  CPF("01"),
 
-  private final String value;
+  CNPJ("02"),
 
-  private CarteiraBradesco(String value) {
+  PIS_PASEP("03"),
+
+  NAO_TEM("98"),
+
+  OUTROS("99");
+
+  private String value;
+
+  private TipoSacadoBradesco(String value) {
     this.value = value;
   }
 
-  public static CarteiraBradesco of(Carteira carteira) {
-    return CarteiraBradesco.valueOf(carteira.name());
+  public static TipoSacadoBradesco valueOf(CadastroRFB cadastro) {
+    TipoDeCadastroRFB tipo = cadastro.getTipo();
+    switch (tipo) {
+    case CPF:
+      return CPF;
+    case CNPJ:
+      return CNPJ;
+    default:
+      return OUTROS;
+    }
   }
 
   @Override

@@ -13,7 +13,7 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  */
-package br.com.objectos.cnab.bradesco;
+package br.com.objectos.cnab;
 
 import static br.com.objectos.jabuticava.TipoDeCadastroRFB.CPF;
 
@@ -29,16 +29,16 @@ import br.com.objectos.jabuticava.TipoDeCadastroRFB;
  * @author marcio.endo@objectos.com.br (Marcio Endo)
  */
 @AutoPojo
-public abstract class SacadorAvalista {
+public abstract class SacadorAvalistaBradesco {
 
   abstract CadastroRFB cadastroRfb();
   abstract String nome();
 
-  SacadorAvalista() {
+  SacadorAvalistaBradesco() {
   }
 
-  public static SacadorAvalista of(CadastroRFB cadastroRfb, String nome) {
-    return new SacadorAvalistaPojo(cadastroRfb, nome);
+  public static SacadorAvalistaBradesco of(CadastroRFB cadastroRfb, String nome) {
+    return new SacadorAvalistaBradescoPojo(cadastroRfb, nome);
   }
 
   FlatWriter write(FlatWriter writer, int length) {

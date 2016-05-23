@@ -20,13 +20,6 @@ import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import br.com.objectos.cnab.bradesco.CarteiraBradesco;
-import br.com.objectos.cnab.bradesco.EnderecamentoDebitoAutomatico;
-import br.com.objectos.cnab.bradesco.RemessaHeader;
-import br.com.objectos.cnab.bradesco.RemessaTrailer;
-import br.com.objectos.cnab.bradesco.RemessaTransacaoTipo1;
-import br.com.objectos.cnab.bradesco.SacadorAvalista;
-import br.com.objectos.cnab.bradesco.TipoSacadoBradesco;
 import br.com.objectos.core.lang.Strings;
 import br.com.objectos.flat.FlatWriter;
 import br.com.objectos.jabuticava.CadastroRFB;
@@ -48,17 +41,17 @@ public class Bradesco extends Banco {
 
   @Override
   void writeRemessaTo(Remessa remessa, FlatWriter writer) {
-    br.com.objectos.cnab.bradesco.Remessa container = br.com.objectos.cnab.bradesco.Remessa.builder()
+    RemessaBradesco container = RemessaBradesco.builder()
         .header(header(remessa))
-        .transacaoList(transacaoList(remessa))
+        .trxList(trxList(remessa))
         .trailer(trailer(remessa))
         .build();
     container.writeTo(writer);
   }
 
-  private RemessaHeader header(Remessa remessa) {
+  private RemessaBradescoHeader header(Remessa remessa) {
     Empresa empresa = remessa.empresa();
-    return RemessaHeader.builder()
+    return RemessaBradescoHeader.builder()
         .codigoEmpresa(empresa.codigo())
         .razaoSocial(empresa.razaoSocial())
         .dataArquivo(remessa.data())
@@ -66,7 +59,7 @@ public class Bradesco extends Banco {
         .build();
   }
 
-  private List<RemessaTransacaoTipo1> transacaoList(Remessa remessa) {
+  private List<RemessaBradescoTrx> trxList(Remessa remessa) {
     AtomicInteger autoInc = new AtomicInteger(2);
     return remessa.cobrancaList()
         .stream()
@@ -74,13 +67,13 @@ public class Bradesco extends Banco {
         .collect(Collectors.toList());
   }
 
-  private RemessaTrailer trailer(Remessa remessa) {
-    return RemessaTrailer.builder()
+  private RemessaBradescoTrailer trailer(Remessa remessa) {
+    return RemessaBradescoTrailer.builder()
         .seq(remessa.cobrancaList().size() + 2)
         .build();
   }
 
-  private RemessaTransacaoTipo1 toTransacao(int seq, Cobranca cobranca) {
+  private RemessaBradescoTrx toTransacao(int seq, Cobranca cobranca) {
     Agencia agencia = cobranca.agencia();
     Conta conta = cobranca.conta();
     Titulo titulo = cobranca.titulo();
@@ -107,7 +100,7 @@ public class Bradesco extends Banco {
       break;
     }
 
-    return RemessaTransacaoTipo1.builder()
+    return RemessaBradescoTrx.builder()
         .agenciaCredito(0)
         .agenciaCreditoDigito(0)
         .razaoContaCorrente(0)
@@ -146,7 +139,7 @@ public class Bradesco extends Banco {
         .enderecoDoSacado(endereco(endereco))
         .primeiraMensagem("")
         .cep(endereco.cep())
-        .sacadorAvalista(SacadorAvalista.of(cedente.cadastroRfb(), cedente.nome()))
+        .sacadorAvalista(SacadorAvalistaBradesco.of(cedente.cadastroRfb(), cedente.nome()))
         .numeroSequencialDoRegistro(seq)
         .build();
   }

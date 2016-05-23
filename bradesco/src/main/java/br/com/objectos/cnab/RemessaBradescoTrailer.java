@@ -13,7 +13,7 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  */
-package br.com.objectos.cnab.bradesco;
+package br.com.objectos.cnab;
 
 import br.com.objectos.flat.FlatRecord;
 import br.com.objectos.flat.IntegerOption;
@@ -26,7 +26,7 @@ import br.com.objectos.pojo.Pojo;
  * @author marcio.endo@objectos.com.br (Marcio Endo)
  */
 @Pojo
-public abstract class RemessaTrailer implements FlatRecord {
+public abstract class RemessaBradescoTrailer implements FlatRecord {
 
   @Fixed("9")
   abstract String id();
@@ -37,11 +37,11 @@ public abstract class RemessaTrailer implements FlatRecord {
   @IntegerFormat(length = 6, options = IntegerOption.ZEROFILL)
   abstract int seq();
 
-  RemessaTrailer() {
+  RemessaBradescoTrailer() {
   }
 
-  public static RemessaTrailerBuilder builder() {
-    return new RemessaTrailerBuilderPojo();
+  public static RemessaBradescoTrailerBuilder builder() {
+    return new RemessaBradescoTrailerBuilderPojo();
   }
 
 }

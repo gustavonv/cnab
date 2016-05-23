@@ -1,5 +1,5 @@
 /*
- * Copyright 2012 Objectos, Fábrica de Software LTDA.
+ * Copyright 2016 Objectos, Fábrica de Software LTDA.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -13,30 +13,30 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  */
-package br.com.objectos.cnab.bradesco;
+package br.com.objectos.cnab;
 
-import br.com.objectos.flat.FlatEnum;
+import java.util.List;
+
+import br.com.objectos.flat.FlatContainer;
+import br.com.objectos.pojo.Pojo;
 
 /**
  * @author marcio.endo@objectos.com.br (Marcio Endo)
  */
-public enum EnderecamentoDebitoAutomatico implements FlatEnum {
+@Pojo
+public abstract class RemessaBradesco implements FlatContainer {
 
-  EMITE_AVISO("1"),
+  abstract RemessaBradescoHeader header();
 
-  NAO_EMITE_AVISO("2"),
+  abstract List<RemessaBradescoTrx> trxList();
 
-  CADASTRO_CONSTANTE(" ");
+  abstract RemessaBradescoTrailer trailer();
 
-  private final String value;
-
-  private EnderecamentoDebitoAutomatico(String value) {
-    this.value = value;
+  RemessaBradesco() {
   }
 
-  @Override
-  public String flatValue() {
-    return value;
+  public static RemessaBradescoBuilder builder() {
+    return new RemessaBradescoBuilderPojo();
   }
 
 }
