@@ -30,38 +30,38 @@ import br.com.objectos.jabuticava.cnab.Banco;
 /**
  * @author marcio.endo@objectos.com.br (Marcio Endo)
  */
-public class CnabWget {
+public class CnabRemessaWget {
 
   private final Banco banco;
 
-  private CnabWget(Banco banco) {
+  private CnabRemessaWget(Banco banco) {
     this.banco = banco;
   }
 
-  public static List<CnabAssert> of(Banco banco) {
+  public static List<CnabRemessaAssert> of(Banco banco) {
     try {
-      return new CnabWget(banco).get();
+      return new CnabRemessaWget(banco).get();
     } catch (UnzipException e) {
       return ImmutableList.of();
     }
   }
 
-  private List<CnabAssert> get() throws UnzipException {
-    File file = Wget.url("http://rio.objectos.com.br/test/cnab/" + banco.name() + ".zip")
+  private List<CnabRemessaAssert> get() throws UnzipException {
+    File file = Wget.url("http://rio.objectos.com.br/test/cnab/REMESSA-" + banco.name() + ".zip")
         .timeoutAfterTenSeconds()
         .dateTimeNaming("zip")
         .build()
         .downloadTo(Directory.JAVA_IO_TMPDIR)
         .file();
 
-    Map<String, List<CnabEntry>> map = Unzip.file(file.toFile())
+    Map<String, List<CnabRemessaEntry>> map = Unzip.file(file.toFile())
         .orderedEntryStream()
-        .map(CnabEntry::of)
-        .collect(Collectors.groupingBy(CnabEntry::id));
+        .map(CnabRemessaEntry::of)
+        .collect(Collectors.groupingBy(CnabRemessaEntry::id));
 
     return map.entrySet()
         .stream()
-        .map(e -> CnabAssert.of(banco, e))
+        .map(e -> CnabRemessaAssert.of(banco, e))
         .collect(Collectors.toList());
   }
 

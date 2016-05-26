@@ -23,26 +23,26 @@ import org.testng.annotations.Test;
 /**
  * @author marcio.endo@objectos.com.br (Marcio Endo)
  */
-public class ItauTest {
+public class RemessaTest {
 
-  private List<CnabAssert> cnabList;
+  private List<CnabRemessaAssert> cnabList;
 
   @BeforeClass
   public void setUp() {
-    cnabList = CnabWget.of(br.com.objectos.jabuticava.cnab.Banco.ITAU);
+    cnabList = CnabRemessaWget.of(br.com.objectos.jabuticava.cnab.Banco.ITAU);
   }
 
   @Test(groups = "rio")
   public void itau() {
     Itau itau = Itau.instance();
-    for (CnabAssert cnab : cnabList) {
+    for (CnabRemessaAssert cnab : cnabList) {
       cnab.verifyRemessa(itau);
     }
   }
 
   @Test(groups = "rio")
   public void cnabLegacy() {
-    for (CnabAssert cnab : cnabList) {
+    for (CnabRemessaAssert cnab : cnabList) {
       cnab.verifyTestingRemessa();
     }
   }

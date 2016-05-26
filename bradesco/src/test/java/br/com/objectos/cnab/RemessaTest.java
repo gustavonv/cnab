@@ -23,26 +23,26 @@ import org.testng.annotations.Test;
 /**
  * @author marcio.endo@objectos.com.br (Marcio Endo)
  */
-public class BradescoTest {
+public class RemessaTest {
 
-  private List<CnabAssert> cnabList;
+  private List<CnabRemessaAssert> cnabList;
 
   @BeforeClass
   public void setUp() {
-    cnabList = CnabWget.of(br.com.objectos.jabuticava.cnab.Banco.BRADESCO);
+    cnabList = CnabRemessaWget.of(br.com.objectos.jabuticava.cnab.Banco.BRADESCO);
   }
 
   @Test(groups = "rio")
   public void bradesco() {
     Bradesco bradesco = Bradesco.instance();
-    for (CnabAssert cnab : cnabList) {
+    for (CnabRemessaAssert cnab : cnabList) {
       cnab.verifyRemessa(bradesco);
     }
   }
 
   @Test(groups = "rio")
   public void cnabLegacy() {
-    for (CnabAssert cnab : cnabList) {
+    for (CnabRemessaAssert cnab : cnabList) {
       cnab.verifyTestingRemessa();
     }
   }
