@@ -16,6 +16,7 @@
 package br.com.objectos.cnab;
 
 import br.com.objectos.flat.CustomFormatter;
+import br.com.objectos.flat.FlatEnumParser;
 import br.com.objectos.flat.FlatWriter;
 
 /**
@@ -25,12 +26,25 @@ class InscricaoEmpresaBradescoFormatter implements CustomFormatter<InscricaoEmpr
 
   @Override
   public InscricaoEmpresaBradesco parse(String text) {
-    return null;
+    TipoInscricaoEmpresaBradesco tipo = parseTipo(text);
+    long value = parseValue(text);
+    return tipo.parse(value);
   }
 
   @Override
   public FlatWriter write(FlatWriter writer, InscricaoEmpresaBradesco value, int length) {
-    return null;
+    return value.write(writer);
+  }
+
+  private TipoInscricaoEmpresaBradesco parseTipo(String text) {
+    FlatEnumParser<TipoInscricaoEmpresaBradesco> parser = FlatEnumParser.of(TipoInscricaoEmpresaBradesco.class);
+    String key = text.substring(0, 2);
+    return parser.parse(key);
+  }
+
+  private long parseValue(String text) {
+    String valueText = text.substring(2);
+    return Long.parseLong(valueText, 10);
   }
 
 }

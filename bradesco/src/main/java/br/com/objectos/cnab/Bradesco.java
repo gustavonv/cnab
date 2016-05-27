@@ -40,6 +40,11 @@ public class Bradesco extends Banco {
   }
 
   @Override
+  public RetornoBradesco read(String txt) {
+    return RetornoBradesco.read(txt);
+  }
+
+  @Override
   void writeRemessaTo(Remessa remessa, FlatWriter writer) {
     RemessaBradesco container = RemessaBradesco.builder()
         .header(header(remessa))

@@ -15,11 +15,13 @@
  */
 package br.com.objectos.cnab;
 
+import br.com.objectos.flat.DecimalFormat;
+import br.com.objectos.flat.DecimalOption;
+import br.com.objectos.flat.Fill;
+import br.com.objectos.flat.Fixed;
 import br.com.objectos.flat.FlatRecord;
-import br.com.objectos.flat.pojo.DecimalFormat;
-import br.com.objectos.flat.pojo.Fill;
-import br.com.objectos.flat.pojo.Fixed;
-import br.com.objectos.flat.pojo.IntegerFormat;
+import br.com.objectos.flat.IntegerFormat;
+import br.com.objectos.flat.IntegerOption;
 import br.com.objectos.pojo.Pojo;
 
 /**
@@ -43,76 +45,76 @@ public abstract class RetornoBradescoTrailer implements FlatRecord {
   @Fill(character = ' ', length = 10)
   abstract String brancos();
 
-  @IntegerFormat(length = 8)
+  @IntegerFormat(length = 8, options = { IntegerOption.ZEROFILL })
   public abstract int quantidadeTotal();
 
-  @DecimalFormat(scale = 14, precision = 2)
+  @DecimalFormat(precision = 14, scale = 2, options = { DecimalOption.ZEROFILL })
   public abstract double valorTotal();
 
-  @IntegerFormat(length = 8)
+  @IntegerFormat(length = 8, options = { IntegerOption.ZEROFILL })
   public abstract int numeroAvisoBancario();
 
   @Fill(character = ' ', length = 10)
   abstract String brancos1();
 
-  @IntegerFormat(length = 5)
+  @IntegerFormat(length = 5, options = { IntegerOption.ZEROFILL })
   public abstract int quantidadeEntradaConfirmada();
 
-  @DecimalFormat(scale = 12, precision = 2)
+  @DecimalFormat(precision = 12, scale = 2, options = { DecimalOption.ZEROFILL })
   public abstract double valorEntradaConfirmada();
 
-  @DecimalFormat(scale = 12, precision = 2)
+  @DecimalFormat(precision = 12, scale = 2, options = { DecimalOption.ZEROFILL })
   abstract double valorLiquidacao2();
 
-  @IntegerFormat(length = 5)
+  @IntegerFormat(length = 5, options = { IntegerOption.ZEROFILL })
   public abstract int quantidadeLiquidacao();
 
-  @DecimalFormat(scale = 12, precision = 2)
+  @DecimalFormat(precision = 12, scale = 2, options = { DecimalOption.ZEROFILL })
   public abstract double valorLiquidacao();
 
-  @IntegerFormat(length = 5)
+  @IntegerFormat(length = 5, options = { IntegerOption.ZEROFILL })
   public abstract int quantidadeBaixa();
 
-  @DecimalFormat(scale = 12, precision = 2)
+  @DecimalFormat(precision = 12, scale = 2, options = { DecimalOption.ZEROFILL })
   public abstract double valorBaixa();
 
-  @IntegerFormat(length = 5)
+  @IntegerFormat(length = 5, options = { IntegerOption.ZEROFILL })
   public abstract int quantidadeAbatimentoCancelado();
 
-  @DecimalFormat(scale = 12, precision = 2)
+  @DecimalFormat(precision = 12, scale = 2, options = { DecimalOption.ZEROFILL })
   public abstract double valorAbatimentoCancelado();
 
-  @IntegerFormat(length = 5)
+  @IntegerFormat(length = 5, options = { IntegerOption.ZEROFILL })
   public abstract int quantidadeVencimentoAlterado();
 
-  @DecimalFormat(scale = 12, precision = 2)
+  @DecimalFormat(precision = 12, scale = 2, options = { DecimalOption.ZEROFILL })
   public abstract double valorVencimentoAlterado();
 
-  @IntegerFormat(length = 5)
+  @IntegerFormat(length = 5, options = { IntegerOption.ZEROFILL })
   public abstract int quantidadeAbatimentoConcedido();
 
-  @DecimalFormat(scale = 12, precision = 2)
+  @DecimalFormat(precision = 12, scale = 2, options = { DecimalOption.ZEROFILL })
   public abstract double valorAbatimentoConcedido();
 
-  @IntegerFormat(length = 5)
+  @IntegerFormat(length = 5, options = { IntegerOption.ZEROFILL })
   public abstract int quantidadeProtesto();
 
-  @DecimalFormat(scale = 12, precision = 2)
+  @DecimalFormat(precision = 12, scale = 2, options = { DecimalOption.ZEROFILL })
   public abstract double valorProtesto();
 
   @Fill(character = ' ', length = 174)
   abstract String brancos2();
 
-  @DecimalFormat(scale = 15, precision = 2)
+  @DecimalFormat(precision = 15, scale = 2, options = { DecimalOption.ZEROFILL })
   public abstract double valorRateio();
 
-  @IntegerFormat(length = 8)
+  @IntegerFormat(length = 8, options = { IntegerOption.ZEROFILL })
   public abstract int quantidadeRateio();
 
   @Fill(character = ' ', length = 9)
   abstract String brancos3();
 
-  @IntegerFormat(length = 6)
+  @IntegerFormat(length = 6, options = { IntegerOption.ZEROFILL })
   public abstract int seq();
 
   RetornoBradescoTrailer() {

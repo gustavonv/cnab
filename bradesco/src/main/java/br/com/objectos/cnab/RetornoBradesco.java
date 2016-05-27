@@ -15,33 +15,34 @@
  */
 package br.com.objectos.cnab;
 
-import br.com.objectos.flat.Fill;
-import br.com.objectos.flat.Fixed;
-import br.com.objectos.flat.FlatRecord;
-import br.com.objectos.flat.IntegerFormat;
-import br.com.objectos.flat.IntegerOption;
+import java.util.List;
+
+import br.com.objectos.flat.FlatReader;
 import br.com.objectos.pojo.Pojo;
 
 /**
  * @author marcio.endo@objectos.com.br (Marcio Endo)
  */
 @Pojo
-public abstract class RemessaBradescoTrailer implements FlatRecord {
+public abstract class RetornoBradesco implements Retorno {
 
-  @Fixed("9")
-  abstract String id();
+  public abstract RetornoBradescoHeader header();
 
-  @Fill(character = ' ', length = 393)
-  abstract String branco();
+  public abstract List<RetornoBradescoTrx> trxList();
 
-  @IntegerFormat(length = 6, options = IntegerOption.ZEROFILL)
-  abstract int seq();
+  public abstract RetornoBradescoTrailer trailer();
 
-  RemessaBradescoTrailer() {
+  RetornoBradesco() {
   }
 
-  public static RemessaBradescoTrailerBuilder builder() {
-    return new RemessaBradescoTrailerBuilderPojo();
+  public static RetornoBradescoBuilder builder() {
+    return new RetornoBradescoBuilderPojo();
+  }
+
+  public static RetornoBradesco read(String txt) {
+    try (FlatReader reader = FlatReader.ofString(txt)) {
+      return RetornoBradescoPojo.readFrom(reader);
+    }
   }
 
 }

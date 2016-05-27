@@ -15,9 +15,62 @@
  */
 package br.com.objectos.cnab;
 
+import br.com.objectos.auto.AutoPojo;
+import br.com.objectos.flat.FlatWriter;
+import br.com.objectos.flat.LongOption;
+import br.com.objectos.jabuticava.CadastroRFB;
+
 /**
  * @author marcio.endo@objectos.com.br (Marcio Endo)
  */
-public class InscricaoEmpresaBradesco {
+@AutoPojo
+public abstract class InscricaoEmpresaBradesco {
+
+  public abstract TipoInscricaoEmpresaBradesco tipo();
+  public abstract CadastroRFB cadastroRfb();
+
+  InscricaoEmpresaBradesco() {
+  }
+
+  static InscricaoEmpresaBradesco of(TipoInscricaoEmpresaBradesco tipo) {
+    return new SomenteTipo(tipo);
+  }
+
+  static InscricaoEmpresaBradesco of(TipoInscricaoEmpresaBradesco tipo, CadastroRFB cadastroRfb) {
+    return new InscricaoEmpresaBradescoPojo(tipo, cadastroRfb);
+  }
+
+  FlatWriter write(FlatWriter writer) {
+    return writer.flatEnum(tipo(), 2).longValue(cadastroRfbValue(), 14, LongOption.ZEROFILL);
+  }
+
+  long cadastroRfbValue() {
+    return cadastroRfb().longValue();
+  }
+
+  private static class SomenteTipo extends InscricaoEmpresaBradesco {
+
+    private final TipoInscricaoEmpresaBradesco tipo;
+
+    public SomenteTipo(TipoInscricaoEmpresaBradesco tipo) {
+      this.tipo = tipo;
+    }
+
+    @Override
+    public TipoInscricaoEmpresaBradesco tipo() {
+      return tipo;
+    }
+
+    @Override
+    public CadastroRFB cadastroRfb() {
+      throw new UnsupportedOperationException();
+    }
+
+    @Override
+    long cadastroRfbValue() {
+      return 0;
+    }
+
+  }
 
 }

@@ -15,33 +15,11 @@
  */
 package br.com.objectos.cnab;
 
-import br.com.objectos.flat.Fill;
-import br.com.objectos.flat.Fixed;
-import br.com.objectos.flat.FlatRecord;
-import br.com.objectos.flat.IntegerFormat;
-import br.com.objectos.flat.IntegerOption;
-import br.com.objectos.pojo.Pojo;
+import br.com.objectos.flat.FlatContainer;
 
 /**
  * @author marcio.endo@objectos.com.br (Marcio Endo)
  */
-@Pojo
-public abstract class RemessaBradescoTrailer implements FlatRecord {
-
-  @Fixed("9")
-  abstract String id();
-
-  @Fill(character = ' ', length = 393)
-  abstract String branco();
-
-  @IntegerFormat(length = 6, options = IntegerOption.ZEROFILL)
-  abstract int seq();
-
-  RemessaBradescoTrailer() {
-  }
-
-  public static RemessaBradescoTrailerBuilder builder() {
-    return new RemessaBradescoTrailerBuilderPojo();
-  }
+public interface Retorno extends FlatContainer {
 
 }

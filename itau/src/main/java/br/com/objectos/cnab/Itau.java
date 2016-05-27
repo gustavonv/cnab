@@ -36,6 +36,11 @@ public class Itau extends Banco {
   }
 
   @Override
+  public Retorno read(String txt) {
+    throw new UnsupportedOperationException();
+  }
+
+  @Override
   void writeRemessaTo(Remessa remessa, FlatWriter writer) {
     RemessaItau remessaItau = RemessaItau.builder()
         .header(header(remessa))

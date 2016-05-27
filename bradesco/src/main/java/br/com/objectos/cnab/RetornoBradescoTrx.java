@@ -16,22 +16,22 @@
 package br.com.objectos.cnab;
 
 import java.time.LocalDate;
+import java.util.Optional;
 
+import br.com.objectos.flat.BooleanFormat;
+import br.com.objectos.flat.CustomFormat;
+import br.com.objectos.flat.DecimalFormat;
 import br.com.objectos.flat.DecimalOption;
+import br.com.objectos.flat.Fill;
+import br.com.objectos.flat.Fixed;
+import br.com.objectos.flat.FlatEnumFormat;
 import br.com.objectos.flat.FlatRecord;
+import br.com.objectos.flat.IntegerFormat;
 import br.com.objectos.flat.IntegerOption;
+import br.com.objectos.flat.LocalDateFormat;
 import br.com.objectos.flat.LocalDatePattern;
-import br.com.objectos.flat.LongOption;
-import br.com.objectos.flat.pojo.BooleanFormat;
-import br.com.objectos.flat.pojo.CustomFormat;
-import br.com.objectos.flat.pojo.DecimalFormat;
-import br.com.objectos.flat.pojo.Fill;
-import br.com.objectos.flat.pojo.Fixed;
-import br.com.objectos.flat.pojo.FlatEnumFormat;
-import br.com.objectos.flat.pojo.IntegerFormat;
-import br.com.objectos.flat.pojo.LocalDateFormat;
-import br.com.objectos.flat.pojo.LongFormat;
-import br.com.objectos.flat.pojo.Text;
+import br.com.objectos.flat.Text;
+import br.com.objectos.flat.WhenZero;
 import br.com.objectos.pojo.Pojo;
 
 /**
@@ -70,8 +70,8 @@ public abstract class RetornoBradescoTrx implements FlatRecord {
   @Fill(character = '0', length = 8)
   abstract String zero1();
 
-  @LongFormat(length = 12, options = LongOption.ZEROFILL)
-  public abstract long nossoNumero();
+  @Text(length = 12)
+  public abstract String nossoNumero();
 
   @Fill(character = '0', length = 10)
   abstract String zero2();
@@ -85,8 +85,8 @@ public abstract class RetornoBradescoTrx implements FlatRecord {
   @Fill(character = '0', length = 2)
   abstract String zero4();
 
-  @Fixed("0")
-  abstract String carteira1();
+  @CustomFormat(length = 1, formatter = CarteiraBradescoCodigoFormatter.class)
+  abstract CarteiraBradesco carteiraCodigo();
 
   @IntegerFormat(length = 2, options = { IntegerOption.ZEROFILL })
   public abstract int ocorrencia();
@@ -97,11 +97,11 @@ public abstract class RetornoBradescoTrx implements FlatRecord {
   @Text(length = 10)
   public abstract String numero();
 
-  @LongFormat(length = 12, options = LongOption.ZEROFILL)
-  public abstract long nossoNumero2();
+  @Text(length = 20)
+  public abstract String nossoNumero2();
 
-  @LocalDateFormat(LocalDatePattern.DDMMYY)
-  public abstract LocalDate vencimento();
+  @CustomFormat(length = 6, formatter = LocalDateBradescoFormatter.class)
+  public abstract Optional<LocalDate> vencimento();
 
   @DecimalFormat(precision = 13, scale = 2, options = { DecimalOption.ZEROFILL })
   public abstract double valorNominal();
@@ -112,8 +112,8 @@ public abstract class RetornoBradescoTrx implements FlatRecord {
   @IntegerFormat(length = 5, options = { IntegerOption.ZEROFILL })
   public abstract int agenciaCobradora();
 
-  @FlatEnumFormat(length = 2)
-  public abstract Especie especie();
+  @Text(length = 2)
+  abstract String especie();
 
   @DecimalFormat(precision = 13, scale = 2, options = { DecimalOption.ZEROFILL })
   public abstract double valorDespesa();
@@ -142,14 +142,14 @@ public abstract class RetornoBradescoTrx implements FlatRecord {
   @Fill(character = '0', length = 13)
   abstract String outrosCreditos();
 
-  @Fill(character = ' ', length = 2)
+  @Text(length = 2)
   abstract String brancos();
 
   @Text(length = 1)
   public abstract String motivoProtesto();
 
-  @LocalDateFormat(LocalDatePattern.DDMMYY)
-  public abstract LocalDate dataCredito();
+  @CustomFormat(length = 6, formatter = LocalDateBradescoFormatter.class)
+  public abstract Optional<LocalDate> dataCredito();
 
   @Text(length = 3)
   public abstract String origemPagamento();
@@ -167,6 +167,7 @@ public abstract class RetornoBradescoTrx implements FlatRecord {
   abstract String brancos2();
 
   @IntegerFormat(length = 2, options = { IntegerOption.ZEROFILL })
+  @WhenZero("  ")
   public abstract int numeroCartorio();
 
   @Text(length = 10)
