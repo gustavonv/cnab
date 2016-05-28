@@ -26,7 +26,7 @@ import br.com.objectos.pojo.Pojo;
  * @author marcio.endo@objectos.com.br (Marcio Endo)
  */
 @Pojo
-public abstract class RemessaItauTrailer implements FlatRecord {
+public abstract class TrailerRemessaItau implements FlatRecord {
 
   @Fixed("9")
   abstract String id();
@@ -37,11 +37,11 @@ public abstract class RemessaItauTrailer implements FlatRecord {
   @IntegerFormat(length = 6, options = { IntegerOption.ZEROFILL })
   public abstract int seq();
 
-  RemessaItauTrailer() {
+  TrailerRemessaItau() {
   }
 
-  public static RemessaItauTrailerBuilder builder() {
-    return new RemessaItauTrailerBuilderPojo();
+  public static TrailerRemessaItauBuilder builder() {
+    return new TrailerRemessaItauBuilderPojo();
   }
 
 }

@@ -50,11 +50,11 @@ public class Itau extends Banco {
     remessaItau.writeTo(writer);
   }
 
-  private RemessaItauHeader header(Remessa remessa) {
+  private HeaderRemessaItau header(Remessa remessa) {
     Agencia agencia = remessa.agencia();
     Conta conta = remessa.conta();
     Empresa empresa = remessa.empresa();
-    return RemessaItauHeader.builder()
+    return HeaderRemessaItau.builder()
         .agencia(agencia.numero())
         .conta(conta.numero())
         .contaDigito(conta.digito())
@@ -63,7 +63,7 @@ public class Itau extends Banco {
         .build();
   }
 
-  private List<RemessaItauTrx> trxList(Remessa remessa) {
+  private List<TrxRemessaItau> trxList(Remessa remessa) {
     AtomicInteger autoInc = new AtomicInteger(2);
     Empresa empresa = remessa.empresa();
     return remessa.cobrancaList()
@@ -72,13 +72,13 @@ public class Itau extends Banco {
         .collect(Collectors.toList());
   }
 
-  private RemessaItauTrailer trailer(Remessa remessa) {
-    return RemessaItauTrailer.builder()
+  private TrailerRemessaItau trailer(Remessa remessa) {
+    return TrailerRemessaItau.builder()
         .seq(remessa.cobrancaList().size() + 2)
         .build();
   }
 
-  private RemessaItauTrx toTrx(int seq, Empresa empresa, Cobranca cobranca) {
+  private TrxRemessaItau toTrx(int seq, Empresa empresa, Cobranca cobranca) {
     Titulo titulo = cobranca.titulo();
     InscricaoItau inscricao = InscricaoItau.of(empresa, titulo);
 
@@ -97,7 +97,7 @@ public class Itau extends Banco {
     Sacado sacado = titulo.sacado();
     Endereco endereco = sacado.endereco();
 
-    return RemessaItauTrx.builder()
+    return TrxRemessaItau.builder()
         .tipoInscricaoEmpresa(inscricao.tipo)
         .numeroInscricaoEmpresa(inscricao.cadastroRfb)
         .agencia(agencia.numero())

@@ -45,7 +45,7 @@ import br.com.objectos.pojo.Pojo;
  * @author marcio.endo@objectos.com.br (Marcio Endo)
  */
 @Pojo
-public abstract class RemessaItauTrx implements FlatRecord {
+public abstract class TrxRemessaItau implements FlatRecord {
 
   @Fixed("1")
   abstract String id();
@@ -186,11 +186,11 @@ public abstract class RemessaItauTrx implements FlatRecord {
   @IntegerFormat(length = 6, options = { IntegerOption.ZEROFILL })
   public abstract int seq();
 
-  RemessaItauTrx() {
+  TrxRemessaItau() {
   }
 
-  public static RemessaItauTrxBuilder builder() {
-    return new RemessaItauTrxBuilderPojo();
+  public static TrxRemessaItauBuilder builder() {
+    return new TrxRemessaItauBuilderPojo();
   }
 
 }

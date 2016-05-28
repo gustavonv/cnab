@@ -31,7 +31,7 @@ import br.com.objectos.pojo.Pojo;
  * @author marcio.endo@objectos.com.br (Marcio Endo)
  */
 @Pojo
-public abstract class RetornoItauHeader implements FlatRecord {
+public abstract class HeaderRetornoItau implements FlatRecord {
 
   @Fixed("0")
   abstract String id();
@@ -93,11 +93,11 @@ public abstract class RetornoItauHeader implements FlatRecord {
   @Fixed("000001")
   abstract String seq();
 
-  RetornoItauHeader() {
+  HeaderRetornoItau() {
   }
 
-  public static RetornoItauHeaderBuilder builder() {
-    return new RetornoItauHeaderBuilderPojo();
+  public static HeaderRetornoItauBuilder builder() {
+    return new HeaderRetornoItauBuilderPojo();
   }
 
 }
