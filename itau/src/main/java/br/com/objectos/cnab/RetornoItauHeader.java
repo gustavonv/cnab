@@ -31,16 +31,16 @@ import br.com.objectos.pojo.Pojo;
  * @author marcio.endo@objectos.com.br (Marcio Endo)
  */
 @Pojo
-public abstract class RemessaItauHeader implements FlatRecord {
+public abstract class RetornoItauHeader implements FlatRecord {
 
   @Fixed("0")
   abstract String id();
 
-  @Fixed("1")
-  abstract String operacao();
+  @Fixed("2")
+  abstract String idRetorno();
 
-  @Fixed("REMESSA")
-  abstract String literalRemessa();
+  @Fixed("RETORNO")
+  abstract String literalRetorno();
 
   @Fixed("01")
   abstract String codigoServico();
@@ -48,13 +48,13 @@ public abstract class RemessaItauHeader implements FlatRecord {
   @Fixed("COBRANCA       ")
   abstract String literalServico();
 
-  @IntegerFormat(length = 4, options = IntegerOption.ZEROFILL)
+  @IntegerFormat(length = 4, options = { IntegerOption.ZEROFILL })
   public abstract int agencia();
 
-  @Fixed("00")
+  @Fill(character = '0', length = 2)
   abstract String zeros();
 
-  @IntegerFormat(length = 5, options = IntegerOption.ZEROFILL)
+  @IntegerFormat(length = 5, options = { IntegerOption.ZEROFILL })
   public abstract int conta();
 
   @IntegerFormat(length = 1)
@@ -64,28 +64,40 @@ public abstract class RemessaItauHeader implements FlatRecord {
   abstract String brancos();
 
   @Text(length = 30)
-  abstract String nomeEmpresa();
+  public abstract String razaoSocial();
 
   @Fixed("341")
-  abstract String codigoBanco();
+  abstract String codigoItau();
 
   @Fixed("BANCO ITAU SA  ")
-  abstract String nomeBanco();
+  abstract String nomeItau();
 
   @LocalDateFormat(LocalDatePattern.DDMMYY)
-  public abstract LocalDate dataGeracao();
+  public abstract LocalDate dataArquivo();
 
-  @Fill(character = ' ', length = 294)
-  abstract String complementoRegistro();
+  @Fixed("     ")
+  abstract String densidadeGravacao();
+
+  @Fixed("BPI")
+  abstract String densidadeUnidade();
+
+  @IntegerFormat(length = 5, options = { IntegerOption.ZEROFILL })
+  public abstract int numeroAvisoBancario();
+
+  @LocalDateFormat(LocalDatePattern.DDMMYY)
+  public abstract LocalDate dataCredito();
+
+  @Fill(character = ' ', length = 275)
+  abstract String brancos1();
 
   @Fixed("000001")
   abstract String seq();
 
-  RemessaItauHeader() {
+  RetornoItauHeader() {
   }
 
-  public static RemessaItauHeaderBuilder builder() {
-    return new RemessaItauHeaderBuilderPojo();
+  public static RetornoItauHeaderBuilder builder() {
+    return new RetornoItauHeaderBuilderPojo();
   }
 
 }

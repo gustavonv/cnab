@@ -15,11 +15,11 @@
  */
 package br.com.objectos.cnab;
 
+import br.com.objectos.flat.Fill;
+import br.com.objectos.flat.Fixed;
 import br.com.objectos.flat.FlatRecord;
+import br.com.objectos.flat.IntegerFormat;
 import br.com.objectos.flat.IntegerOption;
-import br.com.objectos.flat.pojo.Fill;
-import br.com.objectos.flat.pojo.Fixed;
-import br.com.objectos.flat.pojo.IntegerFormat;
 import br.com.objectos.pojo.Pojo;
 
 /**
