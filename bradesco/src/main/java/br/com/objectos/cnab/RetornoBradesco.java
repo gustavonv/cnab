@@ -26,11 +26,11 @@ import br.com.objectos.pojo.Pojo;
 @Pojo
 public abstract class RetornoBradesco implements Retorno {
 
-  public abstract RetornoBradescoHeader header();
+  public abstract HeaderRetornoBradesco header();
 
-  public abstract List<RetornoBradescoTrx> trxList();
+  public abstract List<TrxRetornoBradesco> trxList();
 
-  public abstract RetornoBradescoTrailer trailer();
+  public abstract TrailerRetornoBradesco trailer();
 
   RetornoBradesco() {
   }

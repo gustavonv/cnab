@@ -54,9 +54,9 @@ public class Bradesco extends Banco {
     container.writeTo(writer);
   }
 
-  private RemessaBradescoHeader header(Remessa remessa) {
+  private HeaderRemessaBradesco header(Remessa remessa) {
     Empresa empresa = remessa.empresa();
-    return RemessaBradescoHeader.builder()
+    return HeaderRemessaBradesco.builder()
         .codigoEmpresa(empresa.codigo())
         .razaoSocial(empresa.razaoSocial())
         .dataArquivo(remessa.data())
@@ -64,7 +64,7 @@ public class Bradesco extends Banco {
         .build();
   }
 
-  private List<RemessaBradescoTrx> trxList(Remessa remessa) {
+  private List<TrxRemessaBradesco> trxList(Remessa remessa) {
     AtomicInteger autoInc = new AtomicInteger(2);
     return remessa.cobrancaList()
         .stream()
@@ -72,13 +72,13 @@ public class Bradesco extends Banco {
         .collect(Collectors.toList());
   }
 
-  private RemessaBradescoTrailer trailer(Remessa remessa) {
-    return RemessaBradescoTrailer.builder()
+  private TrailerRemessaBradesco trailer(Remessa remessa) {
+    return TrailerRemessaBradesco.builder()
         .seq(remessa.cobrancaList().size() + 2)
         .build();
   }
 
-  private RemessaBradescoTrx toTransacao(int seq, Cobranca cobranca) {
+  private TrxRemessaBradesco toTransacao(int seq, Cobranca cobranca) {
     Agencia agencia = cobranca.agencia();
     Conta conta = cobranca.conta();
     Titulo titulo = cobranca.titulo();
@@ -105,7 +105,7 @@ public class Bradesco extends Banco {
       break;
     }
 
-    return RemessaBradescoTrx.builder()
+    return TrxRemessaBradesco.builder()
         .agenciaCredito(0)
         .agenciaCreditoDigito(0)
         .razaoContaCorrente(0)

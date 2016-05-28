@@ -33,7 +33,7 @@ import br.com.objectos.pojo.Pojo;
  * @author marcio.endo@objectos.com.br (Marcio Endo)
  */
 @Pojo
-public abstract class RetornoBradescoHeader implements FlatRecord {
+public abstract class HeaderRetornoBradesco implements FlatRecord {
 
   @Fixed("0")
   abstract String id();
@@ -83,11 +83,11 @@ public abstract class RetornoBradescoHeader implements FlatRecord {
   @Fixed("000001")
   abstract String seq();
 
-  RetornoBradescoHeader() {
+  HeaderRetornoBradesco() {
   }
 
-  public static RetornoBradescoHeaderBuilder builder() {
-    return new RetornoBradescoHeaderBuilderPojo();
+  public static HeaderRetornoBradescoBuilder builder() {
+    return new HeaderRetornoBradescoBuilderPojo();
   }
 
 }

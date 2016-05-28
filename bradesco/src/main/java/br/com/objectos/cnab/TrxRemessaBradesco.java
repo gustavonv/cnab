@@ -44,7 +44,7 @@ import br.com.objectos.pojo.Pojo;
  * @author marcio.endo@objectos.com.br (Marcio Endo)
  */
 @Pojo
-public abstract class RemessaBradescoTrx implements FlatRecord {
+public abstract class TrxRemessaBradesco implements FlatRecord {
 
   @Fixed("1")
   abstract String id();
@@ -195,11 +195,11 @@ public abstract class RemessaBradescoTrx implements FlatRecord {
   @IntegerFormat(length = 6, options = IntegerOption.ZEROFILL)
   abstract int numeroSequencialDoRegistro();
 
-  RemessaBradescoTrx() {
+  TrxRemessaBradesco() {
   }
 
-  public static RemessaBradescoTrxBuilder builder() {
-    return new RemessaBradescoTrxBuilderPojo();
+  public static TrxRemessaBradescoBuilder builder() {
+    return new TrxRemessaBradescoBuilderPojo();
   }
 
 }

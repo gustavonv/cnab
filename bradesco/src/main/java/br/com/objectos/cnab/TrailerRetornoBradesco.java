@@ -28,7 +28,7 @@ import br.com.objectos.pojo.Pojo;
  * @author marcio.endo@objectos.com.br (Marcio Endo)
  */
 @Pojo
-public abstract class RetornoBradescoTrailer implements FlatRecord {
+public abstract class TrailerRetornoBradesco implements FlatRecord {
 
   @Fixed("9")
   abstract String id();
@@ -117,11 +117,11 @@ public abstract class RetornoBradescoTrailer implements FlatRecord {
   @IntegerFormat(length = 6, options = { IntegerOption.ZEROFILL })
   public abstract int seq();
 
-  RetornoBradescoTrailer() {
+  TrailerRetornoBradesco() {
   }
 
-  public static RetornoBradescoTrailerBuilder builder() {
-    return new RetornoBradescoTrailerBuilderPojo();
+  public static TrailerRetornoBradescoBuilder builder() {
+    return new TrailerRetornoBradescoBuilderPojo();
   }
 
 }
