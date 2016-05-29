@@ -23,7 +23,9 @@ import java.util.Map;
  */
 public enum CarteiraItau {
 
-  COBRANCA_SIMPLES_COM_REGISTRO("I", 112);
+  COBRANCA_SIMPLES_COM_REGISTRO("I", 112),
+
+  DESCONHECIDA(" ", 157);
 
   private static final Map<String, CarteiraItau> CODIGO_MAP;
   private static final Map<Integer, CarteiraItau> NUMERO_MAP;

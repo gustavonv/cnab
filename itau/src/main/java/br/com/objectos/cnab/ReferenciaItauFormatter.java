@@ -18,22 +18,20 @@ package br.com.objectos.cnab;
 import br.com.objectos.flat.CustomFormatter;
 import br.com.objectos.flat.FlatReader;
 import br.com.objectos.flat.FlatWriter;
-import br.com.objectos.jabuticava.Estado;
 
 /**
  * @author marcio.endo@objectos.com.br (Marcio Endo)
  */
-public class EstadoCoreFormatter implements CustomFormatter<Estado> {
+class ReferenciaItauFormatter implements CustomFormatter<String> {
 
   @Override
-  public Estado parse(FlatReader reader, int length) {
-    String text = reader.text(length);
-    return Estado.valueOf(text);
+  public String parse(FlatReader reader, int length) {
+    return reader.raw(length);
   }
 
   @Override
-  public FlatWriter write(FlatWriter writer, int length, Estado estado) {
-    return writer.fixed(estado.name());
+  public FlatWriter write(FlatWriter writer, int length, String value) {
+    return writer.fixed(value);
   }
 
 }

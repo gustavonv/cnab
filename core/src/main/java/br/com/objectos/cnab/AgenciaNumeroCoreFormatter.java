@@ -26,16 +26,14 @@ import br.com.objectos.flat.IntegerOption;
 public class AgenciaNumeroCoreFormatter implements CustomFormatter<Agencia> {
 
   @Override
-  public Agencia parse(String text) {
-    try (FlatReader reader = FlatReader.ofString(text)) {
-      int numero = reader.integer(4);
-      return Agencia.of(numero);
-    }
+  public Agencia parse(FlatReader reader, int length) {
+    int numero = reader.integer(length);
+    return Agencia.of(numero);
   }
 
   @Override
-  public FlatWriter write(FlatWriter writer, Agencia value, int length) {
-    return writer.integer(value.numero(), 4, IntegerOption.ZEROFILL);
+  public FlatWriter write(FlatWriter writer, int length, Agencia value) {
+    return writer.integer(value.numero(), length, IntegerOption.ZEROFILL);
   }
 
 }

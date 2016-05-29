@@ -15,6 +15,7 @@
  */
 package br.com.objectos.cnab;
 
+import br.com.objectos.flat.CustomFormat;
 import br.com.objectos.flat.DecimalFormat;
 import br.com.objectos.flat.DecimalOption;
 import br.com.objectos.flat.Fill;
@@ -48,11 +49,11 @@ public abstract class TrailerRetornoItau implements FlatRecord {
   @IntegerFormat(length = 8, options = { IntegerOption.ZEROFILL })
   public abstract int quantidadeCobrancaSimples();
 
-  @DecimalFormat(precision = 12, scale = 2, options = { DecimalOption.ZEROFILL })
+  @DecimalFormat(precision = 14, scale = 2, options = { DecimalOption.ZEROFILL })
   public abstract double valorCobrancaSimples();
 
-  @IntegerFormat(length = 8, options = { IntegerOption.ZEROFILL })
-  public abstract int referenciaCobrancaSimples();
+  @CustomFormat(length = 8, formatter = ReferenciaItauFormatter.class)
+  public abstract String referenciaCobrancaSimples();
 
   @Fill(character = ' ', length = 10)
   abstract String brancos1();
@@ -60,23 +61,29 @@ public abstract class TrailerRetornoItau implements FlatRecord {
   @IntegerFormat(length = 8, options = { IntegerOption.ZEROFILL })
   public abstract int quantidadeCobrancaVinculada();
 
-  @DecimalFormat(precision = 12, scale = 2, options = { DecimalOption.ZEROFILL })
+  @DecimalFormat(precision = 14, scale = 2, options = { DecimalOption.ZEROFILL })
   public abstract double valorCobrancaVinculada();
 
-  @IntegerFormat(length = 8, options = { IntegerOption.ZEROFILL })
-  public abstract int referenciaCobrancaVinculada();
+  @CustomFormat(length = 8, formatter = ReferenciaItauFormatter.class)
+  public abstract String referenciaCobrancaVinculada();
 
-  @Fill(character = ' ', length = 90)
+  @Fill(character = ' ', length = 50)
   abstract String brancos2();
+
+  @Fill(character = '0', length = 30)
+  abstract String zeros();
+
+  @Fill(character = ' ', length = 10)
+  abstract String brancos3();
 
   @IntegerFormat(length = 8, options = { IntegerOption.ZEROFILL })
   public abstract int quantidadeCobranca();
 
-  @DecimalFormat(precision = 12, scale = 2, options = { DecimalOption.ZEROFILL })
+  @DecimalFormat(precision = 14, scale = 2, options = { DecimalOption.ZEROFILL })
   public abstract double valorCobranca();
 
-  @IntegerFormat(length = 8, options = { IntegerOption.ZEROFILL })
-  public abstract int referenciaCobranca();
+  @CustomFormat(length = 8, formatter = ReferenciaItauFormatter.class)
+  public abstract String referenciaCobranca();
 
   @IntegerFormat(length = 5, options = { IntegerOption.ZEROFILL })
   public abstract int numeroSeqArquivoRetorno();
@@ -84,11 +91,11 @@ public abstract class TrailerRetornoItau implements FlatRecord {
   @IntegerFormat(length = 8, options = { IntegerOption.ZEROFILL })
   public abstract int quantidadeTotal();
 
-  @DecimalFormat(precision = 12, scale = 2, options = { DecimalOption.ZEROFILL })
+  @DecimalFormat(precision = 14, scale = 2, options = { DecimalOption.ZEROFILL })
   public abstract double valorTotal();
 
   @Fill(character = ' ', length = 160)
-  abstract String brancos3();
+  abstract String brancos4();
 
   @IntegerFormat(length = 6, options = { IntegerOption.ZEROFILL })
   public abstract int seq();

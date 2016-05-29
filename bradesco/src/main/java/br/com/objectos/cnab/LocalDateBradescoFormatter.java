@@ -19,6 +19,7 @@ import java.time.LocalDate;
 import java.util.Optional;
 
 import br.com.objectos.flat.CustomFormatter;
+import br.com.objectos.flat.FlatReader;
 import br.com.objectos.flat.FlatWriter;
 import br.com.objectos.flat.LocalDatePattern;
 
@@ -30,7 +31,8 @@ class LocalDateBradescoFormatter implements CustomFormatter<Optional<LocalDate>>
   private static final Optional<LocalDate> A_VISTA = Optional.of(LocalDate.of(9999, 1, 1));
 
   @Override
-  public Optional<LocalDate> parse(String text) {
+  public Optional<LocalDate> parse(FlatReader reader, int length) {
+    String text = reader.text(length);
     return "".equals(text)
         ? Optional.empty()
         : "000000".equals(text)
@@ -39,7 +41,7 @@ class LocalDateBradescoFormatter implements CustomFormatter<Optional<LocalDate>>
   }
 
   @Override
-  public FlatWriter write(FlatWriter writer, Optional<LocalDate> value, int length) {
+  public FlatWriter write(FlatWriter writer, int length, Optional<LocalDate> value) {
     return value.equals(A_VISTA)
         ? writer.fixed("000000")
         : writer.localDate(value, LocalDatePattern.DDMMYY, "      ");

@@ -16,6 +16,7 @@
 package br.com.objectos.cnab;
 
 import br.com.objectos.flat.CustomFormatter;
+import br.com.objectos.flat.FlatReader;
 import br.com.objectos.flat.FlatWriter;
 import br.com.objectos.flat.LongOption;
 import br.com.objectos.jabuticava.CadastroRFB;
@@ -28,15 +29,16 @@ import br.com.objectos.jabuticava.Cpf;
 public class CadastroRfbCoreFormatter implements CustomFormatter<CadastroRFB> {
 
   @Override
-  public CadastroRFB parse(String text) {
-    Long longValue = Long.valueOf(text, 10);
+  public CadastroRFB parse(FlatReader reader, int length) {
+    String text = reader.text(length);
+    long longValue = Long.parseLong(text, 10);
     return text.startsWith("000")
         ? Cpf.valueOf(longValue)
         : Cnpj.valueOf(longValue);
   }
 
   @Override
-  public FlatWriter write(FlatWriter writer, CadastroRFB value, int length) {
+  public FlatWriter write(FlatWriter writer, int length, CadastroRFB value) {
     return writer.longValue(value.longValue(), length, LongOption.ZEROFILL);
   }
 

@@ -15,25 +15,34 @@
  */
 package br.com.objectos.cnab;
 
-import br.com.objectos.flat.CustomFormatter;
+import java.util.List;
+
 import br.com.objectos.flat.FlatReader;
-import br.com.objectos.flat.FlatWriter;
-import br.com.objectos.jabuticava.Estado;
+import br.com.objectos.pojo.Pojo;
 
 /**
  * @author marcio.endo@objectos.com.br (Marcio Endo)
  */
-public class EstadoCoreFormatter implements CustomFormatter<Estado> {
+@Pojo
+public abstract class RetornoItau implements Retorno {
 
-  @Override
-  public Estado parse(FlatReader reader, int length) {
-    String text = reader.text(length);
-    return Estado.valueOf(text);
+  public abstract HeaderRetornoItau header();
+
+  public abstract List<TrxRetornoItau> trxList();
+
+  public abstract TrailerRetornoItau trailer();
+
+  RetornoItau() {
   }
 
-  @Override
-  public FlatWriter write(FlatWriter writer, int length, Estado estado) {
-    return writer.fixed(estado.name());
+  public static RetornoItauBuilder builder() {
+    return new RetornoItauBuilderPojo();
+  }
+
+  public static RetornoItau read(String txt) {
+    try (FlatReader reader = FlatReader.ofString(txt)) {
+      return RetornoItauPojo.readFrom(reader);
+    }
   }
 
 }

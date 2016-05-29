@@ -16,6 +16,7 @@
 package br.com.objectos.cnab;
 
 import br.com.objectos.flat.CustomFormatter;
+import br.com.objectos.flat.FlatReader;
 import br.com.objectos.flat.FlatWriter;
 
 /**
@@ -24,12 +25,13 @@ import br.com.objectos.flat.FlatWriter;
 class CarteiraBradescoCodigoFormatter implements CustomFormatter<CarteiraBradesco> {
 
   @Override
-  public CarteiraBradesco parse(String text) {
+  public CarteiraBradesco parse(FlatReader reader, int length) {
+    String text = reader.text(length);
     return CarteiraBradesco.parse(text);
   }
 
   @Override
-  public FlatWriter write(FlatWriter writer, CarteiraBradesco value, int length) {
+  public FlatWriter write(FlatWriter writer, int length, CarteiraBradesco value) {
     return writer.fixed(value.codigo());
   }
 

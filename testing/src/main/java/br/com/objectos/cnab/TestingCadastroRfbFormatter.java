@@ -18,6 +18,7 @@ package br.com.objectos.cnab;
 import java.util.function.LongFunction;
 
 import br.com.objectos.flat.CustomFormatter;
+import br.com.objectos.flat.FlatReader;
 import br.com.objectos.flat.FlatWriter;
 import br.com.objectos.flat.LongOption;
 import br.com.objectos.jabuticava.CadastroRFB;
@@ -36,14 +37,15 @@ class TestingCadastroRfbFormatter implements CustomFormatter<CadastroRFB> {
   }
 
   @Override
-  public CadastroRFB parse(String text) {
+  public CadastroRFB parse(FlatReader reader, int length) {
+    String text = reader.text(length);
     return text.startsWith("F")
         ? parse0(text, Cpf::valueOf)
         : parse0(text, Cnpj::valueOf);
   }
 
   @Override
-  public FlatWriter write(FlatWriter writer, CadastroRFB value, int length) {
+  public FlatWriter write(FlatWriter writer, int length, CadastroRFB value) {
     return value instanceof Cnpj
         ? write(writer, "J", value.longValue())
         : write(writer, "F", value.longValue());

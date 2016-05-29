@@ -16,6 +16,7 @@
 package br.com.objectos.cnab;
 
 import br.com.objectos.flat.CustomFormatter;
+import br.com.objectos.flat.FlatReader;
 import br.com.objectos.flat.FlatWriter;
 import br.com.objectos.flat.IntegerOption;
 import br.com.objectos.jabuticava.Cep;
@@ -26,12 +27,13 @@ import br.com.objectos.jabuticava.Cep;
 public class CepCoreFormatter implements CustomFormatter<Cep> {
 
   @Override
-  public Cep parse(String text) {
+  public Cep parse(FlatReader reader, int length) {
+    String text = reader.text(length);
     return Cep.valueOf(text);
   }
 
   @Override
-  public FlatWriter write(FlatWriter writer, Cep value, int length) {
+  public FlatWriter write(FlatWriter writer, int length, Cep value) {
     return writer
         .integer(value.getPrefixo(), 5, IntegerOption.ZEROFILL)
         .integer(value.getSufixo(), 3, IntegerOption.ZEROFILL);

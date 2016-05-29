@@ -37,7 +37,7 @@ public class Itau extends Banco {
 
   @Override
   public Retorno read(String txt) {
-    throw new UnsupportedOperationException();
+    return RetornoItau.read(txt);
   }
 
   @Override

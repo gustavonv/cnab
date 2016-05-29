@@ -16,6 +16,7 @@
 package br.com.objectos.cnab;
 
 import java.time.LocalDate;
+import java.util.Optional;
 
 import br.com.objectos.flat.BooleanFormat;
 import br.com.objectos.flat.CustomFormat;
@@ -30,6 +31,7 @@ import br.com.objectos.flat.LocalDateFormat;
 import br.com.objectos.flat.LocalDatePattern;
 import br.com.objectos.flat.Text;
 import br.com.objectos.flat.TextOption;
+import br.com.objectos.flat.WhenAbsent;
 import br.com.objectos.jabuticava.CadastroRFB;
 import br.com.objectos.pojo.Pojo;
 
@@ -45,7 +47,7 @@ public abstract class TrxRetornoItau implements FlatRecord {
   @CustomFormat(length = 16, formatter = CadastroRfbItauFormatter.class)
   public abstract CadastroRFB cadastroRfb();
 
-  @CustomFormat(length = 4, formatter = AgenciaCoreFormatter.class)
+  @CustomFormat(length = 4, formatter = AgenciaNumeroCoreFormatter.class)
   public abstract Agencia agencia();
 
   @Fixed("00")
@@ -96,8 +98,8 @@ public abstract class TrxRetornoItau implements FlatRecord {
   @Fill(character = ' ', length = 12)
   abstract String brancos3();
 
-  @LocalDateFormat(LocalDatePattern.DDMMYY)
-  public abstract LocalDate vencimento();
+  @CustomFormat(length = 6, formatter = VencimentoItauFormatter.class)
+  public abstract Optional<LocalDate> vencimento();
 
   @DecimalFormat(precision = 13, scale = 2, options = { DecimalOption.ZEROFILL })
   public abstract double valorNominal();
@@ -114,7 +116,7 @@ public abstract class TrxRetornoItau implements FlatRecord {
   @DecimalFormat(precision = 13, scale = 2, options = { DecimalOption.ZEROFILL })
   public abstract double valorDespesa();
 
-  @Fill(character = ' ', length = 26)
+  @Fill(character = '0', length = 26)
   abstract String brancos4();
 
   @DecimalFormat(precision = 13, scale = 2, options = { DecimalOption.ZEROFILL })
@@ -135,19 +137,20 @@ public abstract class TrxRetornoItau implements FlatRecord {
   @DecimalFormat(precision = 13, scale = 2, options = { DecimalOption.ZEROFILL })
   public abstract double valorOutrosCreditos();
 
-  @BooleanFormat(trueValue = "1", falseValue = "0")
+  @BooleanFormat(trueValue = "1", falseValue = " ")
   public abstract boolean dda();
 
   @Fill(character = ' ', length = 2)
   abstract String brancos5();
 
   @LocalDateFormat(LocalDatePattern.DDMMYY)
-  public abstract LocalDate dataCredito();
+  @WhenAbsent("      ")
+  public abstract Optional<LocalDate> dataCredito();
 
   @Text(length = 4)
   public abstract String motivo();
 
-  @Fill(character = ' ', length = 6)
+  @Fill(character = '0', length = 6)
   abstract String brancos6();
 
   @Fill(character = '0', length = 13)
@@ -165,8 +168,8 @@ public abstract class TrxRetornoItau implements FlatRecord {
   @Fill(character = ' ', length = 7)
   abstract String brancos8();
 
-  @IntegerFormat(length = 2, options = { IntegerOption.ZEROFILL })
-  public abstract int codigoLiquidacao();
+  @Text(length = 2)
+  public abstract String codigoLiquidacao();
 
   @IntegerFormat(length = 6, options = { IntegerOption.ZEROFILL })
   public abstract int seq();

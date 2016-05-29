@@ -16,6 +16,7 @@
 package br.com.objectos.cnab;
 
 import br.com.objectos.flat.CustomFormatter;
+import br.com.objectos.flat.FlatReader;
 import br.com.objectos.flat.FlatWriter;
 
 /**
@@ -24,12 +25,12 @@ import br.com.objectos.flat.FlatWriter;
 class SacadorAvalistaBradescoFormatter implements CustomFormatter<SacadorAvalistaBradesco> {
 
   @Override
-  public SacadorAvalistaBradesco parse(String text) {
+  public SacadorAvalistaBradesco parse(FlatReader reader, int length) {
     return null;
   }
 
   @Override
-  public FlatWriter write(FlatWriter writer, SacadorAvalistaBradesco value, int length) {
+  public FlatWriter write(FlatWriter writer, int length, SacadorAvalistaBradesco value) {
     return value.write(writer, length);
   }
 

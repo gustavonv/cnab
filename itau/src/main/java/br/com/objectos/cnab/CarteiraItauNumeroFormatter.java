@@ -16,6 +16,7 @@
 package br.com.objectos.cnab;
 
 import br.com.objectos.flat.CustomFormatter;
+import br.com.objectos.flat.FlatReader;
 import br.com.objectos.flat.FlatWriter;
 import br.com.objectos.flat.IntegerOption;
 
@@ -25,14 +26,19 @@ import br.com.objectos.flat.IntegerOption;
 class CarteiraItauNumeroFormatter implements CustomFormatter<CarteiraItau> {
 
   @Override
-  public CarteiraItau parse(String text) {
-    int numero = Integer.parseInt(text);
-    return CarteiraItau.fromNumero(numero);
+  public CarteiraItau parse(FlatReader reader, int length) {
+    int numero = reader.integer(length);
+    CarteiraItau carteira = CarteiraItau.fromNumero(numero);
+    if (carteira == null) {
+      System.err.println(String.format("numero=%d => Carteira null", numero));
+    }
+    return carteira;
   }
 
   @Override
-  public FlatWriter write(FlatWriter writer, CarteiraItau value, int length) {
-    return writer.integer(value.numero, length, IntegerOption.ZEROFILL);
+  public FlatWriter write(FlatWriter writer, int length, CarteiraItau value) {
+    int numero = value != null ? value.numero : 0;
+    return writer.integer(numero, length, IntegerOption.ZEROFILL);
   }
 
 }

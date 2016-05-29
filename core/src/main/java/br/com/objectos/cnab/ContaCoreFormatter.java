@@ -26,16 +26,14 @@ import br.com.objectos.flat.IntegerOption;
 public class ContaCoreFormatter implements CustomFormatter<Conta> {
 
   @Override
-  public Conta parse(String text) {
-    try (FlatReader reader = FlatReader.ofString(text)) {
-      int numero = reader.integer(5);
-      int digito = reader.integer(1);
-      return Conta.of(numero, digito);
-    }
+  public Conta parse(FlatReader reader, int length) {
+    int numero = reader.integer(5);
+    int digito = reader.integer(1);
+    return Conta.of(numero, digito);
   }
 
   @Override
-  public FlatWriter write(FlatWriter writer, Conta value, int length) {
+  public FlatWriter write(FlatWriter writer, int length, Conta value) {
     return writer
         .integer(value.numero(), 5, IntegerOption.ZEROFILL)
         .integer(value.digito(), 1);

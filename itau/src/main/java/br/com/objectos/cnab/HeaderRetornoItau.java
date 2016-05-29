@@ -69,13 +69,13 @@ public abstract class HeaderRetornoItau implements FlatRecord {
   @Fixed("341")
   abstract String codigoItau();
 
-  @Fixed("BANCO ITAU SA  ")
+  @Fixed("BANCO ITAU S.A.")
   abstract String nomeItau();
 
   @LocalDateFormat(LocalDatePattern.DDMMYY)
   public abstract LocalDate dataArquivo();
 
-  @Fixed("     ")
+  @Fixed("01600")
   abstract String densidadeGravacao();
 
   @Fixed("BPI")
