@@ -174,7 +174,7 @@ public abstract class TrxRemessaBradesco implements FlatRecord {
   @FlatEnumFormat(length = 2)
   abstract TipoSacadoBradesco tipoDeInscricaoDoSacado();
 
-  @CustomFormat(length = 14, formatter = CadastroRfbFormatter.class)
+  @CustomFormat(length = 14, formatter = CadastroRfbCoreFormatter.class)
   abstract CadastroRFB numeroDeInscricaoDoSacado();
 
   @Text(length = 40, options = { TextOption.UPPERCASE, TextOption.STRIP_ACCENTS })
@@ -186,7 +186,7 @@ public abstract class TrxRemessaBradesco implements FlatRecord {
   @Text(length = 12)
   abstract String primeiraMensagem();
 
-  @CustomFormat(length = 8, formatter = CepFormatter.class)
+  @CustomFormat(length = 8, formatter = CepCoreFormatter.class)
   abstract Cep cep();
 
   @CustomFormat(length = 60, formatter = SacadorAvalistaBradescoFormatter.class)

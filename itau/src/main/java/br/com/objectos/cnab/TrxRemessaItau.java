@@ -53,7 +53,7 @@ public abstract class TrxRemessaItau implements FlatRecord {
   @FlatEnumFormat(length = 2)
   public abstract TipoInscricaoItau tipoInscricaoEmpresa();
 
-  @CustomFormat(length = 14, formatter = CadastroRfbFormatter.class)
+  @CustomFormat(length = 14, formatter = CadastroRfbCoreFormatter.class)
   public abstract CadastroRFB numeroInscricaoEmpresa();
 
   @IntegerFormat(length = 4, options = { IntegerOption.ZEROFILL })
@@ -143,7 +143,7 @@ public abstract class TrxRemessaItau implements FlatRecord {
   @DecimalFormat(precision = 13, scale = 2, options = { DecimalOption.ZEROFILL })
   public abstract double valorAbatimento();
 
-  @CustomFormat(length = 16, formatter = InscricaoSacadoFormatter.class)
+  @CustomFormat(length = 16, formatter = CadastroRfbItauFormatter.class)
   public abstract CadastroRFB sacadoInscricao();
 
   @Text(length = 30, options = { TextOption.STRIP_ACCENTS })
@@ -158,13 +158,13 @@ public abstract class TrxRemessaItau implements FlatRecord {
   @Text(length = 12, options = { TextOption.STRIP_ACCENTS })
   public abstract String sacadoBairro();
 
-  @CustomFormat(length = 8, formatter = CepFormatter.class)
+  @CustomFormat(length = 8, formatter = CepCoreFormatter.class)
   public abstract Cep sacadoCep();
 
   @Text(length = 15, options = { TextOption.STRIP_ACCENTS })
   public abstract String sacadoCidade();
 
-  @CustomFormat(length = 2, formatter = EstadoFormatter.class)
+  @CustomFormat(length = 2, formatter = EstadoCoreFormatter.class)
   public abstract Estado sacadoEstado();
 
   @Text(length = 30, options = { TextOption.STRIP_ACCENTS })

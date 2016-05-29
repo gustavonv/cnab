@@ -26,7 +26,8 @@ class CarteiraItauNumeroFormatter implements CustomFormatter<CarteiraItau> {
 
   @Override
   public CarteiraItau parse(String text) {
-    return null;
+    int numero = Integer.parseInt(text);
+    return CarteiraItau.fromNumero(numero);
   }
 
   @Override

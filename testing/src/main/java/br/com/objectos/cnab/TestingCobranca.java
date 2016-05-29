@@ -98,10 +98,10 @@ public abstract class TestingCobranca implements FlatRecord {
   @Text(length = 30)
   abstract String bairro();
 
-  @CustomFormat(length = 2, formatter = EstadoFormatter.class)
+  @CustomFormat(length = 2, formatter = EstadoCoreFormatter.class)
   abstract Estado estado();
 
-  @CustomFormat(length = 8, formatter = CepFormatter.class)
+  @CustomFormat(length = 8, formatter = CepCoreFormatter.class)
   abstract Cep cep();
 
   @LocalDateFormat(LocalDatePattern.YYYYMMDD)

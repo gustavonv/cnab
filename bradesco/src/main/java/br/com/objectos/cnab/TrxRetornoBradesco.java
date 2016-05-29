@@ -140,7 +140,7 @@ public abstract class TrxRetornoBradesco implements FlatRecord {
   public abstract double valorJuros();
 
   @Fill(character = '0', length = 13)
-  abstract String outrosCreditos();
+  abstract String valorOutrosCreditos();
 
   @Text(length = 2)
   abstract String brancos();

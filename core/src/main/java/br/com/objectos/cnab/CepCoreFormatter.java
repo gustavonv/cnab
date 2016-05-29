@@ -23,7 +23,7 @@ import br.com.objectos.jabuticava.Cep;
 /**
  * @author marcio.endo@objectos.com.br (Marcio Endo)
  */
-public class CepFormatter implements CustomFormatter<Cep> {
+public class CepCoreFormatter implements CustomFormatter<Cep> {
 
   @Override
   public Cep parse(String text) {

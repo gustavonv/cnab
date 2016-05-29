@@ -27,7 +27,7 @@ import br.com.objectos.jabuticava.Cpf;
 /**
  * @author marcio.endo@objectos.com.br (Marcio Endo)
  */
-class InscricaoSacadoFormatter implements CustomFormatter<CadastroRFB> {
+class CadastroRfbItauFormatter implements CustomFormatter<CadastroRFB> {
 
   @Override
   public CadastroRFB parse(String text) {

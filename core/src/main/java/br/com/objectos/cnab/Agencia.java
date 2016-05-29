@@ -29,6 +29,10 @@ public abstract class Agencia {
   Agencia() {
   }
 
+  public static Agencia of(int numero) {
+    return of(numero, 0);
+  }
+
   public static Agencia of(int numero, int digito) {
     return new AgenciaPojo(numero, digito);
   }

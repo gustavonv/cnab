@@ -16,21 +16,29 @@
 package br.com.objectos.cnab;
 
 import br.com.objectos.flat.CustomFormatter;
+import br.com.objectos.flat.FlatReader;
 import br.com.objectos.flat.FlatWriter;
+import br.com.objectos.flat.IntegerOption;
 
 /**
  * @author marcio.endo@objectos.com.br (Marcio Endo)
  */
-class CarteiraItauCodigoFormatter implements CustomFormatter<CarteiraItau> {
+public class ContaCoreFormatter implements CustomFormatter<Conta> {
 
   @Override
-  public CarteiraItau parse(String text) {
-    return CarteiraItau.fromCodigo(text);
+  public Conta parse(String text) {
+    try (FlatReader reader = FlatReader.ofString(text)) {
+      int numero = reader.integer(5);
+      int digito = reader.integer(1);
+      return Conta.of(numero, digito);
+    }
   }
 
   @Override
-  public FlatWriter write(FlatWriter writer, CarteiraItau value, int length) {
-    return writer.fixed(value.codigo);
+  public FlatWriter write(FlatWriter writer, Conta value, int length) {
+    return writer
+        .integer(value.numero(), 5, IntegerOption.ZEROFILL)
+        .integer(value.digito(), 1);
   }
 
 }

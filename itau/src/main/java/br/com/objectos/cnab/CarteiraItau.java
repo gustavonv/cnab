@@ -15,12 +15,27 @@
  */
 package br.com.objectos.cnab;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * @author marcio.endo@objectos.com.br (Marcio Endo)
  */
 public enum CarteiraItau {
 
   COBRANCA_SIMPLES_COM_REGISTRO("I", 112);
+
+  private static final Map<String, CarteiraItau> CODIGO_MAP;
+  private static final Map<Integer, CarteiraItau> NUMERO_MAP;
+
+  static {
+    CODIGO_MAP = new HashMap<>();
+    NUMERO_MAP = new HashMap<>();
+    for (CarteiraItau carteira : CarteiraItau.values()) {
+      CODIGO_MAP.put(carteira.codigo, carteira);
+      NUMERO_MAP.put(carteira.numero, carteira);
+    }
+  }
 
   final String codigo;
   final int numero;
@@ -32,6 +47,14 @@ public enum CarteiraItau {
 
   public static CarteiraItau of(Carteira carteira) {
     return CarteiraItau.valueOf(carteira.name());
+  }
+
+  static CarteiraItau fromCodigo(String codigo) {
+    return CODIGO_MAP.get(codigo);
+  }
+
+  static CarteiraItau fromNumero(int numero) {
+    return NUMERO_MAP.get(numero);
   }
 
 }
