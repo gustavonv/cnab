@@ -17,21 +17,21 @@ package br.com.objectos.cnab;
 
 import java.time.LocalDate;
 
+import br.com.objectos.flat.Fill;
+import br.com.objectos.flat.Fixed;
 import br.com.objectos.flat.FlatRecord;
+import br.com.objectos.flat.IntegerFormat;
 import br.com.objectos.flat.IntegerOption;
+import br.com.objectos.flat.LocalDateFormat;
 import br.com.objectos.flat.LocalDatePattern;
-import br.com.objectos.flat.pojo.Fill;
-import br.com.objectos.flat.pojo.Fixed;
-import br.com.objectos.flat.pojo.IntegerFormat;
-import br.com.objectos.flat.pojo.LocalDateFormat;
-import br.com.objectos.flat.pojo.Text;
+import br.com.objectos.flat.Text;
 import br.com.objectos.pojo.Pojo;
 
 /**
  * @author marcio.endo@objectos.com.br (Marcio Endo)
  */
 @Pojo
-public abstract class RemessaItauHeader implements FlatRecord {
+public abstract class HeaderRemessaItau implements FlatRecord {
 
   @Fixed("0")
   abstract String id();
@@ -81,11 +81,11 @@ public abstract class RemessaItauHeader implements FlatRecord {
   @Fixed("000001")
   abstract String seq();
 
-  RemessaItauHeader() {
+  HeaderRemessaItau() {
   }
 
-  public static RemessaItauHeaderBuilder builder() {
-    return new RemessaItauHeaderBuilderPojo();
+  public static HeaderRemessaItauBuilder builder() {
+    return new HeaderRemessaItauBuilderPojo();
   }
 
 }

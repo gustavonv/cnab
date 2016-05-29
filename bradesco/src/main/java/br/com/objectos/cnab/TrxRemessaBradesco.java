@@ -18,24 +18,24 @@ package br.com.objectos.cnab;
 import java.time.LocalDate;
 import java.util.Optional;
 
+import br.com.objectos.flat.BooleanFormat;
+import br.com.objectos.flat.CustomFormat;
+import br.com.objectos.flat.DecimalFormat;
 import br.com.objectos.flat.DecimalOption;
+import br.com.objectos.flat.Fill;
+import br.com.objectos.flat.Fixed;
+import br.com.objectos.flat.FlatEnumFormat;
 import br.com.objectos.flat.FlatRecord;
+import br.com.objectos.flat.IntegerFormat;
 import br.com.objectos.flat.IntegerOption;
+import br.com.objectos.flat.LocalDateFormat;
 import br.com.objectos.flat.LocalDatePattern;
+import br.com.objectos.flat.LongFormat;
 import br.com.objectos.flat.LongOption;
+import br.com.objectos.flat.Text;
 import br.com.objectos.flat.TextOption;
-import br.com.objectos.flat.pojo.BooleanFormat;
-import br.com.objectos.flat.pojo.CustomFormat;
-import br.com.objectos.flat.pojo.DecimalFormat;
-import br.com.objectos.flat.pojo.Fill;
-import br.com.objectos.flat.pojo.Fixed;
-import br.com.objectos.flat.pojo.FlatEnumFormat;
-import br.com.objectos.flat.pojo.IntegerFormat;
-import br.com.objectos.flat.pojo.LocalDateFormat;
-import br.com.objectos.flat.pojo.LongFormat;
-import br.com.objectos.flat.pojo.Text;
-import br.com.objectos.flat.pojo.WhenAbsent;
-import br.com.objectos.flat.pojo.WhenZero;
+import br.com.objectos.flat.WhenAbsent;
+import br.com.objectos.flat.WhenZero;
 import br.com.objectos.jabuticava.CadastroRFB;
 import br.com.objectos.jabuticava.Cep;
 import br.com.objectos.pojo.Pojo;
@@ -44,7 +44,7 @@ import br.com.objectos.pojo.Pojo;
  * @author marcio.endo@objectos.com.br (Marcio Endo)
  */
 @Pojo
-public abstract class RemessaBradescoTrx implements FlatRecord {
+public abstract class TrxRemessaBradesco implements FlatRecord {
 
   @Fixed("1")
   abstract String id();
@@ -174,7 +174,7 @@ public abstract class RemessaBradescoTrx implements FlatRecord {
   @FlatEnumFormat(length = 2)
   abstract TipoSacadoBradesco tipoDeInscricaoDoSacado();
 
-  @CustomFormat(length = 14, formatter = CadastroRfbFormatter.class)
+  @CustomFormat(length = 14, formatter = CadastroRfbCoreFormatter.class)
   abstract CadastroRFB numeroDeInscricaoDoSacado();
 
   @Text(length = 40, options = { TextOption.UPPERCASE, TextOption.STRIP_ACCENTS })
@@ -186,7 +186,7 @@ public abstract class RemessaBradescoTrx implements FlatRecord {
   @Text(length = 12)
   abstract String primeiraMensagem();
 
-  @CustomFormat(length = 8, formatter = CepFormatter.class)
+  @CustomFormat(length = 8, formatter = CepCoreFormatter.class)
   abstract Cep cep();
 
   @CustomFormat(length = 60, formatter = SacadorAvalistaBradescoFormatter.class)
@@ -195,11 +195,11 @@ public abstract class RemessaBradescoTrx implements FlatRecord {
   @IntegerFormat(length = 6, options = IntegerOption.ZEROFILL)
   abstract int numeroSequencialDoRegistro();
 
-  RemessaBradescoTrx() {
+  TrxRemessaBradesco() {
   }
 
-  public static RemessaBradescoTrxBuilder builder() {
-    return new RemessaBradescoTrxBuilderPojo();
+  public static TrxRemessaBradescoBuilder builder() {
+    return new TrxRemessaBradescoBuilderPojo();
   }
 
 }

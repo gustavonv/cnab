@@ -18,18 +18,18 @@ package br.com.objectos.cnab;
 import java.time.LocalDate;
 import java.util.Optional;
 
+import br.com.objectos.flat.BooleanFormat;
+import br.com.objectos.flat.CustomFormat;
+import br.com.objectos.flat.DecimalFormat;
+import br.com.objectos.flat.Fixed;
+import br.com.objectos.flat.FlatEnumFormat;
 import br.com.objectos.flat.FlatRecord;
+import br.com.objectos.flat.IntegerFormat;
+import br.com.objectos.flat.LocalDateFormat;
 import br.com.objectos.flat.LocalDatePattern;
-import br.com.objectos.flat.pojo.BooleanFormat;
-import br.com.objectos.flat.pojo.CustomFormat;
-import br.com.objectos.flat.pojo.DecimalFormat;
-import br.com.objectos.flat.pojo.Fixed;
-import br.com.objectos.flat.pojo.FlatEnumFormat;
-import br.com.objectos.flat.pojo.IntegerFormat;
-import br.com.objectos.flat.pojo.LocalDateFormat;
-import br.com.objectos.flat.pojo.LongFormat;
-import br.com.objectos.flat.pojo.Text;
-import br.com.objectos.flat.pojo.WhenAbsent;
+import br.com.objectos.flat.LongFormat;
+import br.com.objectos.flat.Text;
+import br.com.objectos.flat.WhenAbsent;
 import br.com.objectos.jabuticava.CadastroRFB;
 import br.com.objectos.jabuticava.Cep;
 import br.com.objectos.jabuticava.Estado;
@@ -98,10 +98,10 @@ public abstract class TestingCobranca implements FlatRecord {
   @Text(length = 30)
   abstract String bairro();
 
-  @CustomFormat(length = 2, formatter = EstadoFormatter.class)
+  @CustomFormat(length = 2, formatter = EstadoCoreFormatter.class)
   abstract Estado estado();
 
-  @CustomFormat(length = 8, formatter = CepFormatter.class)
+  @CustomFormat(length = 8, formatter = CepCoreFormatter.class)
   abstract Cep cep();
 
   @LocalDateFormat(LocalDatePattern.YYYYMMDD)

@@ -15,23 +15,36 @@
  */
 package br.com.objectos.cnab;
 
+import java.time.LocalDate;
+import java.util.Optional;
+
 import br.com.objectos.flat.CustomFormatter;
 import br.com.objectos.flat.FlatReader;
 import br.com.objectos.flat.FlatWriter;
+import br.com.objectos.flat.LocalDatePattern;
 
 /**
  * @author marcio.endo@objectos.com.br (Marcio Endo)
  */
-class SacadorAvalistaBradescoFormatter implements CustomFormatter<SacadorAvalistaBradesco> {
+class LocalDateBradescoFormatter implements CustomFormatter<Optional<LocalDate>> {
+
+  private static final Optional<LocalDate> A_VISTA = Optional.of(LocalDate.of(9999, 1, 1));
 
   @Override
-  public SacadorAvalistaBradesco parse(FlatReader reader, int length) {
-    return null;
+  public Optional<LocalDate> parse(FlatReader reader, int length) {
+    String text = reader.text(length);
+    return "".equals(text)
+        ? Optional.empty()
+        : "000000".equals(text)
+            ? A_VISTA
+            : Optional.of(LocalDatePattern.DDMMYY.parse(text));
   }
 
   @Override
-  public FlatWriter write(FlatWriter writer, int length, SacadorAvalistaBradesco value) {
-    return value.write(writer, length);
+  public FlatWriter write(FlatWriter writer, int length, Optional<LocalDate> value) {
+    return value.equals(A_VISTA)
+        ? writer.fixed("000000")
+        : writer.localDate(value, LocalDatePattern.DDMMYY, "      ");
   }
 
 }

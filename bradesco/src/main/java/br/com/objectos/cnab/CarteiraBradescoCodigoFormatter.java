@@ -15,26 +15,24 @@
  */
 package br.com.objectos.cnab;
 
-import br.com.objectos.auto.AutoPojo;
+import br.com.objectos.flat.CustomFormatter;
+import br.com.objectos.flat.FlatReader;
+import br.com.objectos.flat.FlatWriter;
 
 /**
  * @author marcio.endo@objectos.com.br (Marcio Endo)
  */
-@AutoPojo
-public abstract class Agencia {
+class CarteiraBradescoCodigoFormatter implements CustomFormatter<CarteiraBradesco> {
 
-  abstract int numero();
-  abstract int digito();
-
-  Agencia() {
+  @Override
+  public CarteiraBradesco parse(FlatReader reader, int length) {
+    String text = reader.text(length);
+    return CarteiraBradesco.parse(text);
   }
 
-  public static Agencia of(int numero) {
-    return of(numero, 0);
-  }
-
-  public static Agencia of(int numero, int digito) {
-    return new AgenciaPojo(numero, digito);
+  @Override
+  public FlatWriter write(FlatWriter writer, int length, CarteiraBradesco value) {
+    return writer.fixed(value.codigo());
   }
 
 }

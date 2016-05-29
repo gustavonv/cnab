@@ -23,23 +23,23 @@ import java.util.Map;
 /**
  * @author marcio.endo@objectos.com.br (Marcio Endo)
  */
-public class CnabAssert {
+public class CnabRemessaAssert {
 
   private final br.com.objectos.jabuticava.cnab.Banco banco;
   private final String id;
   private final TestingRemessa remessa;
   private final String expectedOutput;
 
-  private CnabAssert(br.com.objectos.jabuticava.cnab.Banco banco, String id, TestingRemessa remessa, String expectedOutput) {
+  private CnabRemessaAssert(br.com.objectos.jabuticava.cnab.Banco banco, String id, TestingRemessa remessa, String expectedOutput) {
     this.banco = banco;
     this.id = id;
     this.remessa = remessa;
     this.expectedOutput = expectedOutput;
   }
 
-  static CnabAssert of(br.com.objectos.jabuticava.cnab.Banco banco, Map.Entry<String, List<CnabEntry>> entry) {
-    List<CnabEntry> valueList = entry.getValue();
-    return new CnabAssert(
+  static CnabRemessaAssert of(br.com.objectos.jabuticava.cnab.Banco banco, Map.Entry<String, List<CnabRemessaEntry>> entry) {
+    List<CnabRemessaEntry> valueList = entry.getValue();
+    return new CnabRemessaAssert(
         banco,
         entry.getKey(),
         valueList.get(1).toTestingRemessa(),

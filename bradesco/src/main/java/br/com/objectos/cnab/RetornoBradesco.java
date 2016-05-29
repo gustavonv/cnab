@@ -15,26 +15,34 @@
  */
 package br.com.objectos.cnab;
 
-import br.com.objectos.flat.CustomFormatter;
-import br.com.objectos.flat.FlatWriter;
-import br.com.objectos.flat.IntegerOption;
-import br.com.objectos.jabuticava.Cep;
+import java.util.List;
+
+import br.com.objectos.flat.FlatReader;
+import br.com.objectos.pojo.Pojo;
 
 /**
  * @author marcio.endo@objectos.com.br (Marcio Endo)
  */
-public class CepFormatter implements CustomFormatter<Cep> {
+@Pojo
+public abstract class RetornoBradesco implements Retorno {
 
-  @Override
-  public Cep parse(String text) {
-    return Cep.valueOf(text);
+  public abstract HeaderRetornoBradesco header();
+
+  public abstract List<TrxRetornoBradesco> trxList();
+
+  public abstract TrailerRetornoBradesco trailer();
+
+  RetornoBradesco() {
   }
 
-  @Override
-  public FlatWriter write(FlatWriter writer, Cep value, int length) {
-    return writer
-        .integer(value.getPrefixo(), 5, IntegerOption.ZEROFILL)
-        .integer(value.getSufixo(), 3, IntegerOption.ZEROFILL);
+  public static RetornoBradescoBuilder builder() {
+    return new RetornoBradescoBuilderPojo();
+  }
+
+  public static RetornoBradesco read(String txt) {
+    try (FlatReader reader = FlatReader.ofString(txt)) {
+      return RetornoBradescoPojo.readFrom(reader);
+    }
   }
 
 }

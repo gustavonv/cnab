@@ -16,22 +16,24 @@
 package br.com.objectos.cnab;
 
 import br.com.objectos.flat.CustomFormatter;
+import br.com.objectos.flat.FlatReader;
 import br.com.objectos.flat.FlatWriter;
-import br.com.objectos.jabuticava.Estado;
+import br.com.objectos.flat.IntegerOption;
 
 /**
  * @author marcio.endo@objectos.com.br (Marcio Endo)
  */
-public class EstadoFormatter implements CustomFormatter<Estado> {
+public class AgenciaNumeroCoreFormatter implements CustomFormatter<Agencia> {
 
   @Override
-  public Estado parse(String text) {
-    return Estado.valueOf(text);
+  public Agencia parse(FlatReader reader, int length) {
+    int numero = reader.integer(length);
+    return Agencia.of(numero);
   }
 
   @Override
-  public FlatWriter write(FlatWriter writer, Estado estado, int length) {
-    return writer.fixed(estado.name());
+  public FlatWriter write(FlatWriter writer, int length, Agencia value) {
+    return writer.integer(value.numero(), length, IntegerOption.ZEROFILL);
   }
 
 }

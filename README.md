@@ -4,37 +4,28 @@ Arquivos de retorno e remessa (CNAB / Febraban) para Java (&trade;). Simples.
 
 ## Bancos
 
-`o7cnab` implementa o padrão CNAB 400 da Febrabran para os seguintes bancos:
+objectos::cnab implementa o padrão CNAB 400 da Febrabran para os seguintes bancos:
 
 - Bradesco
 - Itaú
 
-## Can Haz Code?
+## Migração
 
-### Retorno
+A API está sendo migrada para utilizar [objectos::flat](https://github.com/objectos/flat).
 
-A utilização é bem simples:
+Adicionalmente, documentação para todos os projetos está sendo preparada.
 
-```java
-File file = // abrir um retorno BRADESCO, por exemplo.
-Retorno retorno = WayCnab.retornoDe(file);
-
-List<Lote> lotes = retorno.getLotes();
-for (Lote lote : lotes) {
-  // look ma!!! type safe!!!
-  LocalDate vencimento = lote.get(Bradesco.lote().dataDeVencimento()); 
-}
-```
+Até lá, muito vai mudar...
 
 ## Maven
 
-`o7cnab` está na central Maven.
+objectos::cnab está na central Maven.
 
 ```xml
 <dependency>
     <groupId>br.com.objectos.cnab</groupId>
-    <artifactId>cnab</artifactId>
-    <version>0.2.0</version>
+    <artifactId>[banco]</artifactId>
+    <version>0.4.0</version>
 </dependency>
 ```
 

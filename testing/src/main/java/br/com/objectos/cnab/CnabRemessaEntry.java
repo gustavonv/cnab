@@ -22,21 +22,21 @@ import br.com.objectos.core.util.zip.UnzipEntry;
 /**
  * @author marcio.endo@objectos.com.br (Marcio Endo)
  */
-class CnabEntry {
+class CnabRemessaEntry {
 
   private final Type type;
   private final String id;
   final UnzipEntry entry;
 
-  private CnabEntry(Type type, String id, UnzipEntry entry) {
+  private CnabRemessaEntry(Type type, String id, UnzipEntry entry) {
     this.type = type;
     this.id = id;
     this.entry = entry;
   }
 
-  public static CnabEntry of(UnzipEntry entry) {
+  public static CnabRemessaEntry of(UnzipEntry entry) {
     String entryName = entry.name();
-    return new CnabEntry(
+    return new CnabRemessaEntry(
         entryName.endsWith(".TXT") ? Type.TESTING : Type.CNAB,
         entryName.substring(0, entryName.indexOf('.')),
         entry);

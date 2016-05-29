@@ -25,6 +25,8 @@ public abstract class Banco {
   Banco() {
   }
 
+  public abstract Retorno read(String txt);
+
   public final String toString(Remessa remessa) {
     StringBuilder str = new StringBuilder();
     try (FlatWriter writer = FlatWriter.of(str).withLineSeparator("\r\n")) {

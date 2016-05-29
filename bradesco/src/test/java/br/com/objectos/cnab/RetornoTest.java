@@ -15,7 +15,10 @@
  */
 package br.com.objectos.cnab;
 
+import static br.com.objectos.assertion.ListAssertion.assertThat;
+
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
@@ -23,28 +26,27 @@ import org.testng.annotations.Test;
 /**
  * @author marcio.endo@objectos.com.br (Marcio Endo)
  */
-public class BradescoTest {
+public class RetornoTest {
 
-  private List<CnabAssert> cnabList;
+  private List<CnabRetornoAssert> cnabList;
 
   @BeforeClass
   public void setUp() {
-    cnabList = CnabWget.of(br.com.objectos.jabuticava.cnab.Banco.BRADESCO);
+    cnabList = CnabRetornoWget.of(br.com.objectos.jabuticava.cnab.Banco.BRADESCO);
   }
 
   @Test(groups = "rio")
-  public void bradesco() {
+  public void bradesco() throws Throwable {
     Bradesco bradesco = Bradesco.instance();
-    for (CnabAssert cnab : cnabList) {
-      cnab.verifyRemessa(bradesco);
+    List<CnabRetornoResult> resultList = cnabList.stream()
+        .map(cnab -> cnab.verifyRetorno(bradesco))
+        .filter(CnabRetornoResult::hasFailed)
+        .collect(Collectors.toList());
+    for (CnabRetornoResult result : resultList) {
+      // result.propagate();
+      result.print();
     }
-  }
-
-  @Test(groups = "rio")
-  public void cnabLegacy() {
-    for (CnabAssert cnab : cnabList) {
-      cnab.verifyTestingRemessa();
-    }
+    assertThat(resultList).hasSize(0);
   }
 
 }

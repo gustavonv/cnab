@@ -15,26 +15,36 @@
  */
 package br.com.objectos.cnab;
 
-import br.com.objectos.auto.AutoPojo;
+import java.util.List;
+
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Test;
 
 /**
  * @author marcio.endo@objectos.com.br (Marcio Endo)
  */
-@AutoPojo
-public abstract class Agencia {
+public class RemessaTest {
 
-  abstract int numero();
-  abstract int digito();
+  private List<CnabRemessaAssert> cnabList;
 
-  Agencia() {
+  @BeforeClass
+  public void setUp() {
+    cnabList = CnabRemessaWget.of(br.com.objectos.jabuticava.cnab.Banco.BRADESCO);
   }
 
-  public static Agencia of(int numero) {
-    return of(numero, 0);
+  @Test(groups = "rio")
+  public void bradesco() {
+    Bradesco bradesco = Bradesco.instance();
+    for (CnabRemessaAssert cnab : cnabList) {
+      cnab.verifyRemessa(bradesco);
+    }
   }
 
-  public static Agencia of(int numero, int digito) {
-    return new AgenciaPojo(numero, digito);
+  @Test(groups = "rio")
+  public void cnabLegacy() {
+    for (CnabRemessaAssert cnab : cnabList) {
+      cnab.verifyTestingRemessa();
+    }
   }
 
 }

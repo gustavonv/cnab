@@ -15,33 +15,23 @@
  */
 package br.com.objectos.cnab;
 
-import br.com.objectos.flat.FlatRecord;
-import br.com.objectos.flat.IntegerOption;
-import br.com.objectos.flat.pojo.Fill;
-import br.com.objectos.flat.pojo.Fixed;
-import br.com.objectos.flat.pojo.IntegerFormat;
-import br.com.objectos.pojo.Pojo;
+import br.com.objectos.flat.CustomFormatter;
+import br.com.objectos.flat.FlatReader;
+import br.com.objectos.flat.FlatWriter;
 
 /**
  * @author marcio.endo@objectos.com.br (Marcio Endo)
  */
-@Pojo
-public abstract class RemessaItauTrailer implements FlatRecord {
+class ReferenciaItauFormatter implements CustomFormatter<String> {
 
-  @Fixed("9")
-  abstract String id();
-
-  @Fill(character = ' ', length = 393)
-  abstract String brancos();
-
-  @IntegerFormat(length = 6, options = { IntegerOption.ZEROFILL })
-  public abstract int seq();
-
-  RemessaItauTrailer() {
+  @Override
+  public String parse(FlatReader reader, int length) {
+    return reader.raw(length);
   }
 
-  public static RemessaItauTrailerBuilder builder() {
-    return new RemessaItauTrailerBuilderPojo();
+  @Override
+  public FlatWriter write(FlatWriter writer, int length, String value) {
+    return writer.fixed(value);
   }
 
 }

@@ -15,26 +15,34 @@
  */
 package br.com.objectos.cnab;
 
-import br.com.objectos.auto.AutoPojo;
+import java.util.List;
+
+import br.com.objectos.flat.FlatReader;
+import br.com.objectos.pojo.Pojo;
 
 /**
  * @author marcio.endo@objectos.com.br (Marcio Endo)
  */
-@AutoPojo
-public abstract class Agencia {
+@Pojo
+public abstract class RetornoItau implements Retorno {
 
-  abstract int numero();
-  abstract int digito();
+  public abstract HeaderRetornoItau header();
 
-  Agencia() {
+  public abstract List<TrxRetornoItau> trxList();
+
+  public abstract TrailerRetornoItau trailer();
+
+  RetornoItau() {
   }
 
-  public static Agencia of(int numero) {
-    return of(numero, 0);
+  public static RetornoItauBuilder builder() {
+    return new RetornoItauBuilderPojo();
   }
 
-  public static Agencia of(int numero, int digito) {
-    return new AgenciaPojo(numero, digito);
+  public static RetornoItau read(String txt) {
+    try (FlatReader reader = FlatReader.ofString(txt)) {
+      return RetornoItauPojo.readFrom(reader);
+    }
   }
 
 }

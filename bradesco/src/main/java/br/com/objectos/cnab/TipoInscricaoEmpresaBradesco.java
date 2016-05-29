@@ -15,36 +15,41 @@
  */
 package br.com.objectos.cnab;
 
-import java.util.EnumSet;
-import java.util.Map;
-import java.util.function.Function;
-import java.util.stream.Collectors;
-
 import br.com.objectos.flat.FlatEnum;
+import br.com.objectos.jabuticava.Cnpj;
+import br.com.objectos.jabuticava.Cpf;
 
 /**
  * @author marcio.endo@objectos.com.br (Marcio Endo)
  */
-public enum CarteiraBradesco implements FlatEnum {
+public enum TipoInscricaoEmpresaBradesco implements FlatEnum {
 
-  COBRANCA_SIMPLES_COM_REGISTRO("009");
+  CPF("01") {
+    @Override
+    public InscricaoEmpresaBradesco parse(long value) {
+      Cpf cpf = Cpf.valueOf(value);
+      return InscricaoEmpresaBradesco.of(this, cpf);
+    }
+  },
 
-  private static final Map<String, CarteiraBradesco> CODIGO_MAP = EnumSet.allOf(CarteiraBradesco.class)
-      .stream()
-      .collect(Collectors.toMap(CarteiraBradesco::codigo, Function.identity()));
+  CNPJ("02") {
+    @Override
+    public InscricaoEmpresaBradesco parse(long value) {
+      Cnpj cnpj = Cnpj.valueOf(value);
+      return InscricaoEmpresaBradesco.of(this, cnpj);
+    }
+  },
+
+  PIS_PASEP("03"),
+
+  NAO_TEM("04"),
+
+  OUTROS("05");
 
   private final String value;
 
-  private CarteiraBradesco(String value) {
+  private TipoInscricaoEmpresaBradesco(String value) {
     this.value = value;
-  }
-
-  public static CarteiraBradesco of(Carteira carteira) {
-    return CarteiraBradesco.valueOf(carteira.name());
-  }
-
-  static CarteiraBradesco parse(String text) {
-    return CODIGO_MAP.get(text);
   }
 
   @Override
@@ -52,8 +57,8 @@ public enum CarteiraBradesco implements FlatEnum {
     return value;
   }
 
-  String codigo() {
-    return value.substring(2);
+  public InscricaoEmpresaBradesco parse(long value) {
+    return InscricaoEmpresaBradesco.of(this);
   }
 
 }

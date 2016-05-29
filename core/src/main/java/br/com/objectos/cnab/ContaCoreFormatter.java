@@ -15,33 +15,28 @@
  */
 package br.com.objectos.cnab;
 
-import br.com.objectos.flat.FlatRecord;
+import br.com.objectos.flat.CustomFormatter;
+import br.com.objectos.flat.FlatReader;
+import br.com.objectos.flat.FlatWriter;
 import br.com.objectos.flat.IntegerOption;
-import br.com.objectos.flat.pojo.Fill;
-import br.com.objectos.flat.pojo.Fixed;
-import br.com.objectos.flat.pojo.IntegerFormat;
-import br.com.objectos.pojo.Pojo;
 
 /**
  * @author marcio.endo@objectos.com.br (Marcio Endo)
  */
-@Pojo
-public abstract class RemessaBradescoTrailer implements FlatRecord {
+public class ContaCoreFormatter implements CustomFormatter<Conta> {
 
-  @Fixed("9")
-  abstract String id();
-
-  @Fill(character = ' ', length = 393)
-  abstract String branco();
-
-  @IntegerFormat(length = 6, options = IntegerOption.ZEROFILL)
-  abstract int seq();
-
-  RemessaBradescoTrailer() {
+  @Override
+  public Conta parse(FlatReader reader, int length) {
+    int numero = reader.integer(5);
+    int digito = reader.integer(1);
+    return Conta.of(numero, digito);
   }
 
-  public static RemessaBradescoTrailerBuilder builder() {
-    return new RemessaBradescoTrailerBuilderPojo();
+  @Override
+  public FlatWriter write(FlatWriter writer, int length, Conta value) {
+    return writer
+        .integer(value.numero(), 5, IntegerOption.ZEROFILL)
+        .integer(value.digito(), 1);
   }
 
 }

@@ -16,28 +16,24 @@
 package br.com.objectos.cnab;
 
 import br.com.objectos.flat.CustomFormatter;
+import br.com.objectos.flat.FlatReader;
 import br.com.objectos.flat.FlatWriter;
-import br.com.objectos.flat.LongOption;
-import br.com.objectos.jabuticava.CadastroRFB;
-import br.com.objectos.jabuticava.Cnpj;
-import br.com.objectos.jabuticava.Cpf;
+import br.com.objectos.jabuticava.Estado;
 
 /**
  * @author marcio.endo@objectos.com.br (Marcio Endo)
  */
-public class CadastroRfbFormatter implements CustomFormatter<CadastroRFB> {
+public class EstadoCoreFormatter implements CustomFormatter<Estado> {
 
   @Override
-  public CadastroRFB parse(String text) {
-    Long longValue = Long.valueOf(text, 10);
-    return text.startsWith("000")
-        ? Cpf.valueOf(longValue)
-        : Cnpj.valueOf(longValue);
+  public Estado parse(FlatReader reader, int length) {
+    String text = reader.text(length);
+    return Estado.valueOf(text);
   }
 
   @Override
-  public FlatWriter write(FlatWriter writer, CadastroRFB value, int length) {
-    return writer.longValue(value.longValue(), length, LongOption.ZEROFILL);
+  public FlatWriter write(FlatWriter writer, int length, Estado estado) {
+    return writer.fixed(estado.name());
   }
 
 }

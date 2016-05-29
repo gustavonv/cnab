@@ -26,11 +26,11 @@ import br.com.objectos.pojo.Pojo;
 @Pojo
 public abstract class RemessaItau implements FlatContainer {
 
-  public abstract RemessaItauHeader header();
+  public abstract HeaderRemessaItau header();
 
-  public abstract List<RemessaItauTrx> trxList();
+  public abstract List<TrxRemessaItau> trxList();
 
-  public abstract RemessaItauTrailer trailer();
+  public abstract TrailerRemessaItau trailer();
 
   RemessaItau() {
   }

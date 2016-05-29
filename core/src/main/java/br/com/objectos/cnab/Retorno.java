@@ -15,36 +15,11 @@
  */
 package br.com.objectos.cnab;
 
-import java.util.List;
-
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.Test;
+import br.com.objectos.flat.FlatContainer;
 
 /**
  * @author marcio.endo@objectos.com.br (Marcio Endo)
  */
-public class ItauTest {
-
-  private List<CnabAssert> cnabList;
-
-  @BeforeClass
-  public void setUp() {
-    cnabList = CnabWget.of(br.com.objectos.jabuticava.cnab.Banco.ITAU);
-  }
-
-  @Test(groups = "rio")
-  public void itau() {
-    Itau itau = Itau.instance();
-    for (CnabAssert cnab : cnabList) {
-      cnab.verifyRemessa(itau);
-    }
-  }
-
-  @Test(groups = "rio")
-  public void cnabLegacy() {
-    for (CnabAssert cnab : cnabList) {
-      cnab.verifyTestingRemessa();
-    }
-  }
+public interface Retorno extends FlatContainer {
 
 }

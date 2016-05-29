@@ -15,26 +15,33 @@
  */
 package br.com.objectos.cnab;
 
-import br.com.objectos.auto.AutoPojo;
+import br.com.objectos.flat.Fill;
+import br.com.objectos.flat.Fixed;
+import br.com.objectos.flat.FlatRecord;
+import br.com.objectos.flat.IntegerFormat;
+import br.com.objectos.flat.IntegerOption;
+import br.com.objectos.pojo.Pojo;
 
 /**
  * @author marcio.endo@objectos.com.br (Marcio Endo)
  */
-@AutoPojo
-public abstract class Agencia {
+@Pojo
+public abstract class TrailerRemessaBradesco implements FlatRecord {
 
-  abstract int numero();
-  abstract int digito();
+  @Fixed("9")
+  abstract String id();
 
-  Agencia() {
+  @Fill(character = ' ', length = 393)
+  abstract String branco();
+
+  @IntegerFormat(length = 6, options = IntegerOption.ZEROFILL)
+  abstract int seq();
+
+  TrailerRemessaBradesco() {
   }
 
-  public static Agencia of(int numero) {
-    return of(numero, 0);
-  }
-
-  public static Agencia of(int numero, int digito) {
-    return new AgenciaPojo(numero, digito);
+  public static TrailerRemessaBradescoBuilder builder() {
+    return new TrailerRemessaBradescoBuilderPojo();
   }
 
 }

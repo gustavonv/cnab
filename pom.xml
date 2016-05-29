@@ -12,7 +12,7 @@
 	<groupId>br.com.objectos.cnab</groupId>
 	<artifactId>parent</artifactId>
 	<packaging>pom</packaging>
-	<version>0.3.0</version>
+	<version>0.4.-1</version>
 
 	<name>objectos :: cnab :: parent</name>
 	<description>CNAB400: Arquivos retorno e remessa</description>

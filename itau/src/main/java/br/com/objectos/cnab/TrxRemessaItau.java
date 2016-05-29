@@ -18,24 +18,24 @@ package br.com.objectos.cnab;
 import java.time.LocalDate;
 import java.util.Optional;
 
+import br.com.objectos.flat.BooleanFormat;
+import br.com.objectos.flat.CustomFormat;
+import br.com.objectos.flat.DecimalFormat;
 import br.com.objectos.flat.DecimalOption;
+import br.com.objectos.flat.Fill;
+import br.com.objectos.flat.Fixed;
+import br.com.objectos.flat.FlatEnumFormat;
 import br.com.objectos.flat.FlatRecord;
+import br.com.objectos.flat.IntegerFormat;
 import br.com.objectos.flat.IntegerOption;
+import br.com.objectos.flat.LocalDateFormat;
 import br.com.objectos.flat.LocalDatePattern;
+import br.com.objectos.flat.LongFormat;
 import br.com.objectos.flat.LongOption;
+import br.com.objectos.flat.Text;
 import br.com.objectos.flat.TextOption;
-import br.com.objectos.flat.pojo.BooleanFormat;
-import br.com.objectos.flat.pojo.CustomFormat;
-import br.com.objectos.flat.pojo.DecimalFormat;
-import br.com.objectos.flat.pojo.Fill;
-import br.com.objectos.flat.pojo.Fixed;
-import br.com.objectos.flat.pojo.FlatEnumFormat;
-import br.com.objectos.flat.pojo.IntegerFormat;
-import br.com.objectos.flat.pojo.LocalDateFormat;
-import br.com.objectos.flat.pojo.LongFormat;
-import br.com.objectos.flat.pojo.Text;
-import br.com.objectos.flat.pojo.WhenAbsent;
-import br.com.objectos.flat.pojo.WhenZero;
+import br.com.objectos.flat.WhenAbsent;
+import br.com.objectos.flat.WhenZero;
 import br.com.objectos.jabuticava.CadastroRFB;
 import br.com.objectos.jabuticava.Cep;
 import br.com.objectos.jabuticava.Estado;
@@ -45,7 +45,7 @@ import br.com.objectos.pojo.Pojo;
  * @author marcio.endo@objectos.com.br (Marcio Endo)
  */
 @Pojo
-public abstract class RemessaItauTrx implements FlatRecord {
+public abstract class TrxRemessaItau implements FlatRecord {
 
   @Fixed("1")
   abstract String id();
@@ -53,7 +53,7 @@ public abstract class RemessaItauTrx implements FlatRecord {
   @FlatEnumFormat(length = 2)
   public abstract TipoInscricaoItau tipoInscricaoEmpresa();
 
-  @CustomFormat(length = 14, formatter = CadastroRfbFormatter.class)
+  @CustomFormat(length = 14, formatter = CadastroRfbCoreFormatter.class)
   public abstract CadastroRFB numeroInscricaoEmpresa();
 
   @IntegerFormat(length = 4, options = { IntegerOption.ZEROFILL })
@@ -143,7 +143,7 @@ public abstract class RemessaItauTrx implements FlatRecord {
   @DecimalFormat(precision = 13, scale = 2, options = { DecimalOption.ZEROFILL })
   public abstract double valorAbatimento();
 
-  @CustomFormat(length = 16, formatter = InscricaoSacadoFormatter.class)
+  @CustomFormat(length = 16, formatter = CadastroRfbItauFormatter.class)
   public abstract CadastroRFB sacadoInscricao();
 
   @Text(length = 30, options = { TextOption.STRIP_ACCENTS })
@@ -158,13 +158,13 @@ public abstract class RemessaItauTrx implements FlatRecord {
   @Text(length = 12, options = { TextOption.STRIP_ACCENTS })
   public abstract String sacadoBairro();
 
-  @CustomFormat(length = 8, formatter = CepFormatter.class)
+  @CustomFormat(length = 8, formatter = CepCoreFormatter.class)
   public abstract Cep sacadoCep();
 
   @Text(length = 15, options = { TextOption.STRIP_ACCENTS })
   public abstract String sacadoCidade();
 
-  @CustomFormat(length = 2, formatter = EstadoFormatter.class)
+  @CustomFormat(length = 2, formatter = EstadoCoreFormatter.class)
   public abstract Estado sacadoEstado();
 
   @Text(length = 30, options = { TextOption.STRIP_ACCENTS })
@@ -186,11 +186,11 @@ public abstract class RemessaItauTrx implements FlatRecord {
   @IntegerFormat(length = 6, options = { IntegerOption.ZEROFILL })
   public abstract int seq();
 
-  RemessaItauTrx() {
+  TrxRemessaItau() {
   }
 
-  public static RemessaItauTrxBuilder builder() {
-    return new RemessaItauTrxBuilderPojo();
+  public static TrxRemessaItauBuilder builder() {
+    return new TrxRemessaItauBuilderPojo();
   }
 
 }
